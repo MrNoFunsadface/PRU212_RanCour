@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9501869b64da7b24f9c46144ff64c0dc, type: 3}
+  m_Name: HealingPotion
+  m_EditorClassIdentifier: 
+  <IsStackable>k__BackingField: 1
+  <MaxStackSize>k__BackingField: 64
+  <ItemSprite>k__BackingField: {fileID: -5099292496197868168, guid: 5cc3903a30f5c4b4394d2de7b098fb7c, type: 3}
+  <AttackStats>k__BackingField: 0
+  <DefenseStats>k__BackingField: 0
+  <ItemName>k__BackingField: HealingPotion
+  <ItemDescription>k__BackingField: strawberry flavour
+  <Quirk>k__BackingField: 
+  <QuirkDescription>k__BackingField: 

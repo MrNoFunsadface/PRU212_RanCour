@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9501869b64da7b24f9c46144ff64c0dc, type: 3}
+  m_Name: Gong
+  m_EditorClassIdentifier: 
+  <IsStackable>k__BackingField: 0
+  <MaxStackSize>k__BackingField: 1
+  <ItemSprite>k__BackingField: {fileID: -273201862069260663, guid: d8cc3772b7ac47440a25fdbcbc4f415d, type: 3}
+  <AttackStats>k__BackingField: 999
+  <DefenseStats>k__BackingField: 999
+  <ItemName>k__BackingField: Gong
+  <ItemDescription>k__BackingField: Beeg
+  <Quirk>k__BackingField: Beeg
+  <QuirkDescription>k__BackingField: Beeg
