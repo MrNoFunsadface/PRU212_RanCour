@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
 
     private void AdjustPlayerFacingDirection()
     {
-        Vector3 mousePos = Input.mousePosition;
+        Vector3 mousePos = Mouse.current.position.ReadValue();
         Vector3 playerScreenPoint = Camera.main.WorldToScreenPoint(transform.position);
 
         if (mousePos.x < playerScreenPoint.x)
