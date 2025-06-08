@@ -1,10 +1,10 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController1 : MonoBehaviour
 {
     [SerializeField] private Vector3 defaultSpawnPoint;
-    [SerializeField] private float moveSpeed = 1f;
+    [SerializeField] private float moveSpeed = 1f; 
 
     private PlayerControls playerControls;
     private Vector2 movement;
@@ -35,17 +35,10 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        if (GameManager.Instance != null)
+        if (GameManager.Instance != null && GameManager.Instance.isReturningFromBattle)
         {
-            if (GameManager.Instance.isReturningFromBattle)
-            {
-                transform.position = GameManager.Instance.playerReturnPosition;
-                GameManager.Instance.isReturningFromBattle = false;
-            }
-            else if (!GameManager.Instance.useCustomSpawnPosition)
-            {
-                transform.position = defaultSpawnPoint;
-            }
+            transform.position = GameManager.Instance.playerReturnPosition;
+            GameManager.Instance.isReturningFromBattle = false; // Reset flag
         }
         else
         {
