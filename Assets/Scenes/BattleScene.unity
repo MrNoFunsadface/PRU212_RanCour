@@ -958,6 +958,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawner
       objectReference: {fileID: 0}
+    - target: {fileID: 2458530278083839606, guid: 1fa2682b16dcad5429f3b7c2fcc04473, type: 3}
+      propertyPath: m_Spacing
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2458530278083839606, guid: 1fa2682b16dcad5429f3b7c2fcc04473, type: 3}
+      propertyPath: m_ChildAlignment
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5036788945508279888, guid: 1fa2682b16dcad5429f3b7c2fcc04473, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1020,7 +1028,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5036788945508279888, guid: 1fa2682b16dcad5429f3b7c2fcc04473, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 400
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 5036788945508279888, guid: 1fa2682b16dcad5429f3b7c2fcc04473, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1039,9 +1047,61 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7818890120155175566, guid: 1fa2682b16dcad5429f3b7c2fcc04473, type: 3}
-      propertyPath: 'enemyToSpawn.Array.data[1]'
+      propertyPath: waveValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7818890120155175566, guid: 1fa2682b16dcad5429f3b7c2fcc04473, type: 3}
+      propertyPath: maxEnemyCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7818890120155175566, guid: 1fa2682b16dcad5429f3b7c2fcc04473, type: 3}
+      propertyPath: minEnemyCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7818890120155175566, guid: 1fa2682b16dcad5429f3b7c2fcc04473, type: 3}
+      propertyPath: representativeEnemy
       value: 
       objectReference: {fileID: 11400000, guid: 0db526ca75469a64b8c0d3df073a510a, type: 2}
+    - target: {fileID: 7818890120155175566, guid: 1fa2682b16dcad5429f3b7c2fcc04473, type: 3}
+      propertyPath: enemyTable.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7818890120155175566, guid: 1fa2682b16dcad5429f3b7c2fcc04473, type: 3}
+      propertyPath: enemyToSpawn.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7818890120155175566, guid: 1fa2682b16dcad5429f3b7c2fcc04473, type: 3}
+      propertyPath: representativeEnemy.enemy
+      value: 
+      objectReference: {fileID: 11400000, guid: 0db526ca75469a64b8c0d3df073a510a, type: 2}
+    - target: {fileID: 7818890120155175566, guid: 1fa2682b16dcad5429f3b7c2fcc04473, type: 3}
+      propertyPath: 'enemyToSpawn.Array.data[0]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7818890120155175566, guid: 1fa2682b16dcad5429f3b7c2fcc04473, type: 3}
+      propertyPath: 'enemyToSpawn.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: c93941da899de9c4f9ce4af5ee1bba6d, type: 2}
+    - target: {fileID: 7818890120155175566, guid: 1fa2682b16dcad5429f3b7c2fcc04473, type: 3}
+      propertyPath: 'enemyToSpawn.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 0db526ca75469a64b8c0d3df073a510a, type: 2}
+    - target: {fileID: 7818890120155175566, guid: 1fa2682b16dcad5429f3b7c2fcc04473, type: 3}
+      propertyPath: enemyTable.Array.data[0].cost
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7818890120155175566, guid: 1fa2682b16dcad5429f3b7c2fcc04473, type: 3}
+      propertyPath: enemyTable.Array.data[1].cost
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7818890120155175566, guid: 1fa2682b16dcad5429f3b7c2fcc04473, type: 3}
+      propertyPath: enemyTable.Array.data[0].enemy
+      value: 
+      objectReference: {fileID: 11400000, guid: 0db526ca75469a64b8c0d3df073a510a, type: 2}
+    - target: {fileID: 7818890120155175566, guid: 1fa2682b16dcad5429f3b7c2fcc04473, type: 3}
+      propertyPath: enemyTable.Array.data[1].enemy
+      value: 
+      objectReference: {fileID: 11400000, guid: c93941da899de9c4f9ce4af5ee1bba6d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

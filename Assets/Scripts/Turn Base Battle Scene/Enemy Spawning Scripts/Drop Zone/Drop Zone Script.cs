@@ -6,8 +6,4 @@ public class DropZoneScript : MonoBehaviour
 {
     public string enemyName;
     public int enemyOrder;
-    public void Awake()
-    {
-        
-    }
 }
