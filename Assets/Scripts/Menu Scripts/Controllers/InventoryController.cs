@@ -29,7 +29,7 @@ namespace Scripts.Controllers
             PrepareUI();
             PrepareInventoryData();
             PrepareOptionBar();
-            InitializeMockData();
+            //InitializeMockData();
         }
 
         private void PrepareOptionBar()

@@ -34,16 +34,23 @@ public class RandomEnemySpawn : MonoBehaviour
             Enemy enemy = enemyToSpawn[i];
             enemyList.Add(enemy);
 
-            AppendDropZoneWithEnemy(enemy, dropZone, spawner);
+            AppendDropZoneWithEnemy(enemy, dropZone, spawner, i);
         }
     }
 
-    public void AppendDropZoneWithEnemy(Enemy enemy, GameObject dropZone, Transform spawner)
+    public void AppendDropZoneWithEnemy(Enemy enemy, GameObject dropZone, Transform spawner, int order)
     {
         // Instantiate the enemy prefab at the spawner's position
         GameObject enemyObject = Instantiate(enemy.enemyPrefab, spawner);
 
         // Instantiate the drop zone prefab at the enemy's position
         GameObject dropZoneObject = Instantiate(dropZone, enemyObject.transform);
+
+        var dropZoneScript = dropZoneObject.GetComponent<DropZoneScript>();
+        if (dropZoneScript != null)
+            dropZoneScript = dropZoneObject.AddComponent<DropZoneScript>();
+        dropZoneScript.enemyName = enemy.enemyName;
+        dropZoneScript.enemyOrder = order; // Set the order based on the current index in the list
+        Debug.Log($"Drop zone for {dropZoneScript.enemyName} created with order {dropZoneScript.enemyOrder}");
     }
 }

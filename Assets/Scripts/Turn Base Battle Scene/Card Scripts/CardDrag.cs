@@ -89,6 +89,17 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         else
         {
             canvasGroup.blocksRaycasts = true;
+
+            var info = eventData.pointerEnter.GetComponent<DropZoneScript>();
+            Debug.Log(info);
+            if (info != null)
+            {
+                Debug.Log($"Dropped a card on {info.enemyName} at order {info.enemyOrder}");
+            }
+            else
+            {
+                Debug.Log("Cannot detect any drop zone info");
+            }
         }
 
         StopCoroutineIfRunning(ref speedTrackingCoroutine);

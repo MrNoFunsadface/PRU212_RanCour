@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91e72fc18cca696409750fb8d384ce05, type: 3}
-  m_Name: Bat
+  m_Script: {fileID: 11500000, guid: 6da8dfc9d8971f84b9a3457566f90fbe, type: 3}
+  m_Name: InventoryData
   m_EditorClassIdentifier: 
-  enemyName: Bat
-  enemyPrefab: {fileID: 2256444359035510481, guid: 1a79a3a1eb63ea146bc4fbd383e7ced1, type: 3}
+  inventoryItems: []
+  <InventorySize>k__BackingField: 12
