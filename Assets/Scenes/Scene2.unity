@@ -690,11 +690,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8800408296775185402, guid: 07324572f4bfb9b418833c7d4d46849c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.0198975
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 8800408296775185402, guid: 07324572f4bfb9b418833c7d4d46849c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.5451589
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 8800408296775185402, guid: 07324572f4bfb9b418833c7d4d46849c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -750,10 +750,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1422742372}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e99767dfb7c787c4b88ab59aeba951b1, type: 3}
+  m_Script: {fileID: 11500000, guid: 1291098364a20f14cb6114ba049a78bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultSpawnPoint: {x: -7.019897, y: -2.545159, z: 0}
+  defaultSpawnPoint: {x: -7, y: -2.5, z: 0}
   moveSpeed: 6
 --- !u!1001 &1442270772
 PrefabInstance:
