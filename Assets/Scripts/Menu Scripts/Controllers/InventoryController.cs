@@ -29,7 +29,7 @@ namespace Scripts.Controllers
             PrepareUI();
             PrepareInventoryData();
             PrepareOptionBar();
-            //InitializeMockData();
+            InitializeMockData();
         }
 
         private void PrepareOptionBar()
@@ -47,7 +47,6 @@ namespace Scripts.Controllers
             inventoryData.AddItem(itemDatabase.items[0], 1);
             inventoryData.AddItem(itemDatabase.items[1], 1);
             inventoryData.AddItem(itemDatabase.items[2], 1);
-            inventoryData.AddItem(itemDatabase.items[3], 1);
         }
 
         private void PrepareInventoryData()
