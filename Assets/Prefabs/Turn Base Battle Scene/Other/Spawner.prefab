@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5036788945508279888}
-  - component: {fileID: 7818890120155175566}
   - component: {fileID: 2458530278083839606}
+  - component: {fileID: 7818890120155175566}
   m_Layer: 5
   m_Name: Spawner
   m_TagString: Untagged
@@ -37,27 +37,6 @@ RectTransform:
   m_AnchoredPosition: {x: 400, y: 0}
   m_SizeDelta: {x: 800, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &7818890120155175566
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1363448084943714943}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2c7115db5ce7964896f99a58ddc93a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyToSpawn:
-  - {fileID: 11400000, guid: c93941da899de9c4f9ce4af5ee1bba6d, type: 2}
-  - {fileID: 11400000, guid: c93941da899de9c4f9ce4af5ee1bba6d, type: 2}
-  - {fileID: 11400000, guid: c93941da899de9c4f9ce4af5ee1bba6d, type: 2}
-  - {fileID: 11400000, guid: c93941da899de9c4f9ce4af5ee1bba6d, type: 2}
-  spawner: {fileID: 5036788945508279888}
-  dropZone: {fileID: 2538173634927005814, guid: 4cb14acfa4eaceb49974797e79e540d5, type: 3}
-  dungeonBaseLevel: 0
-  point: 0
 --- !u!114 &2458530278083839606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,3 +63,25 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &7818890120155175566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1363448084943714943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2c7115db5ce7964896f99a58ddc93a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawner: {fileID: 5036788945508279888}
+  dropZonePrefab: {fileID: 2538173634927005814, guid: 4cb14acfa4eaceb49974797e79e540d5, type: 3}
+  healthBar: {fileID: 2137456175057537601, guid: 37e935db6ba5afb43972d740c977eff6, type: 3}
+  enemyTable: []
+  enemyToSpawn: []
+  representativeEnemy: {fileID: 0}
+  minEnemyCount: 0
+  maxEnemyCount: 0
+  dungeonBaseLevel: 0
+  waveValue: 0
