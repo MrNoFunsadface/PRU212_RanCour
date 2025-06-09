@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <IsStackable>k__BackingField: 0
   <MaxStackSize>k__BackingField: 1
-  <ItemSprite>k__BackingField: {fileID: 0}
+  <ItemSprite>k__BackingField: {fileID: 8775846613379827752, guid: 0e35d8931aac58b44a087aad4dcfbda1, type: 3}
   <AttackStats>k__BackingField: 0
   <DefenseStats>k__BackingField: 0
   <ItemName>k__BackingField: Key

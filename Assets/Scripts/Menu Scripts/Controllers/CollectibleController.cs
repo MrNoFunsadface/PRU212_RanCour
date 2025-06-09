@@ -14,6 +14,9 @@ public class CollectibleController : MonoBehaviour
     [SerializeField]
     private ItemDatabaseSO itemDatabase;
 
+    [SerializeField]
+    private EButton eButton;
+
     private bool playerInRange = false;
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -21,6 +24,7 @@ public class CollectibleController : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
+            eButton.Show();
             Debug.Log("player steps in " + itemName + "'s hitbox");
         }
     }
@@ -30,6 +34,7 @@ public class CollectibleController : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
+            eButton.Hide();
             Debug.Log("player steps out " + itemName + "'s hitbox");
         }
     }
