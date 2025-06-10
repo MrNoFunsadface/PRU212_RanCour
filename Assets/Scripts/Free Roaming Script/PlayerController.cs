@@ -33,6 +33,18 @@ public class PlayerController : MonoBehaviour
         playerControls.Dispose();
     }
 
+    public bool setSpeed(float speed)
+    {
+        moveSpeed = speed;
+        if (moveSpeed < 0)
+        {
+            Debug.LogError("Speed cannot be negative. Setting to default value of 1.");
+            moveSpeed = 1f;
+            return false;
+        }
+        return true;
+    }
+
     private void Start()
     {
         if (GameManager.Instance != null)

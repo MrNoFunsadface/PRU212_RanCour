@@ -75,6 +75,11 @@ namespace Scripts.Models
             InformAboutChange();
         }
 
+        public bool CheckItemByName(string itemName)
+        {
+            return inventoryItems.Any(item => item.itemData != null && item.itemData.ItemName == itemName);
+        }
+
         private void InformAboutChange()
         {
             OnInventoryChanged?.Invoke(GetCurrentInventoryState());
