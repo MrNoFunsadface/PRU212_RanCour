@@ -1132,6 +1132,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2538173634927005814, guid: 4cb14acfa4eaceb49974797e79e540d5, type: 3}
     - target: {fileID: 7818890120155175566, guid: 1fa2682b16dcad5429f3b7c2fcc04473, type: 3}
+      propertyPath: activeHealthBar
+      value: 
+      objectReference: {fileID: 2137456175057537601, guid: d8358ef88b0225541ac2cab5041bc8a1, type: 3}
+    - target: {fileID: 7818890120155175566, guid: 1fa2682b16dcad5429f3b7c2fcc04473, type: 3}
       propertyPath: representativeEnemy
       value: 
       objectReference: {fileID: 11400000, guid: 0db526ca75469a64b8c0d3df073a510a, type: 2}

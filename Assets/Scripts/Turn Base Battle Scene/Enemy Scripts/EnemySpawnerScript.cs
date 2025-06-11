@@ -1,12 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
-
-public class RandomEnemySpawn : MonoBehaviour
+//
+// Summary:
+//     EnemySpawnerScript is responsible for spawning enemies in the battle scene.
+//     It manages the enemy and its related components.
+public class EnemySpawnerScript : MonoBehaviour
 {
     [Header("Spawner and Objects attached with the enemy")]
     [SerializeField] private Transform spawner;
     [SerializeField] private GameObject dropZonePrefab;
     [SerializeField] private GameObject healthBar;
+    [SerializeField] private GameObject activeHealthBar; // Health bar when hover the card over the enemy's drop zone
 
     [Header("Enemy spawning configure")]
     [SerializeField] private EnemyWithStats[] enemyTable;
@@ -78,19 +82,25 @@ public class RandomEnemySpawn : MonoBehaviour
         for (int i = 0; i < enemyToSpawn.Count; i++)
         {
             Enemy enemy = enemyToSpawn[i].enemy;
-            CreateEnemyObject(enemy, dropZonePrefab, healthBar, spawner, i);
+            CreateEnemyObject(enemy, dropZonePrefab, healthBar, activeHealthBar, spawner, i);
         }
     }
 
-    public void CreateEnemyObject(Enemy enemy, GameObject dropZonePrefab, GameObject healthBar, Transform spawner, int order)
+    public void CreateEnemyObject(Enemy enemy, GameObject dropZonePrefab, GameObject healthBar, GameObject activeHealthBar, Transform spawner, int order)
     {
         GameObject enemyObject = Instantiate(enemy.enemyPrefab, spawner);
         GameObject dropZoneObject = Instantiate(dropZonePrefab, enemyObject.transform);
+        GameObject activeHealthBarObject = Instantiate(activeHealthBar, enemyObject.transform);
         GameObject healthBarObject = Instantiate(healthBar, enemyObject.transform);
+
 
         var dropZoneScript = dropZoneObject.GetComponent<DropZoneScript>();
         dropZoneScript.enemyName = enemy.enemyName;
         dropZoneScript.enemyOrder = order;
+
+        dropZoneScript.activeHealthBar = activeHealthBarObject;
+        dropZoneScript.healthBar = healthBarObject;
+
         Debug.Log($"Drop zone for {dropZoneScript.enemyName} created with order {dropZoneScript.enemyOrder}");
     }
 }

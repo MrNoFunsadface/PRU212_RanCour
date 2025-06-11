@@ -4,8 +4,10 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - spawner: {fileID: 5036788945508279888, guid: 1fa2682b16dcad5429f3b7c2fcc04473, type: 3}
-  - dropZone: {fileID: 2538173634927005814, guid: 4cb14acfa4eaceb49974797e79e540d5, type: 3}
+  - spawner: {instanceID: 0}
+  - dropZonePrefab: {instanceID: 0}
+  - healthBar: {instanceID: 0}
+  - representativeEnemy: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

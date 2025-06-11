@@ -1,7 +1,12 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
+// 
+// Summary:
+//     CardDrag handles the drag-and-drop functionality for cards in the player's hand.
+//     It manages the card's position, tilt, shadow, and parallax effects during dragging.
 public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     private RectTransform rectTransform;
@@ -77,6 +82,7 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         ApplyParallax(delta);
 
         UpdateOpacity(eventData);
+        UpdateHealthBarState(eventData);
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -214,6 +220,39 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     {
         float targetAlpha = (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("DropZone")) ? 0.5f : 1f;
         canvasGroup.alpha = Mathf.Lerp(canvasGroup.alpha, targetAlpha, Time.deltaTime * TiltLerpSpeed);
+    }
+
+    private void UpdateHealthBarState(PointerEventData eventData)
+    {
+        // Helper to set alpha for all SpriteRenderers under a GameObject
+        void SetAlpha(GameObject go, float alpha)
+        {
+            if (go == null) return;
+            var renderers = go.GetComponentsInChildren<Image>(true);
+            foreach (var r in renderers)
+            {
+                var c = r.color;
+                r.color = new Color(c.r, c.g, c.b, alpha);
+            }
+        }
+
+        // Default: show all normal health bars, hide all active health bars
+        foreach (var dropZone in Object.FindObjectsByType<DropZoneScript>(FindObjectsInactive.Exclude, FindObjectsSortMode.None))
+        {
+            SetAlpha(dropZone.healthBar, 1f);
+            SetAlpha(dropZone.activeHealthBar, 0f);
+        }
+
+        // If over a drop zone, show its active health bar, hide its normal health bar
+        if (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("DropZone"))
+        {
+            var dz = eventData.pointerEnter.GetComponent<DropZoneScript>();
+            if (dz != null)
+            {
+                SetAlpha(dz.healthBar, 0f);
+                SetAlpha(dz.activeHealthBar, 1f);
+            }
+        }
     }
 
     private void StopCoroutineIfRunning(ref Coroutine coroutine)

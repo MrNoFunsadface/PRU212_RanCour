@@ -2,7 +2,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Collections;
-
+//
+// Summary:
+//     CardSpawner is responsible for spawning and managing cards in the player's hand. It handles the
+//     positioning and fanning of cards, as well as drag-and-drop functionality for card interactions.
 public class CardSpawner : MonoBehaviour
 {
     [Header("Setup")]
@@ -112,13 +115,5 @@ public class CardSpawner : MonoBehaviour
         Vector2 position = new Vector2(Mathf.Sin(rad), -Mathf.Cos(rad)) * radius;
         cardRT.anchoredPosition = position;
         cardRT.localRotation = Quaternion.Euler(0, 0, angle);
-    }
-    private void StopCoroutineIfRunning(ref Coroutine coroutine)
-    {
-        if (coroutine != null)
-        {
-            StopCoroutine(coroutine);
-            coroutine = null;
-        }
     }
 }

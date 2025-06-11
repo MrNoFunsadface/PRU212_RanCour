@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 6ea41ef18933e664696121392245366e
+guid: 5c5d1b4260a676949a248c2ce610abc1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3825927049379498496
-    second: HealthBarBorder_0
+      213: 5125743060648277435
+    second: ActiveHealthBarBorder_0
   - first:
-      213: -5229108612294475736
-    second: HealthBarBorder_1
+      213: -8577978542241765107
+    second: ActiveHealthBarBorder_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -103,7 +103,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HealthBarBorder_0
+      name: ActiveHealthBarBorder_0
       rect:
         serializedVersion: 2
         x: 0
@@ -118,14 +118,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0063d258e9397eac0800000000000000
-      internalID: -3825927049379498496
+      spriteID: bb53dd3082c422740800000000000000
+      internalID: 5125743060648277435
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HealthBarBorder_1
+      name: ActiveHealthBarBorder_1
       rect:
         serializedVersion: 2
         x: 65
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 82080401c697e67b0800000000000000
-      internalID: -5229108612294475736
+      spriteID: d09a1c2c6f5e4f880800000000000000
+      internalID: -8577978542241765107
       vertices: []
       indices: 
       edges: []
@@ -150,7 +150,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 84b365b5a4d17704ea843667c288ee58
+    spriteID: f2e610c73f96aed4c9c75257c4df9809
     internalID: 0
     vertices: []
     indices: 
@@ -160,8 +160,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      HealthBarBorder_0: -3825927049379498496
-      HealthBarBorder_1: -5229108612294475736
+      ActiveHealthBarBorder_0: 5125743060648277435
+      ActiveHealthBarBorder_1: -8577978542241765107
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -85,7 +85,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4483059704903778826}
   m_Layer: 5
-  m_Name: Health Bar
+  m_Name: Active Health Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -178,7 +178,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -3825927049379498496, guid: 6ea41ef18933e664696121392245366e, type: 3}
+  m_Sprite: {fileID: 5125743060648277435, guid: 5c5d1b4260a676949a248c2ce610abc1, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
