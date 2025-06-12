@@ -60,6 +60,21 @@ public class MainGate : MonoBehaviour
         {
             Debug.LogError("MainGate script requires an Animator component on the GameObject.");
         }
+
+        int gateOpened = PlayerPrefs.GetInt("MainGate_Opened", 0);
+        if (gateOpened == 1)
+        {
+            gateCollider.enabled = false;
+            mainGateAnimator.Play("GateStayOpenedAnim", 0, 0f);
+            Debug.Log("Main gate has already been opened.");
+            return;
+        }
+        else
+        {
+            gateCollider.enabled = true;
+            eButton.Hide();
+            Debug.Log("Main gate is available to open.");
+        }
     }
 
     private void Update()
@@ -70,6 +85,7 @@ public class MainGate : MonoBehaviour
             {
                 Debug.Log("You have the key. Opening the gate...");
                 StartCoroutine(OpenGate());
+                PlayerPrefs.SetInt("MainGate_Opened", 1);
             }
             else Debug.Log("You need a key to open the gate.");
         }
