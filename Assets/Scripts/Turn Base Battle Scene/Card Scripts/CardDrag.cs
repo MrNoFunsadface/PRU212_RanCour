@@ -14,6 +14,7 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     private Canvas canvas;
     [HideInInspector] public Vector2 originalPosition;
     [HideInInspector] public CardSpawner cardSpawner;
+    [HideInInspector] public Card card;
 
     private Coroutine returnCoroutine;
     private Coroutine rotationCoroutine;
@@ -43,6 +44,8 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     private float speed;
 
+    private BattleLogScript battleLog;
+
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -53,6 +56,8 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         nameOriginalPos = cardName.localPosition;
         descOriginalPos = cardDescription.localPosition;
         costOriginalPos = costOutline.localPosition;
+
+        battleLog = Object.FindFirstObjectByType<BattleLogScript>();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -97,7 +102,10 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             var info = eventData.pointerEnter.GetComponent<DropZoneScript>();
             if (info != null)
             {
-                Debug.Log($"Dropped a card on {info.enemyName} at order {info.enemyOrder}");
+                Debug.Log($"Dropped {card.cardName} on {info.enemyName} at order {info.enemyOrder}");
+                if (battleLog != null)
+                    battleLog.LogBattleEvent($"Dropped {card.cardName} on {info.enemyName} at order {info.enemyOrder}");
+                battleLog.UpdateDisplayer();
             }
             else
             {

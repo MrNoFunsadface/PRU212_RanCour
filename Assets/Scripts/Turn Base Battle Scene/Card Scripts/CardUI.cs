@@ -17,9 +17,4 @@ public class CardUI : MonoBehaviour
         if (artworkImage != null && data.artwork != null) artworkImage.sprite = data.artwork;
         if (costText != null) costText.text = data.cost.ToString();
     }
-
-    public void OnCardClick()
-    {
-        // Flip the card to the back for extra information, description, etc.
-    }
 }
