@@ -55,11 +55,13 @@ namespace Scripts.Menu
                 uiItem.OnItemDropped += HandleSwap;
                 uiItem.OnItemEndDrag += HandleEndDrag;
                 uiItem.OnRightMouseBtnClick += HandleShowItemActions;
+                //Debug.Log($"Initialized UI item at index {i}");
             }
         }
 
         private void HandleItemSelection(UIInventoryItem item)
         {
+            Debug.Log("Item selected: " + item.name);
             int index = listOfUIItems.IndexOf(item);
             if (index == -1) return;
             OnDescriptionRequested?.Invoke(index);

@@ -12,6 +12,9 @@ namespace Scripts.Models
         [SerializeField]
         private List<InventoryItem> inventoryItems;
 
+        [SerializeField]
+        private ItemDatabaseSO itemDatabase;
+
         [field: SerializeField]
         public int InventorySize { get; private set; } = 12;
 
@@ -22,8 +25,19 @@ namespace Scripts.Models
             inventoryItems = new List<InventoryItem>(InventorySize);
             for (int i = 0; i < InventorySize; i++)
             {
-                inventoryItems.Add(InventoryItem.GetEmptyItem());
-
+                if (PlayerPrefs.HasKey($"InventorySlot_{i}_Item"))
+                {
+                    Debug.Log($"Loading inventory slot {i} from PlayerPrefs.");
+                    int itemId = PlayerPrefs.GetInt($"InventorySlot_{i}_Item");
+                    int quantity = PlayerPrefs.GetInt($"InventorySlot_{i}_Quantity", 1);
+                    ItemSO itemData = itemDatabase.GetItemByID(itemId);
+                    inventoryItems.Add(new InventoryItem
+                    {
+                        itemData = itemData,
+                        quantity = quantity
+                    });
+                }
+                else inventoryItems.Add(InventoryItem.GetEmptyItem());
             }
         }
 
@@ -38,6 +52,9 @@ namespace Scripts.Models
                         itemData = item,
                         quantity = quantity
                     };
+                    PlayerPrefs.SetInt($"InventorySlot_{i}_Item", item.ID);
+                    PlayerPrefs.SetInt($"InventorySlot_{i}_Quantity", quantity);
+                    PlayerPrefs.Save();
                     break;
                 }
             }
@@ -72,6 +89,11 @@ namespace Scripts.Models
             InventoryItem item1 = inventoryItems[itemIndex1];
             inventoryItems[itemIndex1] = inventoryItems[itemIndex2];
             inventoryItems[itemIndex2] = item1;
+            PlayerPrefs.SetInt($"InventorySlot_{itemIndex1}_Item", item1.itemData?.ID ?? 0);
+            PlayerPrefs.SetInt($"InventorySlot_{itemIndex1}_Quantity", item1.quantity);
+            PlayerPrefs.SetInt($"InventorySlot_{itemIndex2}_Item", inventoryItems[itemIndex2].itemData?.ID ?? 0);
+            PlayerPrefs.SetInt($"InventorySlot_{itemIndex2}_Quantity", inventoryItems[itemIndex2].quantity);
+            PlayerPrefs.Save();
             InformAboutChange();
         }
 

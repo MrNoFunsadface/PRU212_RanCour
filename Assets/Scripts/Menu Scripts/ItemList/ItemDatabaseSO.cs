@@ -18,4 +18,17 @@ public class ItemDatabaseSO : ScriptableObject
         Debug.LogWarning($"Item with name {itemName} not found in database.");
         return null;
     }
+
+    public ItemSO GetItemByID(int itemID)
+    {
+        foreach (ItemSO item in items)
+        {
+            if (item.ID == itemID)
+            {
+                return item;
+            }
+        }
+        Debug.LogWarning($"Item with ID {itemID} not found in database.");
+        return null;
+    }
 }
