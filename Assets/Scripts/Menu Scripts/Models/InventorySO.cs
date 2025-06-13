@@ -37,8 +37,13 @@ namespace Scripts.Models
                         quantity = quantity
                     });
                 }
-                else inventoryItems.Add(InventoryItem.GetEmptyItem());
+                else
+                {
+                    inventoryItems.Add(InventoryItem.GetEmptyItem());
+                    PlayerPrefs.SetInt($"InventorySlot_{i}_Item", 0);
+                }
             }
+            InformAboutChange();
         }
 
         public void AddItem(ItemSO item, int quantity)
@@ -89,9 +94,16 @@ namespace Scripts.Models
             InventoryItem item1 = inventoryItems[itemIndex1];
             inventoryItems[itemIndex1] = inventoryItems[itemIndex2];
             inventoryItems[itemIndex2] = item1;
-            PlayerPrefs.SetInt($"InventorySlot_{itemIndex1}_Item", item1.itemData?.ID ?? 0);
-            PlayerPrefs.SetInt($"InventorySlot_{itemIndex1}_Quantity", item1.quantity);
-            PlayerPrefs.SetInt($"InventorySlot_{itemIndex2}_Item", inventoryItems[itemIndex2].itemData?.ID ?? 0);
+            if (!inventoryItems[itemIndex1].isEmpty)
+            {
+                PlayerPrefs.SetInt($"InventorySlot_{itemIndex1}_Item", inventoryItems[itemIndex1].itemData.ID);
+                PlayerPrefs.SetInt($"InventorySlot_{itemIndex1}_Quantity", inventoryItems[itemIndex1].quantity);
+            } else
+            {
+                PlayerPrefs.SetInt($"InventorySlot_{itemIndex1}_Item", 0);
+                PlayerPrefs.SetInt($"InventorySlot_{itemIndex1}_Quantity", 0);
+            }
+            PlayerPrefs.SetInt($"InventorySlot_{itemIndex2}_Item", inventoryItems[itemIndex2].itemData.ID);
             PlayerPrefs.SetInt($"InventorySlot_{itemIndex2}_Quantity", inventoryItems[itemIndex2].quantity);
             PlayerPrefs.Save();
             InformAboutChange();

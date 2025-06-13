@@ -31,20 +31,28 @@ namespace Scripts.Menu
 
         public void ResetData()
         {
-            itemImage.gameObject.SetActive(false);
+            if (itemImage != null && itemImage.gameObject != null)
+                itemImage.gameObject.SetActive(false);
             empty = true;
         }
 
         public void Deselect()
         {
-            borderImage.gameObject.SetActive(false);
+            if (borderImage != null && borderImage.gameObject != null)
+                borderImage.gameObject.SetActive(false);
         }
 
         public void SetData(Sprite sprite, int quanity)
         {
-            itemImage.gameObject.SetActive(true);
-            itemImage.sprite = sprite;
-            quantityTxt.text = quanity + "";
+            if (itemImage != null && itemImage.gameObject != null)
+            {
+                itemImage.gameObject.SetActive(true);
+                itemImage.sprite = sprite;
+            }
+            if (quantityTxt != null)
+            {
+                quantityTxt.text = quanity + "";
+            }
             empty = false;
         }
 
