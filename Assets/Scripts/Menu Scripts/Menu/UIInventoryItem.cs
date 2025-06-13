@@ -23,10 +23,25 @@ namespace Scripts.Menu
 
         private bool empty = true;
 
-        public void Awake()
+        private void Awake()
         {
             ResetData();
             Deselect();
+
+            itemImage.preserveAspect = true;
+            itemImage.type = Image.Type.Simple;
+
+            if (itemImage != null)
+            {
+                RectTransform rt = itemImage.GetComponent<RectTransform>();
+                if (rt != null)
+                {
+                    rt.anchorMin = new Vector2(0.5f, 0.5f);
+                    rt.anchorMax = new Vector2(0.5f, 0.5f);
+                    rt.pivot = new Vector2(0.5f, 0.5f);
+                    rt.anchoredPosition = Vector2.zero;
+                }
+            }
         }
 
         public void ResetData()
