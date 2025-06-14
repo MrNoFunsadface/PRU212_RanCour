@@ -25,7 +25,7 @@ namespace Scripts.Models
             inventoryItems = new List<InventoryItem>(InventorySize);
             for (int i = 0; i < InventorySize; i++)
             {
-                if (PlayerPrefs.HasKey($"InventorySlot_{i}_Item"))
+                if (PlayerPrefs.GetInt($"InventorySlot_{i}_Item", 0) != 0)
                 {
                     Debug.Log($"Loading inventory slot {i} from PlayerPrefs.");
                     int itemId = PlayerPrefs.GetInt($"InventorySlot_{i}_Item");
