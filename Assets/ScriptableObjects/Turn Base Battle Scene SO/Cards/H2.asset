@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: H2
   description: Hydrogen
-  artwork: {fileID: 0}
+  artwork: {fileID: 5460124998386347165, guid: 5f566bfb806985240b228151477025dd, type: 3}
   cost: 0
   power: 0
