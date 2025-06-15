@@ -1,5 +1,4 @@
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,9 +27,11 @@ namespace Scripts.Menu
         [SerializeField]
         private TMP_Text quirkDescription;
 
-        public void Awake()
+        private void Awake()
         {
             ResetDescription();
+            itemSprite.preserveAspect = true;
+            itemSprite.type = Image.Type.Simple;
         }
 
         public void ResetDescription()
@@ -44,9 +45,7 @@ namespace Scripts.Menu
             quirkDescription.text = "";
         }
 
-        public void SetDescription(Sprite sprite, int atkStats
-            , int defStats, string itemName, string itemDescription
-            , string quirk, string quirktDescription)
+        public void SetDescription(Sprite sprite, int atkStats, int defStats, string itemName, string itemDescription, string quirk, string quirktDescription)
         {
             itemSprite.gameObject.SetActive(true);
             itemSprite.sprite = sprite;

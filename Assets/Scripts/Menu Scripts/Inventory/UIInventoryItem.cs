@@ -23,28 +23,51 @@ namespace Scripts.Menu
 
         private bool empty = true;
 
-        public void Awake()
+        private void Awake()
         {
             ResetData();
             Deselect();
+
+            itemImage.preserveAspect = true;
+            itemImage.type = Image.Type.Simple;
+
+            if (itemImage != null)
+            {
+                RectTransform rt = itemImage.GetComponent<RectTransform>();
+                if (rt != null)
+                {
+                    rt.anchorMin = new Vector2(0.5f, 0.5f);
+                    rt.anchorMax = new Vector2(0.5f, 0.5f);
+                    rt.pivot = new Vector2(0.5f, 0.5f);
+                    rt.anchoredPosition = Vector2.zero;
+                }
+            }
         }
 
         public void ResetData()
         {
-            itemImage.gameObject.SetActive(false);
+            if (itemImage != null && itemImage.gameObject != null)
+                itemImage.gameObject.SetActive(false);
             empty = true;
         }
 
         public void Deselect()
         {
-            borderImage.gameObject.SetActive(false);
+            if (borderImage != null && borderImage.gameObject != null)
+                borderImage.gameObject.SetActive(false);
         }
 
         public void SetData(Sprite sprite, int quanity)
         {
-            itemImage.gameObject.SetActive(true);
-            itemImage.sprite = sprite;
-            quantityTxt.text = quanity + "";
+            if (itemImage != null && itemImage.gameObject != null)
+            {
+                itemImage.gameObject.SetActive(true);
+                itemImage.sprite = sprite;
+            }
+            if (quantityTxt != null)
+            {
+                quantityTxt.text = quanity + "";
+            }
             empty = false;
         }
 

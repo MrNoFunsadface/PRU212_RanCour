@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Scripts.Menu
+namespace Assets.Scripts.Inventory
 {
     public class OptionBar : MonoBehaviour
     {
@@ -27,7 +27,7 @@ namespace Scripts.Menu
         }
 
         public void Hide() => gameObject.SetActive(false);
-        
+
         public void Show() => gameObject.SetActive(true);
     }
 }
