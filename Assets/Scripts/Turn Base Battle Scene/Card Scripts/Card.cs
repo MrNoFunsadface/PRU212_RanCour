@@ -5,7 +5,7 @@ public class Card : ScriptableObject
 {
     public string cardName;
     public string description;
-    public Sprite artwork;
+    public Texture artwork;
     public int cost;
     public int power;
 }

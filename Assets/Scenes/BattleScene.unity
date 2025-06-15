@@ -1082,10 +1082,10 @@ MonoBehaviour:
   cardPrefab: {fileID: 3533986966079059821, guid: 3aeb95c8c3ee8b246a1d0f4763cd82e6, type: 3}
   cardsToSpawn:
   - {fileID: 11400000, guid: 1d15cb2eeb276614fa3d8acba13dcbdc, type: 2}
-  - {fileID: 11400000, guid: 23d7856c78946b744838aee56c41aa7d, type: 2}
-  - {fileID: 11400000, guid: 023e32f2eac8a2d438161d415b668270, type: 2}
-  - {fileID: 11400000, guid: cd2fc6bd17f81414c9e4bf687b100c72, type: 2}
-  - {fileID: 11400000, guid: 7e160735d93c2a24cbab36c62e50d126, type: 2}
+  - {fileID: 11400000, guid: 1d15cb2eeb276614fa3d8acba13dcbdc, type: 2}
+  - {fileID: 11400000, guid: 1d15cb2eeb276614fa3d8acba13dcbdc, type: 2}
+  - {fileID: 11400000, guid: 1d15cb2eeb276614fa3d8acba13dcbdc, type: 2}
+  - {fileID: 11400000, guid: 1d15cb2eeb276614fa3d8acba13dcbdc, type: 2}
   handCenter: {fileID: 1151265862}
   radius: -400
   maxAngle: 40
