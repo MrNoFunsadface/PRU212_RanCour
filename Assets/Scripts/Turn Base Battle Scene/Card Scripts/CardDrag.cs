@@ -224,7 +224,7 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     private void UpdateOpacity(PointerEventData eventData)
     {
         float targetAlpha = (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("DropZone")) ? 0.5f : 1f;
-        canvasGroup.alpha = Mathf.Lerp(canvasGroup.alpha, targetAlpha, Time.deltaTime * TiltLerpSpeed);
+        canvasGroup.alpha = targetAlpha;
     }
 
     private void UpdateHealthBarState(PointerEventData eventData)

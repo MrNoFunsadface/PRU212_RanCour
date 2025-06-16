@@ -1082,8 +1082,8 @@ MonoBehaviour:
   cardPrefab: {fileID: 3533986966079059821, guid: 3aeb95c8c3ee8b246a1d0f4763cd82e6, type: 3}
   cardsToSpawn:
   - {fileID: 11400000, guid: 1d15cb2eeb276614fa3d8acba13dcbdc, type: 2}
-  - {fileID: 11400000, guid: 1d15cb2eeb276614fa3d8acba13dcbdc, type: 2}
-  - {fileID: 11400000, guid: 1d15cb2eeb276614fa3d8acba13dcbdc, type: 2}
+  - {fileID: 11400000, guid: 0d889a0a7cf980e40a83a45085b62517, type: 2}
+  - {fileID: 11400000, guid: 0d889a0a7cf980e40a83a45085b62517, type: 2}
   - {fileID: 11400000, guid: 1d15cb2eeb276614fa3d8acba13dcbdc, type: 2}
   - {fileID: 11400000, guid: 1d15cb2eeb276614fa3d8acba13dcbdc, type: 2}
   handCenter: {fileID: 1151265862}
