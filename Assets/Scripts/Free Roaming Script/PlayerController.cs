@@ -87,7 +87,15 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        rb.MovePosition(rb.position + movement * (moveSpeed * Time.fixedDeltaTime));
+        var stairMover = GetComponent<PlayerStairMovement>();
+        if (stairMover != null)
+        {
+            stairMover.Move(movement, moveSpeed * Time.fixedDeltaTime);
+        }
+        else
+        {
+            rb.MovePosition(rb.position + movement * (moveSpeed * Time.fixedDeltaTime));
+        }
     }
 
     private void AdjustPlayerFacingDirection()
@@ -104,4 +112,5 @@ public class PlayerController : MonoBehaviour
             mySpriteRenderer.flipX = false;
         }
     }
+
 }
