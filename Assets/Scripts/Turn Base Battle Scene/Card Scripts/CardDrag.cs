@@ -38,7 +38,6 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     private Vector3 imageOriginalPos;
     private Vector3 nameOriginalPos;
-    private Vector3 descOriginalPos;
     private Vector3 costOriginalPos;
 
     private float speed;
@@ -92,13 +91,14 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     {
         if (eventData.pointerEnter == null || !eventData.pointerEnter.CompareTag("DropZone"))
         {
+            // If the card is not dropped in a drop zone, return it to its original position
             StopCoroutineIfRunning(ref returnCoroutine);
             returnCoroutine = StartCoroutine(SmoothReturnToOriginalPosition());
         }
         else
         {
-            var info = eventData.pointerEnter.GetComponent<DropZoneScript>();
-            if (info != null)
+            // If the card is dropped in a drop zone
+            if (eventData.pointerEnter.TryGetComponent<DropZoneScript>(out var info))
             {
                 Debug.Log($"Dropped {card.cardName} on {info.enemyName} at order {info.enemyOrder}");
                 if (battleLog != null)
@@ -109,6 +109,13 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             {
                 Debug.Log("Cannot detect any drop zone info");
             }
+
+            // Set originalPosition to the first slot in hand
+            int firstIndex = 0;
+            int count = cardSpawner.cardRTList.Count;
+            float angleStep = count > 1 ? (cardSpawner.maxAngle * 2f) / (count - 1) : 0f;
+            originalPosition = cardSpawner.CalculateTargetPosition(firstIndex, angleStep);
+
             canvasGroup.blocksRaycasts = true;
         }
 
@@ -128,6 +135,7 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     private IEnumerator SmoothReturnToOriginalPosition()
     {
+
         Vector2 startPosition = rectTransform.anchoredPosition;
         Quaternion startRotation = rectTransform.localRotation;
         Quaternion targetRotation = Quaternion.Euler(0, 0, 0);
@@ -203,7 +211,6 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         // Calculate new positions with parallax effect
         Vector3 newImagePos = imageOriginalPos + new Vector3(delta.x, delta.y, 0) * parallaxStrength;
         Vector3 newNamePos = nameOriginalPos + new Vector3(delta.x, delta.y, 0) * (parallaxStrength * 0.5f);
-        Vector3 newDescPos = descOriginalPos + new Vector3(delta.x, delta.y, 0) * (parallaxStrength * 0.3f);
         Vector3 newCostPos = costOriginalPos + new Vector3(delta.x, delta.y, 0) * (parallaxStrength * 0.7f);
 
         // Clamp the positions to ensure they stay within the card's bounds
@@ -212,11 +219,11 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         costOutline.localPosition = ClampPosition(newCostPos, costOriginalPos, maxOffset);
     }
 
-    private Vector3 ClampPosition(Vector3 currentPosition, Vector3 originalPosition, float maxOffset)
+    private Vector3 ClampPosition(Vector3 currentPosition, Vector3 originalPos, float maxOffset)
     {
         return new Vector3(
-            Mathf.Clamp(currentPosition.x, originalPosition.x - maxOffset, originalPosition.x + maxOffset),
-            Mathf.Clamp(currentPosition.y, originalPosition.y - maxOffset, originalPosition.y + maxOffset),
+            Mathf.Clamp(currentPosition.x, originalPos.x - maxOffset, originalPos.x + maxOffset),
+            Mathf.Clamp(currentPosition.y, originalPos.y - maxOffset, originalPos.y + maxOffset),
             currentPosition.z // Keep the Z position unchanged
         );
     }

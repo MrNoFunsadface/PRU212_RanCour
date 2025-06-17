@@ -1084,7 +1084,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1d15cb2eeb276614fa3d8acba13dcbdc, type: 2}
   - {fileID: 11400000, guid: 0d889a0a7cf980e40a83a45085b62517, type: 2}
   - {fileID: 11400000, guid: 0d889a0a7cf980e40a83a45085b62517, type: 2}
-  - {fileID: 11400000, guid: 1d15cb2eeb276614fa3d8acba13dcbdc, type: 2}
+  - {fileID: 11400000, guid: 419a0f21057df314dbb42b9b20edddd4, type: 2}
   - {fileID: 11400000, guid: 1d15cb2eeb276614fa3d8acba13dcbdc, type: 2}
   handCenter: {fileID: 1151265862}
   radius: -400

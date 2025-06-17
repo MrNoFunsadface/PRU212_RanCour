@@ -15,5 +15,5 @@ MonoBehaviour:
   cardName: O<sub>2</sub>
   description: Oxygen
   artwork: {fileID: 2800000, guid: 521d1ea37e94114469277de9876cb787, type: 3}
-  cost: 0
+  cost: 1
   power: 0
