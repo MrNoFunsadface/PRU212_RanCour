@@ -9,21 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3aba6cca522ac8141be735ec7cb016a1, type: 3}
-  m_Name: H2
+  m_Script: {fileID: 11500000, guid: 3ca412a183996f84faf7b5c330e84d9a, type: 3}
+  m_Name: Single Displacement
   m_EditorClassIdentifier: 
-  cardName: H2
-  description: Hydrogen gas, colorless and odorless
-  artwork: {fileID: 0}
-  cost: 1
-  category: 0
-  formula: H2
-  elementType: 1
-  elementDuration: 3
-  isStackable: 1
-  damageOnApplyOnly: 0
-  damageType: 0
-  damage: 0
+  reactionName: Single Displacement
+  equation: "Zn + CuSO\u2084 \u2192 ZnSO\u2084 + Cu"
+  inputElements: 
+  damageType: 4
+  damage: 40
   statusEffect: 0
   statusAmount: 0
   ignoreArmor: 0

@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3aba6cca522ac8141be735ec7cb016a1, type: 3}
-  m_Name: H2
+  m_Name: NaOH
   m_EditorClassIdentifier: 
-  cardName: H2
-  description: Hydrogen gas, colorless and odorless
+  cardName: NaOH
+  description: Sodium hydroxide, strong base
   artwork: {fileID: 0}
-  cost: 1
-  category: 0
-  formula: H2
-  elementType: 1
+  cost: 2
+  category: 1
+  formula: NaOH
+  elementType: 0
   elementDuration: 3
   isStackable: 1
-  damageOnApplyOnly: 0
+  damageOnApplyOnly: 1
   damageType: 0
-  damage: 0
-  statusEffect: 0
-  statusAmount: 0
+  damage: 50
+  statusEffect: 4
+  statusAmount: 20
   ignoreArmor: 0

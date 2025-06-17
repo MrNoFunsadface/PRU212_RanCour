@@ -9,7 +9,7 @@ public class CardUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI descriptionText;
     [SerializeField] private TextMeshProUGUI costText;
 
-    public void Setup(Card data)
+    public void Setup(CardSO data)
     {
         if (data == null) return;
         if (cardNameText != null) cardNameText.text = data.cardName;

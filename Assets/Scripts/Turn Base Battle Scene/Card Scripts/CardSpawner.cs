@@ -10,7 +10,7 @@ public class CardSpawner : MonoBehaviour
 {
     [Header("Setup")]
     [SerializeField] private GameObject cardPrefab;
-    [SerializeField] private Card[] cardsToSpawn;
+    [SerializeField] private CardSO[] cardsToSpawn;
     [SerializeField] private Transform handCenter;
     [SerializeField] private float radius;
     [SerializeField] private float maxAngle;

@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3aba6cca522ac8141be735ec7cb016a1, type: 3}
-  m_Name: H2
+  m_Name: O2
   m_EditorClassIdentifier: 
-  cardName: H2
-  description: Hydrogen gas, colorless and odorless
+  cardName: O2
+  description: Oxygen gas, supports combustion
   artwork: {fileID: 0}
   cost: 1
   category: 0
-  formula: H2
-  elementType: 1
+  formula: O2
+  elementType: 2
   elementDuration: 3
   isStackable: 1
   damageOnApplyOnly: 0
