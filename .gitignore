@@ -79,3 +79,5 @@ Temp/
 Logs/
 obj/
 UserSettings/
+# TextMesh Pro files
+[Aa]ssets/TextMesh*Pro/

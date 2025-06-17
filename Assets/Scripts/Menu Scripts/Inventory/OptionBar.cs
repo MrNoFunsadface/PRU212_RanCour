@@ -15,7 +15,7 @@ namespace Assets.Scripts.Inventory
         [SerializeField]
         private Button systemButton;
 
-        public event Action<int> OnProfileSelected, OnInventorySelected;
+        public event Action<int> OnProfileSelected, OnInventorySelected, OnSettingsSelected;
 
         public void Awake()
         {
@@ -24,6 +24,8 @@ namespace Assets.Scripts.Inventory
                 profileButton.onClick.AddListener(() => OnProfileSelected?.Invoke(0));
             if (inventoryButton != null)
                 inventoryButton.onClick.AddListener(() => OnInventorySelected?.Invoke(0));
+            if (systemButton != null)
+                systemButton.onClick.AddListener(() => OnSettingsSelected?.Invoke(0));
         }
 
         public void Hide() => gameObject.SetActive(false);
