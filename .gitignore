@@ -79,4 +79,5 @@ Temp/
 Logs/
 obj/
 UserSettings/
-Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Bangers SDF.asset
+# TextMesh Pro files
+[Aa]ssets/TextMesh*Pro/

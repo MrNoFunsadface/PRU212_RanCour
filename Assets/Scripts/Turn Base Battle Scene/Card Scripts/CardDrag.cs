@@ -44,6 +44,8 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     private BattleLogScript battleLog;
 
+    private readonly string DROP_ZONE_TAG = "DropZone";
+
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -89,7 +91,7 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (eventData.pointerEnter == null || !eventData.pointerEnter.CompareTag("DropZone"))
+        if (eventData.pointerEnter == null || !eventData.pointerEnter.CompareTag(DROP_ZONE_TAG))
         {
             // If the card is not dropped in a drop zone, return it to its original position
             StopCoroutineIfRunning(ref returnCoroutine);
@@ -230,7 +232,7 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     private void UpdateOpacity(PointerEventData eventData)
     {
-        float targetAlpha = (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("DropZone")) ? 0.5f : 1f;
+        float targetAlpha = (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag(DROP_ZONE_TAG)) ? 0.5f : 1f;
         canvasGroup.alpha = targetAlpha;
     }
 
@@ -252,7 +254,7 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         }
 
         // If over a drop zone, show its active health bar, hide its normal health bar
-        if (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("DropZone"))
+        if (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag(DROP_ZONE_TAG))
         {
             var dz = eventData.pointerEnter.GetComponent<DropZoneScript>();
             if (dz != null)
