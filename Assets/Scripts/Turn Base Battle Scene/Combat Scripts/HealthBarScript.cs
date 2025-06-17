@@ -1,5 +1,4 @@
 using UnityEngine;
-
 using UnityEngine.UI;
 
 public class HealthBarScript : MonoBehaviour
@@ -11,8 +10,11 @@ public class HealthBarScript : MonoBehaviour
     private void Awake()
     {
         characterStats = GetComponent<CharacterStats>();
-        if (healthSlider != null)
-            healthSlider.maxValue = characterStats.stats.maxHealth;
+    }
+    private void Start()
+    {
+        healthSlider.maxValue = characterStats.stats.maxHealth;
+        UpdateHealthUI();
     }
 
     public void TakeDamage(int amount, bool ignoreArmor)
@@ -24,24 +26,16 @@ public class HealthBarScript : MonoBehaviour
     public void Heal(int amount)
     {
         // Optional: implement healing
+        characterStats.Heal(amount);
         UpdateHealthUI();
     }
 
     private void UpdateHealthUI()
     {
         if (healthSlider != null)
-        {
-            healthSlider.value = characterStats.stats.maxHealth - GetCurrentDamage();
-        }
-        if (healthText != null)
-        {
-            healthText.text = healthSlider.value + " / " + healthSlider.maxValue;
-        }
-    }
+            healthSlider.value = characterStats.CurrentHealth;
 
-    private int GetCurrentDamage()
-    {
-        return characterStats.stats.maxHealth - Mathf.Max(0, characterStats.stats.maxHealth - characterStats.stats.defense);
+        if (healthText != null)
+            healthText.text = $"{characterStats.CurrentHealth} / {characterStats.stats.maxHealth}";
     }
 }
-

@@ -5,6 +5,8 @@ public class CharacterStats : MonoBehaviour
     public CharacterStatsSO stats;
     private int currentHealth;
 
+    public int CurrentHealth => currentHealth;
+
     private void Start()
     {
         currentHealth = stats.maxHealth;
@@ -13,19 +15,22 @@ public class CharacterStats : MonoBehaviour
     public void TakeDamage(int amount)
     {
         int dmg = Mathf.Max(0, amount - stats.defense);
-        currentHealth -= dmg;
+        currentHealth = Mathf.Max(0, currentHealth - dmg);
+
+        Debug.Log($"{name} took {dmg} damage. Remaining HP: {currentHealth}");
+
         if (currentHealth <= 0) Die();
     }
 
-    public void DealDamage(GameObject target)
+    public void Heal(int amount)
     {
-        CombatSystem.Instance.DealDamage(target, stats.primaryDamageType, stats.attack, false);
+        currentHealth = Mathf.Min(currentHealth + amount, stats.maxHealth);
     }
 
     private void Die()
     {
-        // Handle death (e.g., animation, destroy)
+        // Optional: trigger death animation or disable
+        Debug.Log($"{name} died.");
         Destroy(gameObject);
     }
 }
-

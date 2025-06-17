@@ -47,4 +47,10 @@ public class EnemyStatus : MonoBehaviour
             if (elementTimers[key] <= 0) RemoveElement(key);
         }
     }
+
+    // ? Returns all active elements on this enemy
+    public List<ElementalType> GetAllElements()
+    {
+        return new List<ElementalType>(elementTimers.Keys);
+    }
 }

@@ -16,7 +16,7 @@ public class EnemySpawnerScript : MonoBehaviour
     [Header("Enemy spawning configure")]
     [SerializeField] private EnemyWithStats[] enemyTable;
     [SerializeField] private List<EnemyWithStats> enemyToSpawn;
-    [SerializeField] private Enemy representativeEnemy; // The representative enemy (first one), take from free roam scene
+    [SerializeField] private CharacterStatsSO representativeEnemy; // The representative enemy (first one), take from free roam scene
     [SerializeField] private int minEnemyCount; // Minimum number of enemies to spawn
     [SerializeField] private int maxEnemyCount; // Maximum number of enemies to spawn
 
@@ -82,21 +82,21 @@ public class EnemySpawnerScript : MonoBehaviour
         // Spawn enemies and drop zones
         for (int i = 0; i < enemyToSpawn.Count; i++)
         {
-            Enemy enemy = enemyToSpawn[i].enemy;
+            CharacterStatsSO enemy = enemyToSpawn[i].enemy;
             CreateEnemyObject(enemy, dropZonePrefab, healthBar, activeHealthBar, spawner, i);
         }
     }
 
-    public void CreateEnemyObject(Enemy enemy, GameObject dropZonePrefab, GameObject healthBar, GameObject activeHealthBar, Transform spawner, int order)
+    public void CreateEnemyObject(CharacterStatsSO enemy, GameObject dropZonePrefab, GameObject healthBar, GameObject activeHealthBar, Transform spawner, int order)
     {
-        GameObject enemyObject = Instantiate(enemy.enemyPrefab, spawner);
+        GameObject enemyObject = Instantiate(enemy.charPrefab, spawner);
         GameObject dropZoneObject = Instantiate(dropZonePrefab, enemyObject.transform);
         GameObject activeHealthBarObject = Instantiate(activeHealthBar, enemyObject.transform);
         GameObject healthBarObject = Instantiate(healthBar, enemyObject.transform);
 
 
         var dropZoneScript = dropZoneObject.GetComponent<DropZoneScript>();
-        dropZoneScript.enemyName = enemy.enemyName;
+        dropZoneScript.enemyName = enemy.characterName;
         dropZoneScript.enemyOrder = order;
 
         dropZoneScript.activeHealthBar = activeHealthBarObject;
@@ -109,14 +109,14 @@ public class EnemySpawnerScript : MonoBehaviour
 [System.Serializable]
 public class EnemyWithStats
 {
-    public Enemy enemy;
+    public CharacterStatsSO enemy;
     public int cost;
     public int baseHealth;
 
     // Parameterless constructor for Unity serialization
     public EnemyWithStats() { }
 
-    public EnemyWithStats(Enemy enemy, int cost)
+    public EnemyWithStats(CharacterStatsSO enemy, int cost)
     {
         this.enemy = enemy;
         this.cost = cost;
