@@ -1081,11 +1081,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardPrefab: {fileID: 3533986966079059821, guid: 3aeb95c8c3ee8b246a1d0f4763cd82e6, type: 3}
   cardsToSpawn:
-  - {fileID: 11400000, guid: 1d15cb2eeb276614fa3d8acba13dcbdc, type: 2}
-  - {fileID: 11400000, guid: 0d889a0a7cf980e40a83a45085b62517, type: 2}
-  - {fileID: 11400000, guid: 0d889a0a7cf980e40a83a45085b62517, type: 2}
-  - {fileID: 11400000, guid: 419a0f21057df314dbb42b9b20edddd4, type: 2}
-  - {fileID: 11400000, guid: 1d15cb2eeb276614fa3d8acba13dcbdc, type: 2}
+  - {fileID: 11400000, guid: ac90b64d9260a4647a93108438162650, type: 2}
+  - {fileID: 11400000, guid: df9bca82b1fe70e459c32fe2a12ae041, type: 2}
+  - {fileID: 11400000, guid: df9bca82b1fe70e459c32fe2a12ae041, type: 2}
+  - {fileID: 11400000, guid: ac90b64d9260a4647a93108438162650, type: 2}
+  - {fileID: 11400000, guid: b976b3003ab021a408b240af6323d60e, type: 2}
   handCenter: {fileID: 1151265862}
   radius: -400
   maxAngle: 40

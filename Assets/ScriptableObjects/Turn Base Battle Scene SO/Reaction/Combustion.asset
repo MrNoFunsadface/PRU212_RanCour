@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ca412a183996f84faf7b5c330e84d9a, type: 3}
+  m_Name: Combustion
+  m_EditorClassIdentifier: 
+  reactionName: 'Combustion '
+  equation: "C + O\u2082 \u2192 CO\u2082 + H\u2082O\r"
+  inputElements: 0300000002000000
+  damageType: 2
+  damage: 100
+  statusEffect: 1
+  statusAmount: 5
+  ignoreArmor: 0

@@ -90,3 +90,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: 
   enemyOrder: 0
+  healthBar: {fileID: 0}
+  activeHealthBar: {fileID: 0}
