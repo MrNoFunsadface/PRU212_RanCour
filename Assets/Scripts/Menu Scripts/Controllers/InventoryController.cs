@@ -29,6 +29,12 @@ namespace Scripts.Controllers
         [SerializeField]
         private ExitButton exitButton;
 
+        [SerializeField]
+        private ViewDeckButton viewDeckButton;
+
+        [SerializeField]
+        private SettingsUI settingsUI;
+
         public List<InventoryItem> initialItems = new List<InventoryItem>();
 
         private void Start()
@@ -47,6 +53,7 @@ namespace Scripts.Controllers
         private void HandleInventoryToggle(int obj)
         {
             ShowInventoryUI();
+            UpdateAllInventoryUIItems();
         }
 
         private void InitializeMockData()
@@ -138,17 +145,22 @@ namespace Scripts.Controllers
                 else
                 {
                     ShowInventoryUI();
-                    foreach (var item in inventoryData.GetCurrentInventoryState())
-                    {
-                        if (item.Value.itemData == null || item.Value.itemData.ItemSprite == null)
-                        {
-                            Debug.LogWarning($"Item at key {item.Key} is not properly initialized.");
-                            continue; // Skip this item
-                        }
-
-                        inventoryUI.UpdateData(item.Key, item.Value.itemData.ItemSprite, item.Value.quantity);
-                    }
+                    UpdateAllInventoryUIItems();
                 }
+            }
+        }
+
+        private void UpdateAllInventoryUIItems()
+        {
+            foreach (var item in inventoryData.GetCurrentInventoryState())
+            {
+                if (item.Value.itemData == null || item.Value.itemData.ItemSprite == null)
+                {
+                    Debug.LogWarning($"Item at key {item.Key} is not properly initialized.");
+                    continue; // Skip this item
+                }
+
+                inventoryUI.UpdateData(item.Key, item.Value.itemData.ItemSprite, item.Value.quantity);
             }
         }
 
@@ -165,6 +177,7 @@ namespace Scripts.Controllers
             inventoryUI.Show();
             characterUI.Hide();
             exitButton.Show();
+            settingsUI.Hide();
         }
     }
 }

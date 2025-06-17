@@ -13,6 +13,12 @@ public class ExitButton : MonoBehaviour
     [SerializeField]
     private CharacterUI characterUI;
 
+    [SerializeField]
+    private SettingsUI settingsUI;
+
+    [SerializeField]
+    private ViewDeckButton viewDeckButton;
+
     void Start()
     {
         Hide();
@@ -23,6 +29,8 @@ public class ExitButton : MonoBehaviour
         OptionBar.Hide();
         InventoryUI.Hide();
         characterUI.Hide();
+        settingsUI.Hide();
+        viewDeckButton.Hide();
         Hide();
     }
 

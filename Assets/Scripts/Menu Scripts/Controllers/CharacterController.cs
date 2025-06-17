@@ -18,8 +18,11 @@ public class CharacterController : MonoBehaviour
     [SerializeField]
     private ExitButton ExitButton;
 
-    //[SerializeField]
-    //private SettingsUI settingUI;
+    [SerializeField]
+    private SettingsUI settingUI;
+
+    [SerializeField]
+    private ViewDeckButton viewDeckButton;
 
     void Awake()
     {
@@ -57,6 +60,9 @@ public class CharacterController : MonoBehaviour
         characterUI.Hide();
         OptionBar.Hide();
         ExitButton.Hide();
+        InventoryUI.Hide();
+        settingUI.Hide();
+        viewDeckButton.Hide();
     }
 
     private void ShowCharacterUI()
@@ -65,5 +71,7 @@ public class CharacterController : MonoBehaviour
         OptionBar.Show();
         InventoryUI.Hide();
         ExitButton.Show();
+        settingUI.Hide();
+        viewDeckButton.Hide();
     }
 }

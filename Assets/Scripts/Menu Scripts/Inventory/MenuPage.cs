@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using Scripts.Models;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,13 +10,21 @@ namespace Scripts.Menu
     {
         [SerializeField]
         private UIInventoryItem itemSlotRefab;
+
         [SerializeField]
         private RectTransform contentPanel;
+
         [SerializeField]
         private UIInventoryDescription DescriptionUI;
 
         [SerializeField]
         private MouseFollower mouseFollower;
+
+        [SerializeField]
+        private InventorySO inventoryData;
+
+        [SerializeField]
+        private ViewDeckButton viewDeckButton;
 
         List<UIInventoryItem> listOfUIItems = new List<UIInventoryItem>();
 
@@ -65,6 +74,14 @@ namespace Scripts.Menu
             int index = listOfUIItems.IndexOf(item);
             if (index == -1) return;
             OnDescriptionRequested?.Invoke(index);
+
+            var inventoryItem = inventoryData.GetItemAt(index);
+            if (!inventoryItem.isEmpty)
+            {
+                if (inventoryData.GetItemAt(index).itemData.name == "AlchemyBookVolume1") viewDeckButton.Show();
+                else viewDeckButton.Hide();
+            } else viewDeckButton.Hide();
+
             item.Select();
         }
 
