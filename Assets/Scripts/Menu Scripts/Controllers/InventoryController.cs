@@ -169,6 +169,7 @@ namespace Scripts.Controllers
             inventoryUI.Hide();
             optionBar.Hide();
             exitButton.Hide();
+            viewDeckButton.Hide();
         }
 
         private void ShowInventoryUI()
