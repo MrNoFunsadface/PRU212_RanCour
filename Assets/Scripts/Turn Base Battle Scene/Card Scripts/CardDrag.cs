@@ -101,6 +101,17 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             if (eventData.pointerEnter.TryGetComponent<DropZoneScript>(out var info))
             {
                 Debug.Log($"Dropped {card.cardName} on {info.enemyName} at order {info.enemyOrder}");
+                EnemyStatus targetEnemy = info.GetComponentInParent<EnemyStatus>();
+                ReactionHandler reactionHandler = FindObjectOfType<ReactionHandler>();
+
+                if (targetEnemy != null && reactionHandler != null)
+                {
+                    reactionHandler.OnCardDropped(card, targetEnemy);
+                }
+                else
+                {
+                    Debug.LogWarning("Missing EnemyStatus or ReactionHandler on drop target.");
+                }
                 if (battleLog != null)
                     battleLog.LogBattleEvent($"Dropped {card.cardName} on {info.enemyName} at order {info.enemyOrder}");
                 battleLog.UpdateDisplayer();

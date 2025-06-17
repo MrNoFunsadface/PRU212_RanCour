@@ -22,7 +22,7 @@ MonoBehaviour:
   elementDuration: 3
   isStackable: 1
   damageOnApplyOnly: 1
-  damageType: 4
+  damageType: 5
   damage: 40
   statusEffect: 0
   statusAmount: 0

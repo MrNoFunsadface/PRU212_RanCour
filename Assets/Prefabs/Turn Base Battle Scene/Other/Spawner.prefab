@@ -78,9 +78,22 @@ MonoBehaviour:
   spawner: {fileID: 5036788945508279888}
   dropZonePrefab: {fileID: 2538173634927005814, guid: 4cb14acfa4eaceb49974797e79e540d5, type: 3}
   healthBar: {fileID: 2137456175057537601, guid: 37e935db6ba5afb43972d740c977eff6, type: 3}
-  enemyTable: []
-  enemyToSpawn: []
-  representativeEnemy: {fileID: 0}
+  activeHealthBar: {fileID: 2137456175057537601, guid: d8358ef88b0225541ac2cab5041bc8a1, type: 3}
+  enemyTable:
+  - enemy: {fileID: 11400000, guid: c93941da899de9c4f9ce4af5ee1bba6d, type: 2}
+    cost: 0
+    baseHealth: 0
+  - enemy: {fileID: 11400000, guid: 0db526ca75469a64b8c0d3df073a510a, type: 2}
+    cost: 0
+    baseHealth: 0
+  enemyToSpawn:
+  - enemy: {fileID: 11400000, guid: c93941da899de9c4f9ce4af5ee1bba6d, type: 2}
+    cost: 0
+    baseHealth: 0
+  - enemy: {fileID: 11400000, guid: 0db526ca75469a64b8c0d3df073a510a, type: 2}
+    cost: 0
+    baseHealth: 0
+  representativeEnemy: {fileID: 11400000, guid: 0db526ca75469a64b8c0d3df073a510a, type: 2}
   minEnemyCount: 0
   maxEnemyCount: 0
   dungeonBaseLevel: 0

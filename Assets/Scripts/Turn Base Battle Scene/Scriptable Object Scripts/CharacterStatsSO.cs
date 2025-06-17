@@ -9,4 +9,6 @@ public class CharacterStatsSO : ScriptableObject
     public int defense;
     public float attackSpeed;
     public DamageType primaryDamageType;
+
+    [SerializeField] public GameObject charPrefab;
 }
