@@ -1,20 +1,9 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Ink/Editor/Tools/Startup Window/Resources/InkLogoIcon.png.meta
-guid: 09746d3311e36764faa38d0e982f6a2d
-========
-guid: c4f85a8ea23aeb14faa03b12331d8283
->>>>>>>> 4526a030cb90a5f2efb037f380bdc51c82b64691:Assets/Sprites/Turn Base Battle Scene/Card/Artwork Images/H2 Molecule.png.meta
+guid: 46f889d8b1e95bc488778107cd4cc690
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 6937817954938267909
-    second: 2_0
+  internalIDToNameTable: []
   externalObjects: {}
-<<<<<<<< HEAD:Assets/Ink/Editor/Tools/Startup Window/Resources/InkLogoIcon.png.meta
-  serializedVersion: 9
-========
   serializedVersion: 13
->>>>>>>> 4526a030cb90a5f2efb037f380bdc51c82b64691:Assets/Sprites/Turn Base Battle Scene/Card/Artwork Images/H2 Molecule.png.meta
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -45,21 +34,12 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-<<<<<<<< HEAD:Assets/Ink/Editor/Tools/Startup Window/Resources/InkLogoIcon.png.meta
-    filterMode: -1
-    aniso: 1
-    mipBias: -100
-    wrapU: 1
-    wrapV: 1
-    wrapW: -1
-========
     filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: 1
->>>>>>>> 4526a030cb90a5f2efb037f380bdc51c82b64691:Assets/Sprites/Turn Base Battle Scene/Card/Artwork Images/H2 Molecule.png.meta
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -74,11 +54,7 @@ TextureImporter:
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
-<<<<<<<< HEAD:Assets/Ink/Editor/Tools/Startup Window/Resources/InkLogoIcon.png.meta
-  textureType: 2
-========
   textureType: 8
->>>>>>>> 4526a030cb90a5f2efb037f380bdc51c82b64691:Assets/Sprites/Turn Base Battle Scene/Card/Artwork Images/H2 Molecule.png.meta
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -87,16 +63,16 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
-  applyGammaDecoding: 0
+  applyGammaDecoding: 1
   swizzle: 50462976
-  cookieLightType: 0
+  cookieLightType: 2
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -107,34 +83,9 @@ TextureImporter:
   - serializedVersion: 4
     buildTarget: Standalone
     maxTextureSize: 2048
-<<<<<<<< HEAD:Assets/Ink/Editor/Tools/Startup Window/Resources/InkLogoIcon.png.meta
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-  - serializedVersion: 2
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-  - serializedVersion: 2
-    buildTarget: Nintendo Switch
-    maxTextureSize: 2048
-========
->>>>>>>> 4526a030cb90a5f2efb037f380bdc51c82b64691:Assets/Sprites/Turn Base Battle Scene/Card/Artwork Images/H2 Molecule.png.meta
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -144,29 +95,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: 2_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 46
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5092c600ca4184060800000000000000
-      internalID: 6937817954938267909
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     customData: 
     physicsShape: []
@@ -180,17 +109,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      2_0: 6937817954938267909
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 60055
-  packageName: Ink Integration for Unity
-  packageVersion: 1.1.8
-  assetPath: Assets/Ink/Editor/Tools/Startup Window/Resources/InkLogoIcon.png
-  uploadId: 600250

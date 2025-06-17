@@ -1,20 +1,9 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Sprites/Free Roaming Sprite/Dialogue/VisualCue.png.meta
-guid: a53aeffc50d868d40bfc2a6dc811fa95
+guid: c6c18be24cce5c94693e99b4413ae3d5
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 11
-========
-guid: 521d1ea37e94114469277de9876cb787
-TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -3728572626129364901
-    second: Oxygen Molecule AI_0
-  externalObjects: {}
   serializedVersion: 13
->>>>>>>> 4526a030cb90a5f2efb037f380bdc51c82b64691:Assets/Sprites/Turn Base Battle Scene/Card/Artwork Images/Oxygen Molecule AI.png.meta
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -36,10 +25,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-<<<<<<<< HEAD:Assets/Sprites/Free Roaming Sprite/Dialogue/VisualCue.png.meta
-========
   ignoreMipmapLimit: 0
->>>>>>>> 4526a030cb90a5f2efb037f380bdc51c82b64691:Assets/Sprites/Turn Base Battle Scene/Card/Artwork Images/Oxygen Molecule AI.png.meta
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -53,20 +39,16 @@ TextureImporter:
     mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: 1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-<<<<<<<< HEAD:Assets/Sprites/Free Roaming Sprite/Dialogue/VisualCue.png.meta
-  spriteMode: 1
-========
   spriteMode: 2
->>>>>>>> 4526a030cb90a5f2efb037f380bdc51c82b64691:Assets/Sprites/Turn Base Battle Scene/Card/Artwork Images/Oxygen Molecule AI.png.meta
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -81,16 +63,11 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
-  applyGammaDecoding: 0
-<<<<<<<< HEAD:Assets/Sprites/Free Roaming Sprite/Dialogue/VisualCue.png.meta
-  platformSettings:
-  - serializedVersion: 3
-========
+  applyGammaDecoding: 1
   swizzle: 50462976
-  cookieLightType: 0
+  cookieLightType: 2
   platformSettings:
   - serializedVersion: 4
->>>>>>>> 4526a030cb90a5f2efb037f380bdc51c82b64691:Assets/Sprites/Turn Base Battle Scene/Card/Artwork Images/Oxygen Molecule AI.png.meta
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -103,20 +80,12 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-<<<<<<<< HEAD:Assets/Sprites/Free Roaming Sprite/Dialogue/VisualCue.png.meta
-  - serializedVersion: 3
-========
   - serializedVersion: 4
->>>>>>>> 4526a030cb90a5f2efb037f380bdc51c82b64691:Assets/Sprites/Turn Base Battle Scene/Card/Artwork Images/Oxygen Molecule AI.png.meta
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-<<<<<<<< HEAD:Assets/Sprites/Free Roaming Sprite/Dialogue/VisualCue.png.meta
     textureCompression: 0
-========
-    textureCompression: 1
->>>>>>>> 4526a030cb90a5f2efb037f380bdc51c82b64691:Assets/Sprites/Turn Base Battle Scene/Card/Artwork Images/Oxygen Molecule AI.png.meta
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -126,53 +95,22 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: Oxygen Molecule AI_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1024
-        height: 1536
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b58505c83f2714cc0800000000000000
-      internalID: -3728572626129364901
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-<<<<<<<< HEAD:Assets/Sprites/Free Roaming Sprite/Dialogue/VisualCue.png.meta
-    spriteID: 5e97eb03825dee720800000000000000
-========
     spriteID: 
->>>>>>>> 4526a030cb90a5f2efb037f380bdc51c82b64691:Assets/Sprites/Turn Base Battle Scene/Card/Artwork Images/Oxygen Molecule AI.png.meta
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-<<<<<<<< HEAD:Assets/Sprites/Free Roaming Sprite/Dialogue/VisualCue.png.meta
-  spritePackingTag: 
-========
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Oxygen Molecule AI_0: -3728572626129364901
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
->>>>>>>> 4526a030cb90a5f2efb037f380bdc51c82b64691:Assets/Sprites/Turn Base Battle Scene/Card/Artwork Images/Oxygen Molecule AI.png.meta
   pSDRemoveMatte: 0
   userData: 
   assetBundleName: 
