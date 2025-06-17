@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9501869b64da7b24f9c46144ff64c0dc, type: 3}
+  m_Name: AlchemyBookVolume1
+  m_EditorClassIdentifier: 
+  <IsStackable>k__BackingField: 0
+  <MaxStackSize>k__BackingField: 1
+  <ItemSprite>k__BackingField: {fileID: -1149312594620663861, guid: 9902d393ff4c251408402d87a4b16e35, type: 3}
+  <AttackStats>k__BackingField: 0
+  <DefenseStats>k__BackingField: 0
+  <ItemName>k__BackingField: AlchemyBookVolume1
+  <ItemDescription>k__BackingField: The set of tools any alchemist needs
+  <Quirk>k__BackingField: Contains 15 cards with a varieties of elements
+  <QuirkDescription>k__BackingField: 

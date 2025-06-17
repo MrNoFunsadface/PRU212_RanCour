@@ -1,6 +1,8 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class StartButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
@@ -39,6 +41,9 @@ public class StartButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void OnPointerEnter(PointerEventData pointerEventData)
     {
+        if (isStartButtonClicked)
+            return; // Prevent action if button is clicked
+
         isPointerOverButton = true;
         StartCoroutine(FlashButtonColor());
         StartCoroutine(FlashButtonOutlineColor());
@@ -47,7 +52,8 @@ public class StartButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public void OnPointerExit(PointerEventData pointerEventData)
     {
         if (isStartButtonClicked)
-            return;
+            return; // Prevent action if button is clicked
+
         isPointerOverButton = false;
         StopAllCoroutines();
         ResetButtonColor();
@@ -137,7 +143,14 @@ public class StartButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         StartCoroutine(ChangeStartButtonColour());
         StartCoroutine(ChangeStartButtonOutlineColour());
 
-        isStartButtonClicked = false;
+        StartCoroutine(ChangeScene());
+    }
+
+    private IEnumerator ChangeScene()
+    {
+        PlayerPrefs.DeleteAll(); // Clear PlayerPrefs for a fresh start
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene("Scene0");
     }
 
     private IEnumerator ChangeStartButtonColour()

@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using NUnit.Framework;
 using System.Collections.Generic;
+using Assets.Scripts.Inventory;
 
 namespace Scripts.Controllers
 {
@@ -21,6 +22,12 @@ namespace Scripts.Controllers
 
         [SerializeField]
         private ItemDatabaseSO itemDatabase;
+
+        [SerializeField]
+        private CharacterUI characterUI;
+
+        [SerializeField]
+        private ExitButton exitButton;
 
         public List<InventoryItem> initialItems = new List<InventoryItem>();
 
@@ -39,7 +46,7 @@ namespace Scripts.Controllers
 
         private void HandleInventoryToggle(int obj)
         {
-            inventoryUI.Show();
+            ShowInventoryUI();
         }
 
         private void InitializeMockData()
@@ -126,13 +133,11 @@ namespace Scripts.Controllers
                 Debug.Log("I key pressed, toggling inventory UI.");
                 if (inventoryUI.gameObject.activeSelf)
                 {
-                    inventoryUI.Hide();
-                    optionBar.Hide();
+                    HideInventoryUI();
                 }
                 else
                 {
-                    optionBar.Show();
-                    inventoryUI.Show();
+                    ShowInventoryUI();
                     foreach (var item in inventoryData.GetCurrentInventoryState())
                     {
                         if (item.Value.itemData == null || item.Value.itemData.ItemSprite == null)
@@ -143,9 +148,23 @@ namespace Scripts.Controllers
 
                         inventoryUI.UpdateData(item.Key, item.Value.itemData.ItemSprite, item.Value.quantity);
                     }
-
                 }
             }
+        }
+
+        private void HideInventoryUI()
+        {
+            inventoryUI.Hide();
+            optionBar.Hide();
+            exitButton.Hide();
+        }
+
+        private void ShowInventoryUI()
+        {
+            optionBar.Show();
+            inventoryUI.Show();
+            characterUI.Hide();
+            exitButton.Show();
         }
     }
 }

@@ -49,6 +49,7 @@ public class CardSpawner : MonoBehaviour
             {
                 drag.originalPosition = cardRT.anchoredPosition;
                 drag.cardSpawner = this; // Assign reference to CardSpawner
+                drag.card = cardsToSpawn[i]; // Assign the card data to the drag component
             }
         }
     }

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/ScriptableObjects/Turn Base Battle Scene SO/Cards/AgNO3.asset.meta
 guid: 8a2f16c21c97eb7448b17755b18aba7c
+========
+guid: 0d889a0a7cf980e40a83a45085b62517
+>>>>>>>> origin/congdeptrai:Assets/ScriptableObjects/Turn Base Battle Scene SO/Cards/O2.asset.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 11400000

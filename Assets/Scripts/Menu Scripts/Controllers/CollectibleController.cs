@@ -39,6 +39,22 @@ public class CollectibleController : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        int collected = PlayerPrefs.GetInt(itemName + "_Collected");
+        if (collected == 1)
+        {
+            gameObject.SetActive(false);
+            Debug.Log($"{itemName} has already been collected.");
+        }
+        else
+        {
+            gameObject.SetActive(true);
+            eButton.Hide();
+            Debug.Log($"{itemName} is available for collection.");
+        }
+    }
+
     void Update()
     {
         if (playerInRange && Keyboard.current.eKey.wasPressedThisFrame)
@@ -51,6 +67,8 @@ public class CollectibleController : MonoBehaviour
             }
             inventoryData.AddItem(item, 1);
             gameObject.SetActive(false);
+            PlayerPrefs.SetInt(itemName + "_Collected", 1);
+            PlayerPrefs.Save();
             Debug.Log($"Added {itemName} to inventory.");
         }
     }

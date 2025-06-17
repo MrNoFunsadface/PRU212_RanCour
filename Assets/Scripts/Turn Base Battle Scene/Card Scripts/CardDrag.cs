@@ -14,6 +14,7 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     private Canvas canvas;
     [HideInInspector] public Vector2 originalPosition;
     [HideInInspector] public CardSpawner cardSpawner;
+    [HideInInspector] public Card card;
 
     private Coroutine returnCoroutine;
     private Coroutine rotationCoroutine;
@@ -24,7 +25,7 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     private Vector2 lastMousePosition;
     private Vector2 lastCardPosition;
 
-    private const float TiltStrength = 6f;
+    private const float TiltStrength = 4f;
     private const float MaxTilt = 40f;
     private const float SmoothDuration = .25f;
     private const float TiltLerpSpeed = 10f;
@@ -33,7 +34,6 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     [SerializeField] private RectTransform shadowTransform;
     [SerializeField] private RectTransform cardImage;
     [SerializeField] private RectTransform cardName;
-    [SerializeField] private RectTransform cardDescription;
     [SerializeField] private RectTransform costOutline;
 
     private Vector3 imageOriginalPos;
@@ -43,6 +43,8 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     private float speed;
 
+    private BattleLogScript battleLog;
+
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -51,8 +53,9 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
         imageOriginalPos = cardImage.localPosition;
         nameOriginalPos = cardName.localPosition;
-        descOriginalPos = cardDescription.localPosition;
         costOriginalPos = costOutline.localPosition;
+
+        battleLog = Object.FindFirstObjectByType<BattleLogScript>();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -97,7 +100,10 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             var info = eventData.pointerEnter.GetComponent<DropZoneScript>();
             if (info != null)
             {
-                Debug.Log($"Dropped a card on {info.enemyName} at order {info.enemyOrder}");
+                Debug.Log($"Dropped {card.cardName} on {info.enemyName} at order {info.enemyOrder}");
+                if (battleLog != null)
+                    battleLog.LogBattleEvent($"Dropped {card.cardName} on {info.enemyName} at order {info.enemyOrder}");
+                battleLog.UpdateDisplayer();
             }
             else
             {
@@ -191,7 +197,7 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     private void ApplyParallax(Vector2 delta)
     {
-        float parallaxStrength = 1f;
+        float parallaxStrength = 0.5f;
         float maxOffset = 10f; // Maximum offset for parallax movement
 
         // Calculate new positions with parallax effect
@@ -203,7 +209,6 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         // Clamp the positions to ensure they stay within the card's bounds
         cardImage.localPosition = ClampPosition(newImagePos, imageOriginalPos, maxOffset);
         cardName.localPosition = ClampPosition(newNamePos, nameOriginalPos, maxOffset);
-        cardDescription.localPosition = ClampPosition(newDescPos, descOriginalPos, maxOffset);
         costOutline.localPosition = ClampPosition(newCostPos, costOriginalPos, maxOffset);
     }
 
@@ -219,7 +224,7 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     private void UpdateOpacity(PointerEventData eventData)
     {
         float targetAlpha = (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("DropZone")) ? 0.5f : 1f;
-        canvasGroup.alpha = Mathf.Lerp(canvasGroup.alpha, targetAlpha, Time.deltaTime * TiltLerpSpeed);
+        canvasGroup.alpha = targetAlpha;
     }
 
     private void UpdateHealthBarState(PointerEventData eventData)
@@ -228,12 +233,8 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         void SetAlpha(GameObject go, float alpha)
         {
             if (go == null) return;
-            var renderers = go.GetComponentsInChildren<Image>(true);
-            foreach (var r in renderers)
-            {
-                var c = r.color;
-                r.color = new Color(c.r, c.g, c.b, alpha);
-            }
+            var canvasGroup = go.GetComponent<CanvasGroup>();
+            canvasGroup.alpha = alpha;
         }
 
         // Default: show all normal health bars, hide all active health bars
@@ -270,7 +271,6 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         // Store the current positions of the parallax elements
         Vector3 currentImagePos = cardImage.localPosition;
         Vector3 currentNamePos = cardName.localPosition;
-        Vector3 currentDescPos = cardDescription.localPosition;
         Vector3 currentCostPos = costOutline.localPosition;
 
         while (elapsedTime < SmoothDuration)
@@ -280,7 +280,6 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             // Smoothly interpolate each element back to its original position
             cardImage.localPosition = Vector3.Lerp(currentImagePos, imageOriginalPos, t);
             cardName.localPosition = Vector3.Lerp(currentNamePos, nameOriginalPos, t);
-            cardDescription.localPosition = Vector3.Lerp(currentDescPos, descOriginalPos, t);
             costOutline.localPosition = Vector3.Lerp(currentCostPos, costOriginalPos, t);
 
             elapsedTime += Time.deltaTime;
@@ -290,7 +289,6 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         // Ensure the elements are exactly at their original positions
         cardImage.localPosition = imageOriginalPos;
         cardName.localPosition = nameOriginalPos;
-        cardDescription.localPosition = descOriginalPos;
         costOutline.localPosition = costOriginalPos;
     }
 
