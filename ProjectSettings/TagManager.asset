@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Stair
   - DropZone
+  - TestDiscard
   layers:
   - Default
   - TransparentFX

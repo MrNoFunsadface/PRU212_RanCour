@@ -90,6 +90,15 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (eventData.pointerEnter.CompareTag("TestDiscard"))
+        {
+            // If the card is dropped on the discard area, return it to the deck
+            Debug.Log($"Discarding {card.cardName} back to deck.");
+            Deck.Instance.DiscardCard(card);
+            Destroy(rectTransform.gameObject);
+            return;
+        }
+
         if (eventData.pointerEnter == null || !eventData.pointerEnter.CompareTag(DropZoneTag))
         {
             // If the card is not dropped in a drop zone, return it to its original position
