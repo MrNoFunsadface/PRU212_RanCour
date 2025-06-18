@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Na
   description: Sodium metal, reacts violently with water
-  artwork: {fileID: 0}
+  artwork: {fileID: 2800000, guid: 4f3375d80ed9af745b2e733717447891, type: 3}
   cost: 2
   category: 0
   formula: 

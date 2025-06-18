@@ -30,6 +30,8 @@ public class EnemySpawnerScript : MonoBehaviour
 
     public void SpawnEnemy()
     {
+        // REMOVE COMMENT TO USE THE RANDOMIZED ENEMY SPAWNING LOGIC
+
         /*
         // Defensive copy of waveValue to avoid modifying the serialized field
         int remainingWaveValue = waveValue;

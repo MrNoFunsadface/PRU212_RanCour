@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: H<sub>2</sub>
   description: Hydrogen gas, colorless and odorless
-  artwork: {fileID: 2800000, guid: c4f85a8ea23aeb14faa03b12331d8283, type: 3}
+  artwork: {fileID: 2800000, guid: 46f889d8b1e95bc488778107cd4cc690, type: 3}
   cost: 1
   category: 0
   formula: H2

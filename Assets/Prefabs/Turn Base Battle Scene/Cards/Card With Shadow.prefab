@@ -224,13 +224,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acc8bd17858882041aa03a1b9470e0fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalPosition: {x: 0, y: 0}
-  cardSpawner: {fileID: 0}
-  card: {fileID: 0}
   shadowTransform: {fileID: 8150397490850704647}
   cardImage: {fileID: 947840596734470556}
   cardName: {fileID: 3529953113795686875}
   costOutline: {fileID: 2932966052837952811}
+  originalPosition: {x: 0, y: 0}
+  cardSpawner: {fileID: 0}
+  card: {fileID: 0}
 --- !u!1 &3590115183508503465
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,7 +567,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 253156135, guid: a06667f5bb8ef734088b490e19dd12e1, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

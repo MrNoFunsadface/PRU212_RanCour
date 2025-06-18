@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: C
   description: 
-  artwork: {fileID: 2800000, guid: df9692cac9b8c8148abe035c87c4bdd0, type: 3}
+  artwork: {fileID: 2800000, guid: a078cdf66f39f1443a6f52368c57045b, type: 3}
   cost: 2
   category: 0
   formula: C

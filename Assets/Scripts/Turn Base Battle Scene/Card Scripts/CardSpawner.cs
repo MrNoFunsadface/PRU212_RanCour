@@ -52,6 +52,15 @@ public class CardSpawner : MonoBehaviour
         }
     }
 
+    private void PositionCard(RectTransform cardRT, int index, float angleStep)
+    {
+        float angle = -maxAngle + (angleStep * index);
+        float rad = angle * Mathf.Deg2Rad;
+        Vector2 position = new Vector2(Mathf.Sin(rad), -Mathf.Cos(rad)) * radius;
+        cardRT.anchoredPosition = position;
+        cardRT.localRotation = Quaternion.Euler(0, 0, angle);
+    }
+
     public void OnCardBeginDrag(RectTransform card)
     {
         int idx = cardRTList.IndexOf(card);
@@ -118,14 +127,5 @@ public class CardSpawner : MonoBehaviour
     {
         float angle = -maxAngle + (angleStep * index);
         return Quaternion.Euler(0, 0, angle);
-    }
-
-    private void PositionCard(RectTransform cardRT, int index, float angleStep)
-    {
-        float angle = -maxAngle + (angleStep * index);
-        float rad = angle * Mathf.Deg2Rad;
-        Vector2 position = new Vector2(Mathf.Sin(rad), -Mathf.Cos(rad)) * radius;
-        cardRT.anchoredPosition = position;
-        cardRT.localRotation = Quaternion.Euler(0, 0, angle);
     }
 }

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: O<sub>2</sub>
   description: Oxygen gas, supports combustion
-  artwork: {fileID: 2800000, guid: 521d1ea37e94114469277de9876cb787, type: 3}
+  artwork: {fileID: 2800000, guid: c6c18be24cce5c94693e99b4413ae3d5, type: 3}
   cost: 1
   category: 0
   formula: O2

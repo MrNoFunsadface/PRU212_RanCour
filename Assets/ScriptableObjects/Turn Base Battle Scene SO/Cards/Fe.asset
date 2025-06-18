@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Fe
   description: Iron metal, common for redox & Thermite
-  artwork: {fileID: 0}
+  artwork: {fileID: 2800000, guid: 9daf88544812b544d9af97c8b694d02c, type: 3}
   cost: 2
   category: 0
   formula: Fe
