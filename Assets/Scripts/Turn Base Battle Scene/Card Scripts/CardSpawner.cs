@@ -11,7 +11,7 @@ public class CardSpawner : MonoBehaviour
 {
     [Header("Setup")]
     [SerializeField] private GameObject cardPrefab;
-    [SerializeField] private Card[] cardsToSpawn;
+    [SerializeField] private List<Card> cardsToSpawn;
     [SerializeField] private Transform handCenter;
     [SerializeField] private float radius;
     private int dragIndex;
@@ -24,13 +24,18 @@ public class CardSpawner : MonoBehaviour
         SpawnAndFanCards();
     }
 
-    private void SpawnAndFanCards()
+    public void SpawnAndFanCards()
     {
-        if (cardsToSpawn == null || cardsToSpawn.Length == 0) return;
+        cardsToSpawn = Deck.Instance.GetCardToSpawn();
+        if (cardsToSpawn == null || cardsToSpawn.Count == 0)
+        {
+            Debug.LogWarning("No cards to spawn. Please check the deck or card collection.");
+            return;
+        }
 
-        float angleStep = cardsToSpawn.Length > 1 ? (maxAngle * 2f) / (cardsToSpawn.Length - 1) : 0f;
+        Debug.Log($"Spawned {cardsToSpawn.Count} cards in hand.");
 
-        for (int i = 0; i < cardsToSpawn.Length; i++)
+        for (int i = 0; i < cardsToSpawn.Count; i++)
         {
             GameObject cardObj = Instantiate(cardPrefab, handCenter);
 
@@ -39,9 +44,7 @@ public class CardSpawner : MonoBehaviour
 
             if (cardObj.TryGetComponent(out RectTransform cardRT))
             {
-                PositionCard(cardRT, i, angleStep);
                 cardRTList.Add(cardRT);
-
                 if (cardObj.TryGetComponent(out CardDrag drag))
                 {
                     drag.originalPosition = cardRT.anchoredPosition;
@@ -50,14 +53,15 @@ public class CardSpawner : MonoBehaviour
                 }
             }
         }
+        cardsToSpawn.Clear();
+        RepositionCards(0f, 0.75f);
     }
 
     public void OnCardBeginDrag(RectTransform card)
     {
         int idx = cardRTList.IndexOf(card);
         dragIndex = idx != -1 ? idx : 0;
-        if (cardRTList.Remove(card))
-            RepositionCards();
+        if (cardRTList.Remove(card)) RepositionCards(1f, 1.05f);
     }
 
     public void OnCardEndDrag(RectTransform card)
@@ -65,11 +69,11 @@ public class CardSpawner : MonoBehaviour
         if (!cardRTList.Contains(card))
         {
             cardRTList.Insert(dragIndex, card);
-            RepositionCards();
+            RepositionCards(1f, 1.05f);
         }
     }
 
-    private void RepositionCards()
+    private void RepositionCards(float elapsedTime, float duration)
     {
         int count = cardRTList.Count;
         if (count == 0) return;
@@ -78,14 +82,12 @@ public class CardSpawner : MonoBehaviour
 
         for (int i = 0; i < count; i++)
         {
-            StartCoroutine(SmoothReposition(cardRTList[i], i, angleStep));
+            StartCoroutine(SmoothReposition(cardRTList[i], i, angleStep, elapsedTime, duration));
         }
     }
 
-    private IEnumerator SmoothReposition(RectTransform cardRT, int index, float angleStep)
+    private IEnumerator SmoothReposition(RectTransform cardRT, int index, float angleStep, float elapsedTime, float duration)
     {
-        float elapsedTime = 1f;
-        float duration = 1.05f;
         Vector2 startPosition = cardRT.anchoredPosition;
         Quaternion startRotation = cardRT.localRotation;
 
@@ -118,14 +120,5 @@ public class CardSpawner : MonoBehaviour
     {
         float angle = -maxAngle + (angleStep * index);
         return Quaternion.Euler(0, 0, angle);
-    }
-
-    private void PositionCard(RectTransform cardRT, int index, float angleStep)
-    {
-        float angle = -maxAngle + (angleStep * index);
-        float rad = angle * Mathf.Deg2Rad;
-        Vector2 position = new Vector2(Mathf.Sin(rad), -Mathf.Cos(rad)) * radius;
-        cardRT.anchoredPosition = position;
-        cardRT.localRotation = Quaternion.Euler(0, 0, angle);
     }
 }

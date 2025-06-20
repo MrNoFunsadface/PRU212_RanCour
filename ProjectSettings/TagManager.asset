@@ -9,6 +9,7 @@ TagManager:
   - DropZone
   - targetSceneName
   - NPC
+  - TestDiscard
   layers:
   - Default
   - TransparentFX

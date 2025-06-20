@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Cl<sub>2</sub>
   description: 
-  artwork: {fileID: 0}
+  artwork: {fileID: 2800000, guid: 28b20fa58372d614c9dcfc4a150d767f, type: 3}
   cost: 2
   category: 0
   formula: Cl2

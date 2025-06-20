@@ -133,6 +133,11 @@ namespace Scripts.Controllers
                 inventoryItem.itemData.QuirkDescription);
         }
 
+        public bool CheckItemByName(string itemName)
+        {
+            return inventoryData.CheckItemByName(itemName);
+        }
+
         public void Update()
         {
             if (Keyboard.current.iKey.wasPressedThisFrame)
