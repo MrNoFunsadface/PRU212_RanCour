@@ -90,15 +90,6 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (eventData.pointerEnter.CompareTag("TestDiscard"))
-        {
-            // If the card is dropped on the discard area, return it to the deck
-            Debug.Log($"Discarding {card.cardName} back to deck.");
-            Deck.Instance.DiscardCard(card);
-            Destroy(rectTransform.gameObject);
-            return;
-        }
-
         if (eventData.pointerEnter == null || !eventData.pointerEnter.CompareTag(DropZoneTag))
         {
             // If the card is not dropped in a drop zone, return it to its original position
@@ -113,6 +104,8 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 Debug.Log($"Dropped {card.cardName} on {info.enemyName} at order {info.enemyOrder}");
                 UpdateBattleLog(info);
 
+                DiscardCard();
+
                 var targetEnemy = info.GetComponentInParent<EnemyStatus>();
                 var reactionHandler = FindFirstObjectByType<ReactionHandler>();
                 if (targetEnemy != null && reactionHandler != null)
@@ -126,7 +119,7 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             }
             else
             {
-                Debug.Log("Cannot detect any drop zone info");
+                Debug.LogWarning("Cannot detect any drop zone info!");
             }
 
             // Set originalPosition to the first slot in hand
@@ -153,6 +146,19 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             battleLog.LogBattleEvent($"Dropped {card.cardName} on {info.enemyName} at order {info.enemyOrder}");
             battleLog.UpdateDisplayer();
         }
+    }
+
+    private void DiscardCard()
+    {
+        foreach (var dropZone in Object.FindObjectsByType<DropZoneScript>(FindObjectsInactive.Exclude, FindObjectsSortMode.None))
+        {
+            SetAlpha(dropZone.healthBar, 1f);
+            SetAlpha(dropZone.activeHealthBar, 0f);
+        }
+
+        Deck.Instance.DiscardCard(card);
+        Destroy(rectTransform.gameObject);
+        return;
     }
 
     #endregion
@@ -290,13 +296,6 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     private void UpdateHealthBarState(PointerEventData eventData)
     {
-        // Helper to set alpha for all SpriteRenderers under a GameObject
-        static void SetAlpha(GameObject go, float alpha)
-        {
-            if (go == null) return;
-            if (go.TryGetComponent<CanvasGroup>(out var cg)) cg.alpha = alpha;
-        }
-
         // Default: show all normal health bars, hide all active health bars
         foreach (var dropZone in Object.FindObjectsByType<DropZoneScript>(FindObjectsInactive.Exclude, FindObjectsSortMode.None))
         {
@@ -313,6 +312,12 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 SetAlpha(dz.activeHealthBar, 1f);
             }
         }
+    }
+
+    private void SetAlpha(GameObject go, float alpha)
+    {
+        if (go == null) return;
+        if (go.TryGetComponent<CanvasGroup>(out var cg)) cg.alpha = alpha;
     }
 
     private void StopCoroutineIfRunning(ref Coroutine coroutine)
