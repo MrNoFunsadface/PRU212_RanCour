@@ -1271,9 +1271,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f887d5b24f24a08448b6b65cd1a571e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monologueData: {fileID: 0}
+  monologueData: {fileID: 11400000, guid: 93f30cfa891f0bd4c8ac6f94d054a1aa, type: 2}
   interactPrompt: {fileID: 1225469938}
-  eButton: {fileID: 0}
+  eButton: {fileID: 1225469941}
 --- !u!1 &311775805
 GameObject:
   m_ObjectHideFlags: 0
