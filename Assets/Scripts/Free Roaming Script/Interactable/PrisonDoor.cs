@@ -55,13 +55,13 @@ namespace Assets.Scripts.Interactable
             gateCollider = GetComponent<Collider2D>();
             if (gateCollider == null)
             {
-                Debug.LogError("MainGate script requires a Collider2D component on the GameObject.");
+                Debug.LogError($"{doorName} script requires a Collider2D component on the GameObject.");
             }
 
             mainGateAnimator = GetComponent<Animator>();
             if (mainGateAnimator == null)
             {
-                Debug.LogError("MainGate script requires an Animator component on the GameObject.");
+                Debug.LogError($"{doorName} script requires an Animator component on the GameObject.");
             }
 
             doorName = gameObject.name;
@@ -71,14 +71,14 @@ namespace Assets.Scripts.Interactable
             {
                 gateCollider.enabled = false;
                 mainGateAnimator.Play("GateStayOpenedAnim", 0, 0f);
-                Debug.Log("Main gate has already been opened.");
+                Debug.Log($"{doorName} has already been opened.");
                 return;
             }
             else
             {
                 gateCollider.enabled = true;
                 eButton.Hide();
-                Debug.Log("Main gate is available to open.");
+                Debug.Log($"{doorName} is available to open.");
             }
         }
 
@@ -92,7 +92,7 @@ namespace Assets.Scripts.Interactable
                     StartCoroutine(OpenGate());
                     PlayerPrefs.SetInt(doorName, 1);
                 }
-                else Debug.Log("You need a key to open the gate.");
+                else Debug.Log($"You need a key to open the {doorName}.");
             }
         }
     }

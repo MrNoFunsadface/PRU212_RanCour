@@ -14,8 +14,9 @@ public class CollectibleController : MonoBehaviour
     [SerializeField]
     private ItemDatabaseSO itemDatabase;
 
-    [SerializeField]
     private EButton eButton;
+
+    private EnviromentController enviromentController;
 
     private bool playerInRange = false;
 
@@ -41,6 +42,18 @@ public class CollectibleController : MonoBehaviour
 
     void Start()
     {
+        enviromentController = FindFirstObjectByType<EnviromentController>();
+        if (enviromentController == null)
+        {
+            Debug.Log("EnviromentController not found in the scene.");
+        }
+
+        eButton = FindFirstObjectByType<EButton>();
+        if (eButton == null)
+        {
+            Debug.Log("EButton not found in the scene. Please ensure it is present for interaction.");
+        }
+
         int collected = PlayerPrefs.GetInt(itemName + "_Collected");
         if (collected == 1)
         {
@@ -50,7 +63,6 @@ public class CollectibleController : MonoBehaviour
         else
         {
             gameObject.SetActive(true);
-            eButton.Hide();
             Debug.Log($"{itemName} is available for collection.");
         }
     }
@@ -70,6 +82,8 @@ public class CollectibleController : MonoBehaviour
             PlayerPrefs.SetInt(itemName + "_Collected", 1);
             PlayerPrefs.Save();
             Debug.Log($"Added {itemName} to inventory.");
+
+            enviromentController.UpdateEnvironment();
         }
     }
 }

@@ -5,7 +5,8 @@ public class EnemyAI : MonoBehaviour
 {
     private enum State
     {
-        Roaming
+        Roaming,
+        Despawned
     }
 
     private State state;
@@ -13,16 +14,29 @@ public class EnemyAI : MonoBehaviour
     private Vector2 initialPosition; // Store the starting position
     [SerializeField] private float roamRadius = 5f; // Adjust this to set the patrol area size
 
+    private EnemyActiveState enemyActiveState;
+
     private void Awake()
     {
         enemyPathfinding = GetComponent<EnemyPathfinding>();
-        state = State.Roaming;
+        enemyActiveState = GetComponent<EnemyActiveState>();
         initialPosition = transform.position; // Store the initial position
+        state = State.Despawned;
     }
 
-    private void Start()
+    public void SetToRoaming()
     {
+        StopAllCoroutines();
+        state = State.Roaming;
+        enemyActiveState.Show();
         StartCoroutine(RoamingRoutine());
+    }
+
+    public void SetToDespawned()
+    {
+        StopAllCoroutines();
+        state = State.Despawned;
+        enemyActiveState.Hide();
     }
 
     private IEnumerator RoamingRoutine()
