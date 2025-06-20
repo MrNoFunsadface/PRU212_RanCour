@@ -5,7 +5,10 @@ public class MonologueTrigger : MonoBehaviour
     public MonologueData monologueData;
     public GameObject interactPrompt;
 
-    private bool playerNearby = false;
+    [SerializeField]
+    private EButton eButton;
+
+    private bool playerInRange = false;
 
     private void Start()
     {
@@ -14,7 +17,7 @@ public class MonologueTrigger : MonoBehaviour
 
     private void Update()
     {
-        if (playerNearby && Input.GetKeyDown(KeyCode.E))
+        if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {
             if (monologueData != null)
             {
@@ -23,21 +26,21 @@ public class MonologueTrigger : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (other.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            interactPrompt.SetActive(true);
-            playerNearby = true;
+            playerInRange = true;
+            eButton.Show();
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnCollisionExit2D(Collision2D collision)
     {
-        if (other.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            interactPrompt.SetActive(false);
-            playerNearby = false;
+            playerInRange = false;
+            eButton.Hide();
         }
     }
 }
