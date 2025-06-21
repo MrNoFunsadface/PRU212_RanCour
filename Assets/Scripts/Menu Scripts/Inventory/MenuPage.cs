@@ -26,6 +26,12 @@ namespace Scripts.Menu
         [SerializeField]
         private ViewDeckButton viewDeckButton;
 
+        [SerializeField]
+        private BookToCardCollection bookToCardCollection;
+
+        [SerializeField]
+        private DeckViewSpawner deckViewSpawner;
+
         List<UIInventoryItem> listOfUIItems = new List<UIInventoryItem>();
 
         private int currentInvSlot = -1;
@@ -78,7 +84,12 @@ namespace Scripts.Menu
             var inventoryItem = inventoryData.GetItemAt(index);
             if (!inventoryItem.isEmpty)
             {
-                if (inventoryData.GetItemAt(index).itemData.name == "AlchemyBookVolume1") viewDeckButton.Show();
+                if (inventoryData.GetItemAt(index).itemData.name == "AlchemyBookVolume1")
+                {
+                    viewDeckButton.Show();
+                    var Deck = bookToCardCollection.GetCollectionForBook(inventoryData.GetItemAt(index).itemData);
+                    deckViewSpawner.SpawnCards(Deck.CardsInCollection);
+                }
                 else viewDeckButton.Hide();
             } else viewDeckButton.Hide();
 
