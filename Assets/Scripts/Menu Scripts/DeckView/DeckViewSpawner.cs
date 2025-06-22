@@ -24,6 +24,7 @@ public class DeckViewSpawner : MonoBehaviour
         foreach (Card card in cardsToSpawn)
         {
             GameObject cardObj = Instantiate(cardPrefab, content);
+            cardObj.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             if (cardObj.TryGetComponent(out CardUI cardUI))
                 cardUI.Setup(card);
             if (cardObj.TryGetComponent(out RectTransform cardRT))

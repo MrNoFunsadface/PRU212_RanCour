@@ -19,6 +19,9 @@ public class ExitButton : MonoBehaviour
     [SerializeField]
     private ViewDeckButton viewDeckButton;
 
+    [SerializeField]
+    private CardView cardView;
+
     void Start()
     {
         Hide();
@@ -31,6 +34,7 @@ public class ExitButton : MonoBehaviour
         characterUI.Hide();
         settingsUI.Hide();
         viewDeckButton.Hide();
+        cardView.Hide();
         Hide();
     }
 
