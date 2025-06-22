@@ -10,6 +10,7 @@ TagManager:
   - targetSceneName
   - NPC
   - TestDiscard
+  - NPC_01
   layers:
   - Default
   - TransparentFX

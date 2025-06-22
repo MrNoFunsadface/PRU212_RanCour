@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Ink.Runtime;
 using TMPro;
+using System;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -20,6 +21,12 @@ public class DialogueManager : MonoBehaviour
     private bool isDialogueActive = false;
     private bool isTyping = false;
     private List<Button> currentChoiceButtons = new List<Button>();
+    private Coroutine typewriterCoroutine;
+    private string currentText = "";
+
+    // Callback for when dialogue ends
+    private Action onDialogueEnd;
+    private bool wasFirstTimeDialogue = false;
 
     public static DialogueManager Instance { get; private set; }
 
@@ -43,9 +50,22 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(TextAsset inkJSON)
     {
+        StartDialogueWithState(inkJSON, false);
+    }
+
+    public void StartDialogueWithState(TextAsset inkJSON, bool hasTalkedBefore, Action onDialogueEndCallback = null)
+    {
         if (isDialogueActive) return;
 
         currentStory = new Story(inkJSON.text);
+
+        // Set the has_talked_before variable in the Ink story
+        currentStory.variablesState["has_talked_before"] = hasTalkedBefore;
+
+        // Store callback and track if this is a first-time dialogue
+        onDialogueEnd = onDialogueEndCallback;
+        wasFirstTimeDialogue = !hasTalkedBefore;
+
         isDialogueActive = true;
         dialoguePanel.SetActive(true);
 
@@ -71,6 +91,24 @@ public class DialogueManager : MonoBehaviour
 
         ClearChoices();
         currentStory = null;
+
+        // Stop any running typewriter effect
+        if (typewriterCoroutine != null)
+        {
+            StopCoroutine(typewriterCoroutine);
+            typewriterCoroutine = null;
+        }
+        isTyping = false;
+
+        // Call the callback if this was a first-time dialogue
+        if (wasFirstTimeDialogue && onDialogueEnd != null)
+        {
+            onDialogueEnd.Invoke();
+        }
+
+        // Reset callback
+        onDialogueEnd = null;
+        wasFirstTimeDialogue = false;
     }
 
     private void ContinueStory()
@@ -78,7 +116,7 @@ public class DialogueManager : MonoBehaviour
         if (currentStory.canContinue)
         {
             string nextLine = currentStory.Continue();
-            StartCoroutine(TypewriterEffect(nextLine));
+            typewriterCoroutine = StartCoroutine(TypewriterEffect(nextLine));
         }
         else
         {
@@ -96,6 +134,7 @@ public class DialogueManager : MonoBehaviour
     private IEnumerator TypewriterEffect(string text)
     {
         isTyping = true;
+        currentText = text;
         dialogueText.text = "";
 
         foreach (char letter in text.ToCharArray())
@@ -105,10 +144,27 @@ public class DialogueManager : MonoBehaviour
         }
 
         isTyping = false;
+        typewriterCoroutine = null;
 
         if (currentStory.currentChoices.Count > 0)
         {
             DisplayChoices();
+        }
+    }
+
+    private void SkipTypewriter()
+    {
+        if (isTyping && typewriterCoroutine != null)
+        {
+            StopCoroutine(typewriterCoroutine);
+            typewriterCoroutine = null;
+            dialogueText.text = currentText;
+            isTyping = false;
+
+            if (currentStory.currentChoices.Count > 0)
+            {
+                DisplayChoices();
+            }
         }
     }
 
@@ -146,16 +202,20 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
-        if (isDialogueActive && Input.GetKeyDown(KeyCode.Space) && !isTyping)
+        if (isDialogueActive && Input.GetKeyDown(KeyCode.Space))
         {
-            if (currentStory.currentChoices.Count == 0)
+            if (isTyping)
             {
+                // Skip the typewriter effect
+                SkipTypewriter();
+            }
+            else if (currentStory.currentChoices.Count == 0)
+            {
+                // Continue to next dialogue line
                 ContinueStory();
             }
         }
     }
-
-    // Add to your existing DialogueManager class
 
     public bool IsDialogueActive()
     {

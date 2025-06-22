@@ -5,9 +5,9 @@ public class EnemyCollision : MonoBehaviour
 {
     public string enemyId; // Assign a unique ID per enemy (e.g. "enemy1")
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision) // Corrected signature
     {
-        if (collision.CompareTag("Player"))
+        if (collision.collider.CompareTag("Player")) // Adjusted to use collision.collider
         {
             GameManager.Instance.isReturningFromBattle = true;
 
@@ -20,6 +20,4 @@ public class EnemyCollision : MonoBehaviour
             SceneManager.LoadScene("BattleScene");
         }
     }
-
-
 }

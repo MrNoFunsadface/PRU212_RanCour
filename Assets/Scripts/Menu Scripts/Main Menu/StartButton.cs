@@ -150,7 +150,7 @@ public class StartButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         PlayerPrefs.DeleteAll(); // Clear PlayerPrefs for a fresh start
         yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene("Scene0");
+        SceneManager.LoadScene("Cutscene0");
     }
 
     private IEnumerator ChangeStartButtonColour()

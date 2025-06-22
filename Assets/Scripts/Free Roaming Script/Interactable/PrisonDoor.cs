@@ -5,28 +5,35 @@ using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.Interactable
 {
-    public class PrisonDoor : MonoBehaviour
+    public class PrisonDoor : MonoBehaviour, IInteractable
     {
         private bool playerInRange = false;
+        private bool isRegistered = false;
         private Collider2D gateCollider;
         private Animator mainGateAnimator;
         private string doorName;
 
-        [SerializeField]
-        private EButton eButton;
-
-        [SerializeField]
-        private InventorySO inventoryData;
-
-        [SerializeField]
-        private PlayerController playerController;
+        [SerializeField] private EButton eButton;
+        [SerializeField] private InventorySO inventoryData;
+        [SerializeField] private PlayerController playerController;
+        [SerializeField] private int interactionPriority = 5; // Higher priority than NPCs
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
             if (collision.gameObject.CompareTag("Player"))
             {
                 playerInRange = true;
-                eButton.Show();
+
+                // Register with interaction manager if it exists, otherwise use old system
+                if (InteractionManager.Instance != null)
+                {
+                    InteractionManager.Instance.RegisterInteraction(this);
+                    isRegistered = true;
+                }
+                else
+                {
+                    eButton.Show();
+                }
             }
         }
 
@@ -35,7 +42,62 @@ namespace Assets.Scripts.Interactable
             if (collision.gameObject.CompareTag("Player"))
             {
                 playerInRange = false;
-                eButton.Hide();
+
+                // Unregister from interaction manager if it exists, otherwise use old system
+                if (InteractionManager.Instance != null && isRegistered)
+                {
+                    InteractionManager.Instance.UnregisterInteraction(this);
+                    isRegistered = false;
+                }
+                else
+                {
+                    eButton.Hide();
+                }
+            }
+        }
+
+        private void OnDestroy()
+        {
+            // Clean up registration
+            if (InteractionManager.Instance != null && isRegistered)
+            {
+                InteractionManager.Instance.UnregisterInteraction(this);
+            }
+        }
+
+        // IInteractable implementation
+        public string GetInteractionText()
+        {
+            if (inventoryData.CheckItemByName("MasterKey"))
+            {
+                return $"Unlock {doorName}";
+            }
+            return $"Locked {doorName} (Need MasterKey)";
+        }
+
+        public void Interact()
+        {
+            TryOpenGate();
+        }
+
+        public int GetInteractionPriority()
+        {
+            return interactionPriority;
+        }
+
+        private void TryOpenGate()
+        {
+            Debug.Log("PrisonDoor.TryOpenGate() called - THIS SHOULD NOT HAPPEN when NPC is selected!");
+
+            if (inventoryData.CheckItemByName("MasterKey"))
+            {
+                Debug.Log("You have the key. Opening the gate...");
+                StartCoroutine(OpenGate());
+                PlayerPrefs.SetInt(doorName, 1);
+            }
+            else
+            {
+                Debug.Log($"You need a key to open the {doorName}.");
             }
         }
 
@@ -65,8 +127,8 @@ namespace Assets.Scripts.Interactable
             }
 
             doorName = gameObject.name;
-
             int gateOpened = PlayerPrefs.GetInt(doorName, 0);
+
             if (gateOpened == 1)
             {
                 gateCollider.enabled = false;
@@ -84,16 +146,13 @@ namespace Assets.Scripts.Interactable
 
         private void Update()
         {
-            if (playerInRange && Keyboard.current.eKey.wasPressedThisFrame)
+            // Only handle direct input if InteractionManager is not present (backward compatibility)
+            if (InteractionManager.Instance == null && playerInRange && Keyboard.current.eKey.wasPressedThisFrame)
             {
-                if (inventoryData.CheckItemByName("MasterKey"))
-                {
-                    Debug.Log("You have the key. Opening the gate...");
-                    StartCoroutine(OpenGate());
-                    PlayerPrefs.SetInt(doorName, 1);
-                }
-                else Debug.Log($"You need a key to open the {doorName}.");
+                TryOpenGate();
             }
+            // If InteractionManager exists, it will call our Interact() method when appropriate
+            // NO DIRECT INPUT HANDLING when InteractionManager is present
         }
     }
 }
