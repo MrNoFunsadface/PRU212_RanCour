@@ -59,12 +59,38 @@ public class DialogueManager : MonoBehaviour
 
         currentStory = new Story(inkJSON.text);
 
-        // Set the has_talked_before variable in the Ink story
-        currentStory.variablesState["has_talked_before"] = hasTalkedBefore;
+        // Only set the has_talked_before variable if it exists in the story
+        if (currentStory.variablesState.GlobalVariableExistsWithName("has_talked_before"))
+        {
+            currentStory.variablesState["has_talked_before"] = hasTalkedBefore;
+        }
 
         // Store callback and track if this is a first-time dialogue
         onDialogueEnd = onDialogueEndCallback;
         wasFirstTimeDialogue = !hasTalkedBefore;
+
+        isDialogueActive = true;
+        dialoguePanel.SetActive(true);
+
+        // Disable player movement
+        if (FindObjectOfType<PlayerController>() != null)
+        {
+            FindObjectOfType<PlayerController>().enabled = false;
+        }
+
+        ContinueStory();
+    }
+
+    // New method for dialogues that don't need state variables (like freed NPC dialogue)
+    public void StartDialogueWithCallback(TextAsset inkJSON, Action onDialogueEndCallback = null)
+    {
+        if (isDialogueActive) return;
+
+        currentStory = new Story(inkJSON.text);
+
+        // Store callback - this is always considered a "first time" dialogue for callback purposes
+        onDialogueEnd = onDialogueEndCallback;
+        wasFirstTimeDialogue = true;
 
         isDialogueActive = true;
         dialoguePanel.SetActive(true);
