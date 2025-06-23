@@ -19,7 +19,6 @@ public class Deck : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -59,20 +58,20 @@ public class Deck : MonoBehaviour
 
     public void DrawCard(int amount = 5)
     {
-        for (int i = 0; i < amount; i++)
+        int amountToSpawn = Mathf.Min(amount, deckPile.Count);
+        if (amountToSpawn <= 0) amountToSpawn = discardPile.Count;
+        for (int i = 0; i < amountToSpawn; i++)
         {
-            Debug.Log("Deck pile: " + deckPile.Count);
             if (deckPile.Count <= 0)
             {
-                Debug.Log("Deck pile is empty. Shuffling discard pile into deck pile.");
                 deckPile = discardPile.ToList();
                 discardPile.Clear();
                 ShuffleDeckPile();
-                Debug.Log("Deck pile after: " + deckPile.Count);
             }
+            if (deckPile[0] == null) break;
+
             CardsToSpawn.Add(deckPile[0]);
             deckPile.RemoveAt(0);
-            Debug.Log("Deck pile after: " + deckPile.Count);
         }
     }
 

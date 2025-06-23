@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Zn
   description: Zinc metal, displaces less-reactive metals
-  artwork: {fileID: 0}
+  artwork: {fileID: 2800000, guid: b9ad8dc19209cde4c8fa9b8fdec7c6fd, type: 3}
   cost: 2
   category: 0
   formula: Zn

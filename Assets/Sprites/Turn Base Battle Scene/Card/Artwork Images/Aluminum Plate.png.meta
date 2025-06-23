@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 4f3375d80ed9af745b2e733717447891
+guid: 412fa26ea44ccc4418c5c6dd9f3d3a04
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3997288960743936533
-    second: Sodium Dust AI_0
+      213: -5664486075234322042
+    second: Aluminum Plate_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sodium Dust AI_0
+      name: Aluminum Plate_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1024
-        height: 1536
+        width: 32
+        height: 46
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bed64466ed6c688c0800000000000000
-      internalID: -3997288960743936533
+      spriteID: 689f2822de3b361b0800000000000000
+      internalID: -5664486075234322042
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Sodium Dust AI_0: -3997288960743936533
+      Aluminum Plate_0: -5664486075234322042
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
