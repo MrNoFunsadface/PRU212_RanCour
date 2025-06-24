@@ -13,18 +13,19 @@ MonoBehaviour:
   m_Name: Starter Card Collection
   m_EditorClassIdentifier: 
   CardsInCollection:
-  - {fileID: 11400000, guid: 28b062d8d56dde44db25de1d7cbc3107, type: 2}
-  - {fileID: 11400000, guid: 28b062d8d56dde44db25de1d7cbc3107, type: 2}
-  - {fileID: 11400000, guid: df9bca82b1fe70e459c32fe2a12ae041, type: 2}
-  - {fileID: 11400000, guid: df9bca82b1fe70e459c32fe2a12ae041, type: 2}
+  - {fileID: 11400000, guid: de56c506487c14a4391388af4ffdf18d, type: 2}
   - {fileID: 11400000, guid: ebfdd7532b8cca942afa5168e2ea5a74, type: 2}
-  - {fileID: 11400000, guid: ebfdd7532b8cca942afa5168e2ea5a74, type: 2}
-  - {fileID: 11400000, guid: b976b3003ab021a408b240af6323d60e, type: 2}
+  - {fileID: 11400000, guid: 53d872bf09cbffb4f927925959522f50, type: 2}
   - {fileID: 11400000, guid: b976b3003ab021a408b240af6323d60e, type: 2}
   - {fileID: 11400000, guid: c13bcd05027795449b6a3aac0e3c35b5, type: 2}
   - {fileID: 11400000, guid: c13bcd05027795449b6a3aac0e3c35b5, type: 2}
-  - {fileID: 11400000, guid: 430aec2d81d0f00408e1fc52c3cebfb4, type: 2}
-  - {fileID: 11400000, guid: 430aec2d81d0f00408e1fc52c3cebfb4, type: 2}
-  - {fileID: 11400000, guid: 28b062d8d56dde44db25de1d7cbc3107, type: 2}
-  - {fileID: 11400000, guid: 28b062d8d56dde44db25de1d7cbc3107, type: 2}
-  - {fileID: 11400000, guid: df9bca82b1fe70e459c32fe2a12ae041, type: 2}
+  - {fileID: 11400000, guid: c13bcd05027795449b6a3aac0e3c35b5, type: 2}
+  - {fileID: 11400000, guid: c13bcd05027795449b6a3aac0e3c35b5, type: 2}
+  - {fileID: 11400000, guid: c13bcd05027795449b6a3aac0e3c35b5, type: 2}
+  - {fileID: 11400000, guid: c13bcd05027795449b6a3aac0e3c35b5, type: 2}
+  - {fileID: 11400000, guid: c13bcd05027795449b6a3aac0e3c35b5, type: 2}
+  - {fileID: 11400000, guid: c13bcd05027795449b6a3aac0e3c35b5, type: 2}
+  - {fileID: 11400000, guid: c13bcd05027795449b6a3aac0e3c35b5, type: 2}
+  - {fileID: 11400000, guid: c13bcd05027795449b6a3aac0e3c35b5, type: 2}
+  - {fileID: 11400000, guid: c13bcd05027795449b6a3aac0e3c35b5, type: 2}
+  - {fileID: 11400000, guid: c13bcd05027795449b6a3aac0e3c35b5, type: 2}

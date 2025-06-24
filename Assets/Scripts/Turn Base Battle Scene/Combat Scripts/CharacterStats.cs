@@ -9,6 +9,12 @@ public class CharacterStats : MonoBehaviour
 
     private void Start()
     {
+        if (stats == null)
+        {
+            Debug.LogError($"[CharacterStats] No SO assigned on {gameObject.name}", this);
+            enabled = false;
+            return;
+        }
         currentHealth = stats.maxHealth;
     }
 

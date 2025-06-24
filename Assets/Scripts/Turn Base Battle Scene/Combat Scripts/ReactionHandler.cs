@@ -4,53 +4,66 @@ using System.Collections.Generic;
 
 public class ReactionHandler : MonoBehaviour
 {
+    [Tooltip("All defined ReactionSO assets")]
     public ReactionSO[] reactions;
 
     public void OnCardDropped(Card card, EnemyStatus enemy)
     {
-        Debug.Log("--- CARD DROPPED ---");
-        Debug.Log($"Card: {card.name} | Element: {card.elementType} | Damage: {card.damage}");
-        Debug.Log($"Target Enemy: {enemy.name}");
+        Debug.Log($"--- CARD DROPPED: {card.cardName} ({card.elementType}) on {enemy.name}");
 
-        // Always apply the element status first
+        // 1) apply the status/duration/count
         enemy.ApplyElement(card);
 
-        if (card.category != CardCategory.Element) return;
+        // 2) skip only Catalysts
+        if (card.category == CardCategory.Catalyst) return;
 
-        List<ElementalType> currentElements = enemy.GetAllElements();
-        if (!currentElements.Contains(card.elementType))
-        {
-            currentElements.Add(card.elementType);
-        }
+        // 3) build the multiset of chemicals we HAVE
+        var have = new List<ElementalType>();
+        foreach (var type in enemy.GetAllElements())
+            have.AddRange(Enumerable.Repeat(type, enemy.GetElementCount(type)));
 
-        string before = string.Join(", ", currentElements);
-        Debug.Log($"Enemy active elements before: {before}");
+        // ensure the just?dropped card is included
+        have.Add(card.elementType);
 
+        Debug.Log($"Chemicals now: {string.Join(", ", have)}");
+
+        // 4) check each reaction for an exact multiset match
         foreach (var react in reactions)
         {
-            if (react.inputElements.All(e => currentElements.Contains(e)))
+            if (Matches(have, react.inputElements))
             {
-                Debug.Log($"Reaction triggered: {react.reactionName} -> Damage: {react.damage}, Status: {react.statusEffect}");
-                Debug.Log($"Enemy GameObject: {enemy.gameObject.name}");
-                Debug.Log($"Has CharacterStats: {enemy.GetComponent<CharacterStats>() != null}");
+                Debug.Log($"?? Reaction {react.reactionName}: {string.Join(" + ", react.inputElements)} ? damage {react.damage}");
 
-                CombatSystem.Instance.DealDamage(enemy.gameObject, react.damageType, react.damage, react.ignoreArmor);
-
+                // apply combat effects
+                CombatSystem.Instance.DealDamage(enemy.gameObject,
+                                                 react.damageType,
+                                                 react.damage,
+                                                 react.ignoreArmor);
                 if (react.statusEffect != StatusEffect.None)
-                    CombatSystem.Instance.ApplyStatus(enemy.gameObject, react.statusEffect, react.statusAmount);
+                    CombatSystem.Instance.ApplyStatus(enemy.gameObject,
+                                                      react.statusEffect,
+                                                      react.statusAmount);
 
-                foreach (var el in react.inputElements)
-                    enemy.RemoveElement(el);
+                // consume each reactant exactly once
+                foreach (var need in react.inputElements)
+                    enemy.RemoveElement(need);
 
-                break; // Only one reaction per card
+                break; // only one reaction per drop
             }
         }
+    }
 
-        string after = string.Join(", ", enemy.GetAllElements());
-        Debug.Log($"Enemy active elements after: {after}");
+    // returns true if 'have' contains each element in 'need' at least as many times as listed
+    private bool Matches(List<ElementalType> have, List<ElementalType> need)
+    {
+        var haveCounts = have.GroupBy(x => x).ToDictionary(g => g.Key, g => g.Count());
+        var needCounts = need.GroupBy(x => x).ToDictionary(g => g.Key, g => g.Count());
 
-        var stats = enemy.GetComponent<CharacterStats>();
-        if (stats != null)
-            Debug.Log($"Enemy health after hit: {stats.CurrentHealth}");
+        foreach (var kv in needCounts)
+        {
+            if (!haveCounts.ContainsKey(kv.Key) || haveCounts[kv.Key] < kv.Value)
+                return false;
+        }
+        return true;
     }
 }
