@@ -12,5 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91e72fc18cca696409750fb8d384ce05, type: 3}
   m_Name: Bat
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   enemyName: Bat
   enemyPrefab: {fileID: 2256444359035510481, guid: 1a79a3a1eb63ea146bc4fbd383e7ced1, type: 3}
+=======
+  characterName: Bat
+  maxHealth: 400000
+  attack: 20
+  defense: 3
+  attackSpeed: 2
+  primaryDamageType: 2
+  charPrefab: {fileID: 2256444359035510481, guid: 1a79a3a1eb63ea146bc4fbd383e7ced1, type: 3}
+>>>>>>> Stashed changes

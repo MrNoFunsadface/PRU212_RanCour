@@ -12,5 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91e72fc18cca696409750fb8d384ce05, type: 3}
   m_Name: Slime
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   enemyName: Slime
   enemyPrefab: {fileID: 2256444359035510481, guid: 18dde670353ab554ba1c063d417b6c71, type: 3}
+=======
+  characterName: Slime
+  maxHealth: 600000
+  attack: 15
+  defense: 5
+  attackSpeed: 1
+  primaryDamageType: 3
+  charPrefab: {fileID: 2256444359035510481, guid: 18dde670353ab554ba1c063d417b6c71, type: 3}
+>>>>>>> Stashed changes

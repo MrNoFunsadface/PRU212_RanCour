@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   reactionName: Precipitation
   equation: "AgNO\u2083 + NaCl \u2192 AgCl\u2193 + NaNO\u2083"
-  inputElements: 05000000
+  inputElements: 140000000b000000
   damageType: 3
   damage: 30
   statusEffect: 3

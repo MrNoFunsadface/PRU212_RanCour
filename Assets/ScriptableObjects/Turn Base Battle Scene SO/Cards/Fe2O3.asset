@@ -18,12 +18,12 @@ MonoBehaviour:
   cost: 3
   category: 1
   formula: Fe2O3
-  elementType: 0
+  elementType: 18
   elementDuration: 3
   isStackable: 1
   damageOnApplyOnly: 1
   damageType: 5
-  damage: 120
+  damage: 30
   statusEffect: 0
   statusAmount: 0
   ignoreArmor: 1

@@ -1,4 +1,7 @@
+﻿
+using System;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -31,10 +34,15 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     private const float TiltLerpSpeed = 10f;
     private const float SpeedThreshold = 1f;
 
+<<<<<<< Updated upstream
     [SerializeField] private RectTransform shadowTransform;
     [SerializeField] private RectTransform cardImage;
     [SerializeField] private RectTransform cardName;
     [SerializeField] private RectTransform costOutline;
+=======
+    public static event Action OnCardPlayed;
+    #endregion
+>>>>>>> Stashed changes
 
     private Vector3 imageOriginalPos;
     private Vector3 nameOriginalPos;
@@ -116,6 +124,7 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
         if (speed < SpeedThreshold)
         {
+<<<<<<< Updated upstream
             ResetTilt();
         }
 
@@ -126,6 +135,36 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         paralaxResetCoroutine = StartCoroutine(ResetParallax());
     }
 
+=======
+            battleLog.LogBattleEvent($"Dropped {card.cardName} on {info.enemyName} at order {info.enemyOrder}");
+            battleLog.UpdateDisplayer();
+        }
+    }
+
+    private void DiscardCard()
+    {
+        // grabs all instances, even if disabled
+        var dropZones = Resources.FindObjectsOfTypeAll<DropZoneScript>()
+                                 .Where(dz => dz.gameObject.scene.isLoaded);
+        // filter out asset‐only instances
+
+        foreach (var dz in dropZones)
+        {
+            SetAlpha(dz.healthBar, 1f);
+            SetAlpha(dz.activeHealthBar, 0f);
+        }
+
+        Deck.Instance.DiscardCard(card);
+        OnCardPlayed?.Invoke();
+        Destroy(rectTransform.gameObject);
+    }
+
+
+    #endregion
+
+    #region Card Movement and Effects
+
+>>>>>>> Stashed changes
     private IEnumerator SmoothReturnToOriginalPosition()
     {
         Vector2 startPosition = rectTransform.anchoredPosition;
@@ -306,8 +345,47 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         Quaternion startRotation = rectTransform.localRotation;
         Quaternion targetRotation = Quaternion.identity; // Reset to identity
 
+<<<<<<< Updated upstream
         float elapsedTime = 0f;
         while (elapsedTime < SmoothDuration)
+=======
+    private void ApplyParallax(Vector2 delta)
+    {
+        float parallaxStrength = 0.5f;
+        float maxOffset = 10f; // Maximum offset for parallax movement
+
+        // Calculate new positions with parallax effect
+        Vector3 newImagePos = imageOriginalPos + (Vector3)delta * parallaxStrength;
+        Vector3 newNamePos = nameOriginalPos + (Vector3)delta * (parallaxStrength * 0.5f);
+        Vector3 newCostPos = costOriginalPos + (Vector3)delta * (parallaxStrength * 0.7f);
+
+        // Clamp the positions to ensure they stay within the card's bounds
+        cardImage.localPosition = ClampPosition(newImagePos, imageOriginalPos, maxOffset);
+        cardName.localPosition = ClampPosition(newNamePos, nameOriginalPos, maxOffset);
+        costOutline.localPosition = ClampPosition(newCostPos, costOriginalPos, maxOffset);
+    }
+
+    private Vector3 ClampPosition(Vector3 currentPosition, Vector3 originalPos, float maxOffset)
+    {
+        return new Vector3(
+            Mathf.Clamp(currentPosition.x, originalPos.x - maxOffset, originalPos.x + maxOffset),
+            Mathf.Clamp(currentPosition.y, originalPos.y - maxOffset, originalPos.y + maxOffset),
+            currentPosition.z // Keep the Z position unchanged
+        );
+    }
+
+    private void UpdateOpacity(PointerEventData eventData)
+    {
+        float targetAlpha = (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag(DropZoneTag)) ? 0.5f : 1f;
+        canvasGroup.alpha = targetAlpha;
+    }
+
+    private void UpdateHealthBarState(PointerEventData eventData)
+    {
+        // Default: show all normal health bars, hide all active health bars
+        var dropZones = FindObjectsOfType<DropZoneScript>();
+        foreach (var dropZone in dropZones)
+>>>>>>> Stashed changes
         {
             float t = elapsedTime / SmoothDuration;
             rectTransform.localRotation = Quaternion.Lerp(startRotation, targetRotation, t);
@@ -318,4 +396,27 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         // Ensure the rotation is exactly identity at the end
         rectTransform.localRotation = targetRotation;
     }
+<<<<<<< Updated upstream
+=======
+
+
+    private void SetAlpha(GameObject go, float alpha)
+    {
+        if (go == null) return;
+        if (go.TryGetComponent<CanvasGroup>(out var cg)) cg.alpha = alpha;
+    }
+
+    private void StopCoroutineIfRunning(ref Coroutine coroutine)
+    {
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+            coroutine = null;
+        }
+    }
+
+    #endregion
+
+    #endregion
+>>>>>>> Stashed changes
 }

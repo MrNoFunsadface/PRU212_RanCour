@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class CombatSystem : MonoBehaviour
@@ -18,6 +19,11 @@ public class CombatSystem : MonoBehaviour
     public void ApplyStatus(GameObject target, StatusEffect effect, int amount)
     {
         // implement status effect logic
+    }
+    public interface ITurnTaker
+    {
+        bool IsAlive { get; }
+        IEnumerator TakeTurn();
     }
 }
 
