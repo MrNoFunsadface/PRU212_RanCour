@@ -6,7 +6,31 @@ using UnityEngine;
 //     It contains properties such as name, description, artwork, cost, and power.
 
 public enum CardCategory { Element, Compound, Catalyst }
-public enum ElementalType { None, H2, O2, C, Na, Cl2, Fe, Al, Zn }
+public enum ElementalType
+{
+    None,
+
+    // Elements
+    H2, O2, C, Na, Cl2, Fe, Al, Zn,
+
+    // Simple Compounds
+    HCl,   // hydrochloric acid
+    NaOH,  // sodium hydroxide
+    NaCl,  // salt
+    H2O,   // water
+    CO2,   // carbon dioxide
+    AgCl,  // silver chloride
+    ZnSO4, // zinc sulfate
+    Cu,    // copper (product)
+    CuSO4, // optional nomenclature if you want separate
+    Fe2O3, // iron(III) oxide
+    Al2O3, // aluminum oxide
+    AgNO3, // silver nitrate
+    NaNO3, // sodium nitrate
+    CH4,
+    // …add more as needed
+}
+
 public enum DamageType { None, Thunder, Fire, Magic, Metal, Thermal, Blast }
 public enum StatusEffect { None, Burn, Stun, Slow, Shield }
 

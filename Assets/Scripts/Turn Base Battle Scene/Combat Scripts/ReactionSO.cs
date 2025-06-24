@@ -8,7 +8,7 @@ public class ReactionSO : ScriptableObject
     public string reactionName;
     [TextArea] public string equation;
 
-    [Header("Input Elements")]
+    [Header("Input Reactants (exact counts)")]
     public List<ElementalType> inputElements;
 
     [Header("Combat Effect")]
@@ -18,4 +18,3 @@ public class ReactionSO : ScriptableObject
     public int statusAmount;
     public bool ignoreArmor;
 }
-
