@@ -16,14 +16,13 @@ public class Deck : MonoBehaviour
 
     private void Awake()
     {
+        // Singleton
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+        else Destroy(gameObject); 
 
         SetUpDeck();
     }
@@ -58,20 +57,27 @@ public class Deck : MonoBehaviour
 
     public void DrawCard(int amount = 5)
     {
-        int amountToSpawn = Mathf.Min(amount, deckPile.Count);
-        if (amountToSpawn <= 0) amountToSpawn = discardPile.Count;
-        for (int i = 0; i < amountToSpawn; i++)
+        int drawn = 0;
+        while (drawn < amount)
         {
-            if (deckPile.Count <= 0)
+            // If deck is empty, try to reshuffle from discard
+            if (deckPile.Count == 0)
             {
+                if (discardPile.Count == 0)
+                    break; // No more cards to draw
+
                 deckPile = discardPile.ToList();
                 discardPile.Clear();
                 ShuffleDeckPile();
             }
-            if (deckPile[0] == null) break;
+
+            // If still no cards, break
+            if (deckPile.Count == 0)
+                break;
 
             CardsToSpawn.Add(deckPile[0]);
             deckPile.RemoveAt(0);
+            drawn++;
         }
     }
 

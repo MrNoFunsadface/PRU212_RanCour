@@ -102,20 +102,15 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             if (eventData.pointerEnter.TryGetComponent<DropZoneScript>(out var info))
             {
                 Debug.Log($"Dropped {card.cardName} on {info.enemyName} at order {info.enemyOrder}");
-                UpdateBattleLog(info);
 
-                DiscardCard();
+                int cost = card.cost;
+                if (UpdateCost(cost))
+                {
+                    HandleReaction(info);
+                    DiscardCard();
+                    UpdateBattleLog(info);
+                }
 
-                var targetEnemy = info.GetComponentInParent<EnemyStatus>();
-                var reactionHandler = FindFirstObjectByType<ReactionHandler>();
-                if (targetEnemy != null && reactionHandler != null)
-                {
-                    reactionHandler.OnCardDropped(card, targetEnemy);
-                }
-                else
-                {
-                    Debug.LogWarning("Missing EnemyStatus or ReactionHandler on drop target.");
-                }
             }
             else
             {
@@ -140,12 +135,18 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     private void UpdateBattleLog(DropZoneScript info)
     {
-        var battleLog = FindFirstObjectByType<BattleLogScript>();
+        var battleLog = BattleLogScript.Instance;
         if (battleLog != null)
         {
             battleLog.LogBattleEvent($"Dropped {card.cardName} on {info.enemyName} at order {info.enemyOrder}");
             battleLog.UpdateDisplayer();
         }
+    }
+
+    private bool UpdateCost(int cost)
+    {
+        if (PlayerCost.Instance.UpdateCost(cost)) return true;
+        else return false;
     }
 
     private void DiscardCard()
@@ -159,6 +160,20 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         Deck.Instance.DiscardCard(card);
         Destroy(rectTransform.gameObject);
         return;
+    }
+
+    private void HandleReaction(DropZoneScript info)
+    {
+        var targetEnemy = info.GetComponentInParent<EnemyStatus>();
+        var reactionHandler = ReactionHandler.Instance;
+        if (targetEnemy != null && reactionHandler != null)
+        {
+            reactionHandler.OnCardDropped(card, targetEnemy);
+        }
+        else
+        {
+            Debug.LogWarning("Missing EnemyStatus or ReactionHandler on drop target.");
+        }
     }
 
     #endregion
