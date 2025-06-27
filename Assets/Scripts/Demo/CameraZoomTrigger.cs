@@ -4,88 +4,72 @@ using UnityEngine;
 
 public class CameraZoomTrigger : MonoBehaviour
 {
-    [SerializeField]
-    private float targetOrthoSize = 10f;
+    [SerializeField] private float targetOrthoSize = 10f;
+    [SerializeField] private float defaultOrthoSize = 6f;
+    [SerializeField] private float zoomSpeed = 10f;
+    [SerializeField] private bool useZoomTarget = true;
+    [SerializeField] private RectTransform zoomTarget;
+    [SerializeField] private bool keepConfiner = false;
+    [SerializeField] private CompositeCollider2D originalConfiner;
+   
 
-    private float defaultOrthoSize = 6f;
-
-    [SerializeField]
-    private float zoomSpeed = 10f;
-
-    [SerializeField]
     private CinemachineCamera cinemachineCamera;
-
+    private CinemachineConfiner2D cinemachineConfiner;
+    private PlayerController player;
     private Coroutine zoomCoroutine;
 
-    [SerializeField]
-    private RectTransform zoomTarget;
+    private void Awake()
+    {
+        cinemachineCamera = FindFirstObjectByType<CinemachineCamera>();
+        if (cinemachineCamera == null)
+            Debug.LogWarning("CinemachineCamera not found in the scene.");
 
-    [SerializeField]
-    private CapsuleCollider2D player;
+        cinemachineConfiner = FindFirstObjectByType<CinemachineConfiner2D>();
+        if (cinemachineConfiner == null)
+            Debug.LogWarning("CinemachineConfiner2D not found in the scene.");
 
-    //Confinder2D settings
-    [SerializeField]
-    private CinemachineConfiner2D cinemachineConfinder;
-
-    [SerializeField]
-    private CompositeCollider2D originalConfinder;
+        player = FindFirstObjectByType<PlayerController>();
+        if (player == null)
+            Debug.LogWarning("PlayerController not found in the scene.");
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
-        {
-            var vcam = cinemachineCamera != null ? cinemachineCamera : FindFirstObjectByType<CinemachineCamera>();
-            if (vcam != null)
-            {
-                SmoothZoom(vcam, targetOrthoSize);
-                vcam.Follow = zoomTarget != null ? zoomTarget : other.transform;
-                cinemachineConfinder.BoundingShape2D = player;
-            }
-        }
+        if (!other.CompareTag("Player") || cinemachineCamera == null) return;
+
+        StartSmoothZoom(targetOrthoSize);
+        if (useZoomTarget) cinemachineCamera.Follow = zoomTarget != null ? zoomTarget : other.transform;
+        if (cinemachineConfiner != null)
+            if (keepConfiner) cinemachineConfiner.BoundingShape2D = originalConfiner;
+            else cinemachineConfiner.BoundingShape2D = null;
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
-        {
-            var vcam = cinemachineCamera != null ? cinemachineCamera : FindFirstObjectByType<CinemachineCamera>();
-            if (vcam != null)
-            {
-                SmoothZoom(vcam, defaultOrthoSize);
-                vcam.Follow = player != null ? player.transform : null;
-                if (originalConfinder != null)
-                {
-                    cinemachineConfinder.BoundingShape2D = originalConfinder;
-                }
-                else
-                {
-                    cinemachineConfinder.BoundingShape2D = null;
-                }
-            }
-        }
+        if (!other.CompareTag("Player") || cinemachineCamera == null) return;
+
+        StartSmoothZoom(defaultOrthoSize);
+        cinemachineCamera.Follow = player != null ? player.transform : null;
+        if (cinemachineConfiner != null && originalConfiner != null)
+            cinemachineConfiner.BoundingShape2D = originalConfiner;
     }
 
-    private void NormalZoom(CinemachineCamera vcam, float size)
-    {
-        vcam.Lens.OrthographicSize = size;
-    }
-
-    private void SmoothZoom(CinemachineCamera vcam, float size)
+    private void StartSmoothZoom(float size)
     {
         if (zoomCoroutine != null)
-            vcam.StopCoroutine(zoomCoroutine);
-        zoomCoroutine = vcam.StartCoroutine(SmoothZoom(vcam, size, zoomSpeed));
+            StopCoroutine(zoomCoroutine);
+        zoomCoroutine = StartCoroutine(SmoothZoom(size, zoomSpeed));
     }
 
-    private IEnumerator SmoothZoom(CinemachineCamera vcam, float target, float speed)
+    private IEnumerator SmoothZoom(float target, float speed)
     {
-        while (Mathf.Abs(vcam.Lens.OrthographicSize - target) > 0.01f)
+        while (Mathf.Abs(cinemachineCamera.Lens.OrthographicSize - target) > 0.01f)
         {
-            vcam.Lens.OrthographicSize = Mathf.Lerp(
-                vcam.Lens.OrthographicSize, target, Time.deltaTime * speed);
+            cinemachineCamera.Lens.OrthographicSize = Mathf.Lerp(
+                cinemachineCamera.Lens.OrthographicSize, target, Time.deltaTime * speed);
             yield return null;
         }
-        vcam.Lens.OrthographicSize = target;
+        cinemachineCamera.Lens.OrthographicSize = target;
         zoomCoroutine = null;
     }
 }
