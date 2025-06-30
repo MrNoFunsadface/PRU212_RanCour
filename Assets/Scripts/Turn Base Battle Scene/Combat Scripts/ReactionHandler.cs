@@ -4,8 +4,19 @@ using System.Collections.Generic;
 
 public class ReactionHandler : MonoBehaviour
 {
-    [Tooltip("All defined ReactionSO assets")]
+    public static ReactionHandler Instance { get; private set; }
     public ReactionSO[] reactions;
+
+    private void Awake()
+    {
+        // Singleton
+        if(Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else Destroy(gameObject);
+    }
 
     public void OnCardDropped(Card card, EnemyStatus enemy)
     {

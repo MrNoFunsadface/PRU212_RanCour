@@ -6,18 +6,25 @@ using UnityEngine.UI;
 
 public class BattleLogScript : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    public static BattleLogScript Instance { get; private set; }
     private RectTransform rectTransform;
-    private CanvasGroup canvasGroup;
     private Canvas canvas;
     private CanvasGroup scrollViewCanvasGroup;
-    [SerializeField] private List<string> battleLogText = new List<string>();
+    [SerializeField] private List<string> battleLogText = new();
     [SerializeField] private TextMeshProUGUI displayer;
 
 
     private void Awake()
     {
+        //Singleton
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else Destroy(gameObject);
+
         rectTransform = GetComponent<RectTransform>();
-        canvasGroup = GetComponent<CanvasGroup>();
         canvas = GetComponentInParent<Canvas>();
         scrollViewCanvasGroup = GetComponentInChildren<CanvasGroup>();
     }
