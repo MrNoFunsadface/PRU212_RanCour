@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   reactionName: "Acid\u2013Base Chain Reaction"
   equation: "HCl + H\u2082O \u2192 H\u2083O\u207A"
-  inputElements: 00000000
+  inputElements: 090000000c000000
   damageType: 3
   damage: 20
   statusEffect: 1
