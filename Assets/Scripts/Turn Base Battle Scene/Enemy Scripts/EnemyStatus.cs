@@ -71,12 +71,13 @@ public class EnemyStatus : MonoBehaviour
     public void TickRound()
     {
         var expired = new List<ElementalType>();
-        foreach (var kv in elementTimers)
+        foreach (var type in elementTimers.Keys.ToList())
         {
-            elementTimers[kv.Key] = kv.Value - 1;
-            if (elementTimers[kv.Key] <= 0)
-                expired.Add(kv.Key);
+            elementTimers[type]--;
+            if (elementTimers[type] <= 0)
+                expired.Add(type);
         }
+
         foreach (var e in expired)
             RemoveElement(e);
     }

@@ -13,9 +13,25 @@ public class HealthBarScript : MonoBehaviour
     }
     private void Start()
     {
+        // sanity checks
+        if (characterStats == null || characterStats.stats == null)
+        {
+            Debug.LogError($"[HealthBar] Missing CharacterStats or SO on {name}");
+            enabled = false;
+            return;
+        }
+        if (healthSlider == null || healthText == null)
+        {
+            Debug.LogError($"[HealthBar] Slider or Text not hooked up on {name}");
+            enabled = false;
+            return;
+        }
+
+        // now safe to initialize
         healthSlider.maxValue = characterStats.stats.maxHealth;
         UpdateHealthUI();
     }
+
 
     public void TakeDamage(int amount, bool ignoreArmor)
     {
