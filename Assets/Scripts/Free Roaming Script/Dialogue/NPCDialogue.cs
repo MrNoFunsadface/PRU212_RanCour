@@ -4,41 +4,50 @@ using UnityEngine;
 public class NPCDialogue : MonoBehaviour, IInteractable
 {
     [Header("Dialogue")]
-    [SerializeField] private TextAsset inkDialogueFile;
-    [SerializeField] private TextAsset inkDialogueFileFreed; // New dialogue after being freed
+    [SerializeField] private TextAsset inkDialogueFile;                 // Default dialogue
+    [SerializeField] private TextAsset inkDialogueFileAfterConditionMet; // Dialogue after condition is met
     [SerializeField] private string npcName = "Villager";
     [SerializeField] private string npcID;
-    [SerializeField] private string associatedDoorName; // Name of the prison door that frees this NPC
+
+    [Header("State Condition")]
+    [Tooltip("Key used to check if the condition for changing state is met. E.g. 'DoorOpened', 'QuestXCompleted'")]
+    [SerializeField] private string stateConditionKey;
 
     [Header("Interaction")]
     [SerializeField] private float interactionRange = 2f;
-    [SerializeField] private int interactionPriority = 1; // Lower priority than doors
+    [SerializeField] private int interactionPriority = 1;
 
-    [Header("Escape Settings")]
-    [SerializeField] private float fadeToBlackDuration = 2f;
-    [SerializeField] private CanvasGroup fadeCanvasGroup; // Assign a black panel with CanvasGroup for fading
+    [Header("State Change Settings")]
+    [Tooltip("Disable the NPC GameObject after state-changing dialogue completes.")]
+    [SerializeField] private bool disableAfterStateChange = true;
+
+    [Tooltip("Fade screen to black when NPC disappears.")]
+    [SerializeField] private bool hideWithFade = true;
+
+    [SerializeField] private float fadeDuration = 2f;
+    [SerializeField] private CanvasGroup fadeCanvasGroup; // Assign black panel with CanvasGroup for fading
 
     private bool playerInRange = false;
     private Transform player;
     private bool hasBeenTalkedTo = false;
-    private bool hasBeenFreed = false;
+    private bool hasChangedState = false;
     private bool isRegistered = false;
+
+    private IConditionChecker conditionChecker;
 
     private void Start()
     {
         player = FindObjectOfType<PlayerController>().transform;
+        conditionChecker = new PlayerPrefsConditionChecker();
 
-        // Generate unique ID if not set
         if (string.IsNullOrEmpty(npcID))
         {
-            npcID = gameObject.name + "_" + transform.position.ToString();
+            npcID = gameObject.name + "_" + transform.position;
         }
 
-        // Load the NPC state from PlayerPrefs
         LoadNPCState();
 
-        // If NPC has been freed, disable this gameObject
-        if (hasBeenFreed)
+        if (hasChangedState && disableAfterStateChange)
         {
             gameObject.SetActive(false);
         }
@@ -59,7 +68,6 @@ public class NPCDialogue : MonoBehaviour, IInteractable
 
         if (playerInRange && !wasInRange)
         {
-            // Register with interaction manager
             if (InteractionManager.Instance != null)
             {
                 InteractionManager.Instance.RegisterInteraction(this);
@@ -68,7 +76,6 @@ public class NPCDialogue : MonoBehaviour, IInteractable
         }
         else if (!playerInRange && wasInRange)
         {
-            // Unregister from interaction manager
             if (InteractionManager.Instance != null && isRegistered)
             {
                 InteractionManager.Instance.UnregisterInteraction(this);
@@ -79,7 +86,6 @@ public class NPCDialogue : MonoBehaviour, IInteractable
 
     private void OnDestroy()
     {
-        // Clean up registration
         if (InteractionManager.Instance != null && isRegistered)
         {
             InteractionManager.Instance.UnregisterInteraction(this);
@@ -89,11 +95,7 @@ public class NPCDialogue : MonoBehaviour, IInteractable
     // IInteractable implementation
     public string GetInteractionText()
     {
-        if (IsNPCFreed())
-        {
-            return $"Thank {npcName}";
-        }
-        return $"Talk to {npcName}";
+        return IsStateConditionMet() ? $"Thank {npcName}" : $"Talk to {npcName}";
     }
 
     public void Interact()
@@ -108,7 +110,6 @@ public class NPCDialogue : MonoBehaviour, IInteractable
 
     private void StartDialogue()
     {
-        // NUCLEAR OPTION: Hide the interaction panel completely when dialogue starts
         if (InteractionManager.Instance != null)
         {
             InteractionManager.Instance.HideInteractionUI();
@@ -116,28 +117,24 @@ public class NPCDialogue : MonoBehaviour, IInteractable
 
         if (DialogueManager.Instance != null)
         {
-            // Check if NPC has been freed by checking if the associated door has been opened
-            bool npcFreed = IsNPCFreed();
+            bool conditionMet = IsStateConditionMet();
 
-            if (npcFreed && !hasBeenFreed)
+            if (conditionMet && !hasChangedState)
             {
-                // This is the first time talking to the NPC after being freed
-                if (inkDialogueFileFreed != null)
+                if (inkDialogueFileAfterConditionMet != null)
                 {
-                    // Use the simple StartDialogue method for freed dialogue (no state variables needed)
                     DialogueManager.Instance.StartDialogueWithCallback(
-                        inkDialogueFileFreed,
-                        OnFreedDialogueComplete
+                        inkDialogueFileAfterConditionMet,
+                        OnStateConditionDialogueComplete
                     );
                 }
                 else
                 {
-                    Debug.LogWarning($"No freed dialogue file assigned for {npcName}");
+                    Debug.LogWarning($"No post-condition dialogue assigned for {npcName}");
                 }
             }
             else if (inkDialogueFile != null)
             {
-                // Normal dialogue (NPC still imprisoned)
                 DialogueManager.Instance.StartDialogueWithState(
                     inkDialogueFile,
                     hasBeenTalkedTo,
@@ -151,83 +148,73 @@ public class NPCDialogue : MonoBehaviour, IInteractable
         }
     }
 
-    private bool IsNPCFreed()
+    private bool IsStateConditionMet()
     {
-        if (string.IsNullOrEmpty(associatedDoorName))
-        {
+        if (string.IsNullOrEmpty(stateConditionKey))
             return false;
-        }
 
-        // Check if the associated prison door has been opened
-        return PlayerPrefs.GetInt(associatedDoorName, 0) == 1;
+        return conditionChecker.IsConditionMet(stateConditionKey);
     }
 
     private void OnFirstDialogueComplete()
     {
-        // Only called when a first-time dialogue is completed (normal imprisoned dialogue)
         hasBeenTalkedTo = true;
         SaveNPCState();
     }
 
-    private void OnFreedDialogueComplete()
+    private void OnStateConditionDialogueComplete()
     {
-        // Called when the "thank you" dialogue after being freed is completed
-        hasBeenFreed = true;
+        hasChangedState = true;
         SaveNPCState();
 
-        // Start the escape sequence
-        StartCoroutine(EscapeSequence());
+        if (disableAfterStateChange)
+        {
+            StartCoroutine(DisappearSequence());
+        }
     }
 
-    private IEnumerator EscapeSequence()
+    private IEnumerator DisappearSequence()
     {
         var playerController = FindObjectOfType<PlayerController>();
         if (playerController != null)
             playerController.enabled = false;
 
-        // Fade to black
-        if (fadeCanvasGroup != null)
+        if (hideWithFade && fadeCanvasGroup != null)
         {
             fadeCanvasGroup.gameObject.SetActive(true);
             float fadeTimer = 0f;
 
-            while (fadeTimer < fadeToBlackDuration)
+            while (fadeTimer < fadeDuration)
             {
                 fadeTimer += Time.deltaTime;
-                fadeCanvasGroup.alpha = Mathf.Lerp(0f, 1f, fadeTimer / fadeToBlackDuration);
+                fadeCanvasGroup.alpha = Mathf.Lerp(0f, 1f, fadeTimer / fadeDuration);
                 yield return null;
             }
-
             fadeCanvasGroup.alpha = 1f;
         }
 
-        // Wait in black screen for a moment (simulate disappearance)
         yield return new WaitForSeconds(1f);
 
-        // Hide the NPC (but NOT disable the GameObject)
         if (TryGetComponent<SpriteRenderer>(out var spriteRenderer))
             spriteRenderer.enabled = false;
 
         if (TryGetComponent<Collider2D>(out var collider))
             collider.enabled = false;
 
-        // Optionally hide animations or effects
         var animator = GetComponent<Animator>();
         if (animator != null)
             animator.enabled = false;
 
-        // Wait just a bit before fading in (optional for pacing)
         yield return new WaitForSeconds(0.5f);
 
-        // Fade back in
-        if (fadeCanvasGroup != null)
+        if (hideWithFade && fadeCanvasGroup != null)
         {
             float fadeTimer = 0f;
 
-            while (fadeTimer < fadeToBlackDuration)
+            while (fadeTimer < fadeDuration)
             {
                 fadeTimer += Time.deltaTime;
-                fadeCanvasGroup.alpha = Mathf.Lerp(1f, 0f, fadeTimer / fadeToBlackDuration);
+                fadeCanvasGroup.alpha = Mathf.Lerp(1f, 0f, fadeTimer / fadeDuration);
                 yield return null;
             }
 
@@ -235,43 +222,37 @@ public class NPCDialogue : MonoBehaviour, IInteractable
             fadeCanvasGroup.gameObject.SetActive(false);
         }
 
-        // Re-enable player control
         if (playerController != null)
             playerController.enabled = true;
 
-        // Finally disable this GameObject (after fade-in)
         gameObject.SetActive(false);
 
-        Debug.Log($"{npcName} has escaped!");
+        Debug.Log($"{npcName} has disappeared after state change!");
     }
-
-
 
     private void SaveNPCState()
     {
         PlayerPrefs.SetInt("NPC_" + npcID + "_talked", hasBeenTalkedTo ? 1 : 0);
-        PlayerPrefs.SetInt("NPC_" + npcID + "_freed", hasBeenFreed ? 1 : 0);
+        PlayerPrefs.SetInt("NPC_" + npcID + "_changed", hasChangedState ? 1 : 0);
         PlayerPrefs.Save();
     }
 
     private void LoadNPCState()
     {
         hasBeenTalkedTo = PlayerPrefs.GetInt("NPC_" + npcID + "_talked", 0) == 1;
-        hasBeenFreed = PlayerPrefs.GetInt("NPC_" + npcID + "_freed", 0) == 1;
+        hasChangedState = PlayerPrefs.GetInt("NPC_" + npcID + "_changed", 0) == 1;
     }
 
-    // Public method to reset NPC state (useful for testing or game resets)
     public void ResetNPCState()
     {
         hasBeenTalkedTo = false;
-        hasBeenFreed = false;
+        hasChangedState = false;
         SaveNPCState();
         gameObject.SetActive(true);
     }
 
     private void OnDrawGizmosSelected()
     {
-        // Draw interaction range in Scene view
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, interactionRange);
     }
