@@ -3674,13 +3674,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inkDialogueFile: {fileID: 4900000, guid: a4151cc52653da548b730286ca77da6c, type: 3}
-  inkDialogueFileFreed: {fileID: 4900000, guid: 906a06e3e7d152f47b2f64859c8ad090, type: 3}
+  inkDialogueFileAfterConditionMet: {fileID: 4900000, guid: 906a06e3e7d152f47b2f64859c8ad090, type: 3}
   npcName: Lea
   npcID: doctor_lea
-  associatedDoorName: Lea's Prison Door
+  stateConditionKey: Lea's Prison Door
   interactionRange: 3
   interactionPriority: 1
-  fadeToBlackDuration: 2
+  disableAfterStateChange: 1
+  hideWithFade: 1
+  fadeDuration: 2
   fadeCanvasGroup: {fileID: 980303831}
 --- !u!95 &1478825431
 Animator:
