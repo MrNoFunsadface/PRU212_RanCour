@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Slime
   m_EditorClassIdentifier: 
   characterName: Slime
-  maxHealth: 60
+  maxHealth: 600
   attack: 15
   defense: 5
   attackSpeed: 1

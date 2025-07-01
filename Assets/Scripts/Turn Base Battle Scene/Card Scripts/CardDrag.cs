@@ -109,7 +109,13 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                     HandleReaction(info);
                     DiscardCard();
                     UpdateBattleLog(info);
+
+                    if (TurnManager.Instance == null)
+                        Debug.LogError("TurnManager.Instance is null! Make sure you have a GameObject in your scene with the TurnManager component attached and enabled.");
+                    else
+                        TurnManager.Instance.OnCardPlayed();
                 }
+
 
             }
             else

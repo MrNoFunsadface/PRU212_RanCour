@@ -1771,9 +1771,11 @@ GameObject:
   - component: {fileID: 1583097835}
   - component: {fileID: 1583097834}
   - component: {fileID: 1583097837}
+  - component: {fileID: 1583097838}
+  - component: {fileID: 1583097839}
   m_Layer: 0
   m_Name: Main Character
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1894,43 +1896,26 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
---- !u!1 &1788283755 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1363448084943714943, guid: 1fa2682b16dcad5429f3b7c2fcc04473, type: 3}
-  m_PrefabInstance: {fileID: 7017178410123729658}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1788283758
+--- !u!114 &1583097838
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1788283755}
+  m_GameObject: {fileID: 1583097833}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 576d2a33a889fdb4c8c343aae88e321f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 0}
---- !u!114 &1788283759
+  stats: {fileID: 11400000, guid: d256bea6a5068574f8d1b4c884cd116b, type: 2}
+--- !u!114 &1583097839
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1788283755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32187ff5900bd4f4aa638338c8363030, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1788283760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1788283755}
+  m_GameObject: {fileID: 1583097833}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f413e2451cfb54c419c2f43d36788ed6, type: 3}
@@ -2041,6 +2026,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1857732832}
   - component: {fileID: 1857732831}
+  - component: {fileID: 1857732834}
+  - component: {fileID: 1857732833}
   m_Layer: 0
   m_Name: CombatSystem
   m_TagString: Untagged
@@ -2075,6 +2062,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1857732833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1857732830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6ec493c7c9aadb48a85409157bbbb52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxCardsPerTurn: 3
+  player: {fileID: 1583097833}
+  cardSpawner: {fileID: 1151265863}
+  playerCost: {fileID: 7498077023587797580}
+  gameOverUI: {fileID: 0}
+--- !u!114 &1857732834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1857732830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced0cbbba1b00c342a4bc031df702856, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1870637056
 GameObject:
   m_ObjectHideFlags: 0
@@ -3316,16 +3332,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1363448084943714943, guid: 1fa2682b16dcad5429f3b7c2fcc04473, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1788283760}
-    - targetCorrespondingSourceObject: {fileID: 1363448084943714943, guid: 1fa2682b16dcad5429f3b7c2fcc04473, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1788283759}
-    - targetCorrespondingSourceObject: {fileID: 1363448084943714943, guid: 1fa2682b16dcad5429f3b7c2fcc04473, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1788283758}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fa2682b16dcad5429f3b7c2fcc04473, type: 3}
 --- !u!114 &7498077023587797580
 MonoBehaviour:

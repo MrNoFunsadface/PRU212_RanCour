@@ -86,28 +86,39 @@ public class CardSpawner : MonoBehaviour
         }
     }
 
+    // in CardSpawner.cs, inside SmoothReposition:
     private IEnumerator SmoothReposition(RectTransform cardRT, int index, float angleStep, float elapsedTime, float duration)
     {
+        // EXIT if this card was destroyed
+        if (cardRT == null)
+            yield break;
+
         Vector2 startPosition = cardRT.anchoredPosition;
         Quaternion startRotation = cardRT.localRotation;
-
         Vector2 targetPosition = CalculateTargetPosition(index, angleStep);
         Quaternion targetRotation = CalculateTargetRotation(index, angleStep);
 
         while (elapsedTime < duration)
         {
+            // guard each loop in case something got destroyed partway
+            if (cardRT == null)
+                yield break;
+
             float t = elapsedTime / duration;
             cardRT.anchoredPosition = Vector2.Lerp(startPosition, targetPosition, t);
             cardRT.localRotation = Quaternion.Lerp(startRotation, targetRotation, t);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        cardRT.anchoredPosition = targetPosition;
-        cardRT.localRotation = targetRotation;
 
-        if (cardRT.TryGetComponent(out CardDrag drag))
-            drag.originalPosition = cardRT.anchoredPosition;
+        // final snap
+        if (cardRT != null)
+        {
+            cardRT.anchoredPosition = targetPosition;
+            cardRT.localRotation = targetRotation;
+        }
     }
+
 
     public Vector2 CalculateTargetPosition(int index, float angleStep)
     {
