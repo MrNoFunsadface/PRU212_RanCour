@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   reactionName: Neutralization
   equation: "HCl + NaOH \u2192 NaCl + H\u2082O"
-  inputElements: 00000000
+  inputElements: 090000000a000000
   damageType: 1
   damage: 50
   statusEffect: 4

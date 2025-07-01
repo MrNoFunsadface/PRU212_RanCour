@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   reactionName: Single Displacement
   equation: "Zn + CuSO\u2084 \u2192 ZnSO\u2084 + Cu"
-  inputElements: 
+  inputElements: 0800000011000000
   damageType: 4
   damage: 40
   statusEffect: 0
