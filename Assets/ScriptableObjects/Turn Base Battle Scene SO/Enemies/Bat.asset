@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Bat
   m_EditorClassIdentifier: 
   characterName: Bat
-  maxHealth: 40
+  maxHealth: 400
   attack: 20
   defense: 3
-  attackSpeed: 2
+  attackSpeed: 1
   primaryDamageType: 2
   charPrefab: {fileID: 2256444359035510481, guid: 1a79a3a1eb63ea146bc4fbd383e7ced1, type: 3}
