@@ -37,6 +37,7 @@ public class CameraZoomTrigger : MonoBehaviour
     {
         if (!other.CompareTag("Player") || cinemachineCamera == null) return;
 
+        player.SetCameraPanning(false); // Disable camera panning
         StartSmoothZoom(targetOrthoSize);
         if (useZoomTarget) cinemachineCamera.Follow = zoomTarget != null ? zoomTarget : other.transform;
         if (cinemachineConfiner != null)
@@ -48,6 +49,7 @@ public class CameraZoomTrigger : MonoBehaviour
     {
         if (!other.CompareTag("Player") || cinemachineCamera == null) return;
 
+        player.SetCameraPanning(true); // Enable camera panning
         StartSmoothZoom(defaultOrthoSize);
         cinemachineCamera.Follow = player != null ? player.transform : null;
         if (cinemachineConfiner != null && originalConfiner != null)
