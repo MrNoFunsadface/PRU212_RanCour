@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Scripts.Models
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(fileName = "InventorySO", menuName = "Menu/InventorySO")]
     public class InventorySO : ScriptableObject
     {
         [SerializeField]
