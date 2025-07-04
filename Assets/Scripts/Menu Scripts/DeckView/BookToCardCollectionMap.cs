@@ -2,7 +2,7 @@ using Scripts.Models;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "BookToCardCollection", menuName = "Menu/BookToCardCollection")]
 public class BookToCardCollection : ScriptableObject
 {
     [System.Serializable]

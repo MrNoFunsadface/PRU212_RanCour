@@ -2585,12 +2585,24 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 367396211619705190, guid: 07324572f4bfb9b418833c7d4d46849c, type: 3}
+      propertyPath: cinemachineCamera
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 367396211619705190, guid: 07324572f4bfb9b418833c7d4d46849c, type: 3}
+      propertyPath: offsetSmoothSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 367396211619705190, guid: 07324572f4bfb9b418833c7d4d46849c, type: 3}
       propertyPath: defaultSpawnPoint.x
       value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 367396211619705190, guid: 07324572f4bfb9b418833c7d4d46849c, type: 3}
       propertyPath: defaultSpawnPoint.y
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 367396211619705190, guid: 07324572f4bfb9b418833c7d4d46849c, type: 3}
+      propertyPath: verticalFollowOffset
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1881230977651037318, guid: 07324572f4bfb9b418833c7d4d46849c, type: 3}
       propertyPath: m_Name
