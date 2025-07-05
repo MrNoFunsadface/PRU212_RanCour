@@ -22,7 +22,8 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     private Canvas canvas;
     [HideInInspector] public Vector2 originalPosition;
     [HideInInspector] public CardSpawner cardSpawner;
-    [HideInInspector] public Card card;
+    [HideInInspector] public CardSO card;
+    [HideInInspector] public ResourceBar playerCost;
 
     private Coroutine returnCoroutine;
     private Coroutine parallaxResetCoroutine;
@@ -101,22 +102,15 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             // If the card is dropped in a drop zone
             if (eventData.pointerEnter.TryGetComponent<DropZoneScript>(out var info))
             {
-                Debug.Log($"Dropped {card.cardName} on {info.enemyName} at order {info.enemyOrder}");
+                Debug.Log($"[CardDrag] Dropped {card.cardName} on {info.enemyName} at order {info.enemyOrder}");
 
                 int cost = card.cost;
-                if (UpdateCost(cost))
+                if (UpdateCost(-cost))
                 {
                     HandleReaction(info);
                     DiscardCard();
-                    UpdateBattleLog(info);
-
-                    if (TurnManager.Instance == null)
-                        Debug.LogError("TurnManager.Instance is null! Make sure you have a GameObject in your scene with the TurnManager component attached and enabled.");
-                    else
-                        TurnManager.Instance.OnCardPlayed();
+                    LogCardDropEvent(info);
                 }
-
-
             }
             else
             {
@@ -139,20 +133,30 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     #region Battle Logics
 
-    private void UpdateBattleLog(DropZoneScript info)
+    private void LogCardDropEvent(DropZoneScript info)
     {
-        var battleLog = BattleLogScript.Instance;
-        if (battleLog != null)
-        {
-            battleLog.LogBattleEvent($"Dropped {card.cardName} on {info.enemyName} at order {info.enemyOrder}");
-            battleLog.UpdateDisplayer();
-        }
+        UpdateBattleLog($"Dropped {card.cardName} on {info.enemyName} at order {info.enemyOrder}");
     }
 
     private bool UpdateCost(int cost)
     {
-        if (PlayerCost.Instance.UpdateCost(cost)) return true;
-        else return false;
+        if (!playerCost.UpdateResourceByAmount(cost))
+        {
+            UpdateBattleLog("You need more mana to use this card!");
+            return false;
+        }
+        return true;
+    }
+
+    private void UpdateBattleLog(string message)
+    {
+        var battleLog = BattleLog.Instance;
+        if (battleLog != null)
+        {
+            Debug.Log($"[CardDrag] Battle Log: {message}");
+            battleLog.LogBattleEvent(message);
+            battleLog.UpdateDisplayer();
+        }
     }
 
     private void DiscardCard()

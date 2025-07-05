@@ -2,13 +2,23 @@
 using System.Collections;
 using UnityEngine;
 
+//
+// Summary:
+//     EnemyAICombat handles the combat actions of enemies.
+//     It manages the attack animations, damage calculations taken from CombatSystem, and logging of battle events.
+
 public class EnemyAICombat : MonoBehaviour
 {
     public static EnemyAICombat Instance { get; private set; }
 
     private void Awake()
     {
-        if (Instance == null) { Instance = this; DontDestroyOnLoad(gameObject); }
+        // Singleton
+        if (Instance == null) 
+        { 
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
         else Destroy(gameObject);
     }
 
@@ -22,7 +32,7 @@ public class EnemyAICombat : MonoBehaviour
         var statsMono = enemy.GetComponent<CharacterStats>();
         if (statsMono == null || statsMono.stats == null)
         {
-            Debug.LogError($"[EnemyAI] {enemy.name} missing CharacterStats!");
+            Debug.LogError($"[EnemyAICombat] {enemy.name} missing CharacterStats!");
             yield break;
         }
 
@@ -39,7 +49,7 @@ public class EnemyAICombat : MonoBehaviour
         );
 
         // 4) LOG IT to your BattleLog UI
-        var battleLog = BattleLogScript.Instance;
+        var battleLog = BattleLog.Instance;
         if (battleLog != null)
         {
             // grab hero’s remaining HP
@@ -56,13 +66,10 @@ public class EnemyAICombat : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("[EnemyAI] BattleLogScript.Instance is null—cannot write attack log.");
+            Debug.LogWarning("[EnemyAICombat] BattleLogScript.Instance is null—cannot write attack log.");
         }
 
         // 5) small cooldown before next enemy
         yield return new WaitForSeconds(0.5f);
     }
-
-
-
 }

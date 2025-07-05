@@ -11,7 +11,7 @@ public class EnemyStatus : MonoBehaviour
 
     private HashSet<ElementalType> compoundsAppliedOnce = new HashSet<ElementalType>();
 
-    public void ApplyElement(Card card)
+    public void ApplyElement(CardSO card)
     {
         var type = card.elementType;
         if (type == ElementalType.None) return;

@@ -7,12 +7,12 @@ public class Deck : MonoBehaviour
     public static Deck Instance { get; private set; }
 
 
-    [SerializeField] private CardCollection playerDeck;
+    [SerializeField] private CardCollectionSO playerDeck;
 
-    [SerializeField] private List<Card> deckPile = new();
-    [SerializeField] private List<Card> discardPile = new();
+    [SerializeField] private List<CardSO> deckPile = new();
+    [SerializeField] private List<CardSO> discardPile = new();
 
-    public List<Card> CardsToSpawn { get; private set; } = new();
+    public List<CardSO> CardsToSpawn { get; private set; } = new();
 
     private void Awake()
     {
@@ -46,7 +46,7 @@ public class Deck : MonoBehaviour
         }
     }
 
-    public List<Card> GetCardToSpawn()
+    public List<CardSO> GetCardToSpawn()
     {
         // Shuffle the deck pile before drawing cards from it
         ShuffleDeckPile();
@@ -81,7 +81,7 @@ public class Deck : MonoBehaviour
         }
     }
 
-    public void DiscardCard(Card card)
+    public void DiscardCard(CardSO card)
     {
         CardsToSpawn.Remove(card);
         discardPile.Add(card);

@@ -34,8 +34,8 @@ public enum ElementalType
 public enum DamageType { None, Thunder, Fire, Magic, Metal, Thermal, Blast }
 public enum StatusEffect { None, Burn, Stun, Slow, Shield }
 
-[CreateAssetMenu(fileName = "New Card", menuName = "Turn Base/Card", order = 2)]
-public class Card : ScriptableObject
+[CreateAssetMenu(fileName = "New Card", menuName = "Turn Base/Card/Card", order = 2)]
+public class CardSO : ScriptableObject
 {
     [Header("Basic Info")]
     public string cardName;

@@ -11,7 +11,7 @@ public class CardUI : MonoBehaviour
 
     private RawImage artworkImage;
 
-    public void Setup(Card data)
+    public void Setup(CardSO data)
     {
         artworkImage = Image.GetComponentInChildren<RawImage>();
 

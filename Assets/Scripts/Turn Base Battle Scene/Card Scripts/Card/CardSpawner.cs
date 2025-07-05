@@ -11,29 +11,23 @@ public class CardSpawner : MonoBehaviour
 {
     [Header("Setup")]
     [SerializeField] private GameObject cardPrefab;
-    [SerializeField] private List<Card> cardsToSpawn;
+    [SerializeField] private List<CardSO> cardsToSpawn;
     [SerializeField] private Transform handCenter;
     [SerializeField] private float radius;
+    [SerializeField] private ResourceBar playerCost;
     private int dragIndex;
 
     public readonly List<RectTransform> cardRTList = new();
     public float maxAngle;
 
-    private void Start()
-    {
-        SpawnAndFanCards();
-    }
-
-    public void SpawnAndFanCards()
+    public bool SpawnAndFanCards()
     {
         cardsToSpawn = Deck.Instance.GetCardToSpawn();
         if (cardsToSpawn == null || cardsToSpawn.Count == 0)
         {
-            Debug.LogWarning("No cards to spawn. Please check the deck or card collection.");
-            return;
+            Debug.LogWarning("[CardSpawner] No cards to spawn. Please check the deck or card collection.");
+            return false;
         }
-
-        Debug.Log($"Spawned {cardsToSpawn.Count} cards in hand.");
 
         for (int i = 0; i < cardsToSpawn.Count; i++)
         {
@@ -50,11 +44,13 @@ public class CardSpawner : MonoBehaviour
                     drag.originalPosition = cardRT.anchoredPosition;
                     drag.cardSpawner = this;
                     drag.card = cardsToSpawn[i];
+                    drag.playerCost = playerCost;
                 }
             }
         }
         cardsToSpawn.Clear();
         RepositionCards(0f, 0.75f);
+        return true;
     }
 
     public void OnCardBeginDrag(RectTransform card)
@@ -86,10 +82,8 @@ public class CardSpawner : MonoBehaviour
         }
     }
 
-    // in CardSpawner.cs, inside SmoothReposition:
     private IEnumerator SmoothReposition(RectTransform cardRT, int index, float angleStep, float elapsedTime, float duration)
     {
-        // EXIT if this card was destroyed
         if (cardRT == null)
             yield break;
 
@@ -100,7 +94,6 @@ public class CardSpawner : MonoBehaviour
 
         while (elapsedTime < duration)
         {
-            // guard each loop in case something got destroyed partway
             if (cardRT == null)
                 yield break;
 
@@ -111,7 +104,6 @@ public class CardSpawner : MonoBehaviour
             yield return null;
         }
 
-        // final snap
         if (cardRT != null)
         {
             cardRT.anchoredPosition = targetPosition;

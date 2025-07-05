@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aba6cca522ac8141be735ec7cb016a1, type: 3}
   m_Name: H2O
   m_EditorClassIdentifier: 
-  cardName: 
+  cardName: H<sub>2</sub>O
   description: 
   artwork: {fileID: 0}
-  cost: 0
+  cost: 1
   category: 0
   formula: 
   elementType: 0

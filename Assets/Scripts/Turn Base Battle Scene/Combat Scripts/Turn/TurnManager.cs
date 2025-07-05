@@ -1,84 +1,60 @@
 using System.Collections;
 using UnityEngine;
 
-public enum BattleState { Start, PlayerTurn, EnemyTurn, Win, Lose }
+public enum BattleState { PlayerTurn, EnemyTurn, Win, Lose }
 
+//
+// Summary:
+//     TurnManager is responsible for managing the turn-based battle system.
+//     It handles the player's turn, enemy actions, and game state transitions.
 public class TurnManager : MonoBehaviour
 {
     public static TurnManager Instance { get; private set; }
 
-    [Header("Config")]
-    [Tooltip("How many cards the player may play before the turn auto-ends")]
-    public int maxCardsPerTurn = 3;
-    private int cardsPlayedThisTurn;
-
     [Header("Scene References (assign in Inspector)")]
     [SerializeField] private GameObject player;
     [SerializeField] private CardSpawner cardSpawner;
-    [SerializeField] private PlayerCost playerCost;
+    [SerializeField] private ResourceBar playerCost;
     [SerializeField] private GameOverController gameOverUI;
 
     private BattleState state;
 
     private void Awake()
     {
+        // Singleton
         if (Instance == null)
         {
             Instance = this;
-            Debug.Log($"[TurnManager] Awake() on '{gameObject.name}' — instance assigned.");
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
-            Debug.Log($"[TurnManager] Duplicate on '{gameObject.name}', destroying self.");
             Destroy(gameObject);
         }
     }
 
     private void Start()
     {
-        StartCoroutine(SetupBattle());
-    }
-
-    private IEnumerator SetupBattle()
-    {
-        // Wait one frame so CardSpawner.Start() has already run
-        yield return null;
-
-        // Remove any cards that were spawned by CardSpawner.Start()
-        foreach (var rt in cardSpawner.cardRTList.ToArray())
-            Destroy(rt.gameObject);
-        cardSpawner.cardRTList.Clear();                        // :contentReference[oaicite:0]{index=0}
-
-        // Small buffer before first turn
-        yield return new WaitForSeconds(0.5f);
-
         BeginPlayerTurn();
     }
 
     private void BeginPlayerTurn()
     {
+        Debug.Log("[TurnManager] Begin Player Turn");
         state = BattleState.PlayerTurn;
-        cardsPlayedThisTurn = 0;
 
-        playerCost.ResetCost();
-        //cardSpawner.SpawnAndFanCards();
+        playerCost.ResetToMax();
+        if(cardSpawner.SpawnAndFanCards())
+        {
+            Debug.Log("[TurnManager] SpawnAndFanCards() triggered successfully");
+        }
 
         // TODO: enable your hand-UI interactivity here
     }
 
-    /// <summary>
-    /// Call this once per successful card play.
-    /// </summary>
-    public void OnCardPlayed()
-    {
-        cardsPlayedThisTurn++;
-        if (cardsPlayedThisTurn >= maxCardsPerTurn)
-            EndPlayerTurn();
-    }
-
     public void EndPlayerTurn()
     {
-        Debug.Log("[TurnManager] EndPlayerTurn() called — entering EnemyPhase");
+        Debug.Log("[TurnManager] End Player Turn");
         if (state != BattleState.PlayerTurn) return;
         state = BattleState.EnemyTurn;
         StartCoroutine(EnemyPhase());
@@ -86,7 +62,7 @@ public class TurnManager : MonoBehaviour
 
     private IEnumerator EnemyPhase()
     {
-        var enemies = FindObjectsOfType<EnemyStatus>();
+        var enemies = FindObjectsByType<EnemyStatus>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
         Debug.Log($"[TurnManager] EnemyPhase: found {enemies.Length} enemies");
         foreach (var e in enemies)
         {
@@ -95,7 +71,7 @@ public class TurnManager : MonoBehaviour
         }
 
         // Tick down any element/status durations on enemies
-        foreach (var enemy in FindObjectsOfType<EnemyStatus>())
+        foreach (var enemy in FindObjectsByType<EnemyStatus>(FindObjectsInactive.Exclude, FindObjectsSortMode.None))
             enemy.TickRound();
 
         // TODO: if you later add status effects on the player, tick them here
@@ -110,7 +86,7 @@ public class TurnManager : MonoBehaviour
         }
 
         // Check for victory
-        if (FindObjectsOfType<EnemyStatus>().Length == 0)
+        if (FindObjectsByType<EnemyStatus>(FindObjectsInactive.Exclude, FindObjectsSortMode.None).Length == 0)
         {
             state = BattleState.Win;
             gameOverUI.ShowWin();

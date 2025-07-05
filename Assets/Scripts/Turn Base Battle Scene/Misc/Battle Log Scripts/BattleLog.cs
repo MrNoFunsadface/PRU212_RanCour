@@ -2,16 +2,15 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
-public class BattleLogScript : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class BattleLog : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    public static BattleLogScript Instance { get; private set; }
+    public static BattleLog Instance { get; private set; }
     private RectTransform rectTransform;
     private Canvas canvas;
     private CanvasGroup scrollViewCanvasGroup;
     [SerializeField] private List<string> battleLogText = new();
-    [SerializeField] private TextMeshProUGUI displayer;
+    [SerializeField] private TMP_Text displayer;
 
 
     private void Awake()

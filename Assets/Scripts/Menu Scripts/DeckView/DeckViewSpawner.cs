@@ -5,12 +5,12 @@ public class DeckViewSpawner : MonoBehaviour
 {
     [Header("Setup")]
     [SerializeField] private GameObject cardPrefab;
-    [SerializeField] private List<Card> cardsToSpawn;
+    [SerializeField] private List<CardSO> cardsToSpawn;
     [SerializeField] private Transform content;
 
     public readonly List<RectTransform> cardRTList = new();
 
-    public void SpawnCards(List<Card> cards)
+    public void SpawnCards(List<CardSO> cards)
     {
         cardsToSpawn = cards;
         if (cardsToSpawn == null || cardsToSpawn.Count == 0)
@@ -21,7 +21,7 @@ public class DeckViewSpawner : MonoBehaviour
 
         Debug.Log($"Spawned {cardsToSpawn.Count} cards in deck view.");
 
-        foreach (Card card in cardsToSpawn)
+        foreach (CardSO card in cardsToSpawn)
         {
             GameObject cardObj = Instantiate(cardPrefab, content);
             cardObj.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);

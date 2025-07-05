@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-[CreateAssetMenu(fileName = "New Reaction", menuName = "Chemistry/Reaction", order = 2)]
+[CreateAssetMenu(fileName = "New Reaction", menuName = "Turn Base/Reaction", order = 2)]
 
 public class ReactionSO : ScriptableObject
 {

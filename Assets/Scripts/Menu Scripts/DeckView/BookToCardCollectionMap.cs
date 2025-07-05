@@ -9,12 +9,12 @@ public class BookToCardCollection : ScriptableObject
     public struct BookCollectionPair
     {
         public ItemSO book;
-        public CardCollection collection;
+        public CardCollectionSO collection;
     }
 
     public List<BookCollectionPair> mappings;
 
-    public CardCollection GetCollectionForBook(ItemSO book)
+    public CardCollectionSO GetCollectionForBook(ItemSO book)
     {
         foreach (var pair in mappings)
         {
