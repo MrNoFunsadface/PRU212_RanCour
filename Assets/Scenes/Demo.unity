@@ -857,11 +857,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5628609292349639043, guid: 9da41418f7c019d4296289f3e04bf344, type: 3}
       propertyPath: panel
-      value:
+      value: 
       objectReference: {fileID: 972345557}
     - target: {fileID: 5628609292349639043, guid: 9da41418f7c019d4296289f3e04bf344, type: 3}
       propertyPath: monologueText
-      value:
+      value: 
       objectReference: {fileID: 972345556}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1054,8 +1054,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f887d5b24f24a08448b6b65cd1a571e1, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   monologueData: {fileID: 11400000, guid: aa428fb9bf3a7f4428b8f9765c8d4e32, type: 2}
   interactPrompt: {fileID: 999094723}
   eButton: {fileID: 999094724}
@@ -1224,7 +1224,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7831792565128205314, guid: 737a5a20b5c376e42b6748535adb77e7, type: 3}
       propertyPath: player
-      value:
+      value: 
       objectReference: {fileID: 768227027}
     - target: {fileID: 7831792565128205314, guid: 737a5a20b5c376e42b6748535adb77e7, type: 3}
       propertyPath: zoomSpeed
@@ -1236,15 +1236,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7831792565128205314, guid: 737a5a20b5c376e42b6748535adb77e7, type: 3}
       propertyPath: cinemachineCamera
-      value:
+      value: 
       objectReference: {fileID: 389531856}
     - target: {fileID: 7831792565128205314, guid: 737a5a20b5c376e42b6748535adb77e7, type: 3}
       propertyPath: originalConfinder
-      value:
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7831792565128205314, guid: 737a5a20b5c376e42b6748535adb77e7, type: 3}
       propertyPath: cinemachineConfinder
-      value:
+      value: 
       objectReference: {fileID: 389531859}
     - target: {fileID: 8559646665588368191, guid: 737a5a20b5c376e42b6748535adb77e7, type: 3}
       propertyPath: m_Size.x
@@ -1300,9 +1300,6 @@ GameObject:
   - component: {fileID: 915297436}
   - component: {fileID: 915297435}
   - component: {fileID: 915297434}
-  - component: {fileID: 915297450}
-  - component: {fileID: 915297449}
-  - component: {fileID: 915297448}
   m_Layer: 0
   m_Name: CameraBound2
   m_TagString: Untagged
@@ -1580,50 +1577,8 @@ CompositeCollider2D:
         Y: -5000000
       - X: -336485056
         Y: -5000000
-  - m_Collider: {fileID: 915297450}
-    m_ColliderPaths:
-    - - X: 102000000
-        Y: 477500000
-      - X: -73000000
-        Y: 477500000
-      - X: -73000000
-        Y: 422500000
-      - X: 102000000
-        Y: 422500000
-  - m_Collider: {fileID: 915297449}
-    m_ColliderPaths:
-    - - X: 72000000
-        Y: 512500000
-      - X: -43000000
-        Y: 512500000
-      - X: -43000000
-        Y: 422500000
-      - X: 72000000
-        Y: 422500000
-  - m_Collider: {fileID: 915297448}
-    m_ColliderPaths:
-    - - X: 39500000
-        Y: 423750016
-      - X: -10500000
-        Y: 423750016
-      - X: -10500000
-        Y: 326249984
-      - X: 39500000
-        Y: 326249984
   m_CompositePaths:
     m_Paths:
-    - - {x: 3.95, y: 42.25}
-      - {x: 10.2, y: 42.25}
-      - {x: 10.2, y: 47.75}
-      - {x: 7.2000003, y: 47.75}
-      - {x: 7.2000003, y: 51.25}
-      - {x: -4.3, y: 51.25}
-      - {x: -4.3, y: 47.75}
-      - {x: -7.3, y: 47.75}
-      - {x: -7.3, y: 42.25}
-      - {x: -1.0500001, y: 42.25}
-      - {x: -1.0500001, y: 32.625}
-      - {x: 3.95, y: 32.625}
     - - {x: -28.180317, y: -31.476534}
       - {x: -24.943253, y: -31.476534}
       - {x: -24.943253, y: -31.394464}
@@ -2565,8 +2520,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &972345557 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2491069936641316775, guid: dfbc878f1b6e88d459b8440cff39083d, type: 3}
@@ -2602,7 +2557,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8190158296964046866, guid: 07324572f4bfb9b418833c7d4d46849c, type: 3}
       propertyPath: m_Sprite
-      value:
+      value: 
       objectReference: {fileID: -2224474878120320963, guid: 6191adac1a181fc4fa8654eddf6c321e, type: 3}
     - target: {fileID: 8190158296964046866, guid: 07324572f4bfb9b418833c7d4d46849c, type: 3}
       propertyPath: m_WasSpriteAssigned
@@ -2683,8 +2638,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f58a21419b767d94297af955cc300211, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1204989568 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5819961512334185711, guid: 737a5a20b5c376e42b6748535adb77e7, type: 3}
@@ -3634,7 +3589,6 @@ Transform:
   - {fileID: 2143390845474454546}
   - {fileID: 915297428}
   - {fileID: 1223467820}
-  - {fileID: 1769882592}
   - {fileID: 1551667822}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3654,7 +3608,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1348497004
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3819,7 +3773,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7831792565128205314, guid: 737a5a20b5c376e42b6748535adb77e7, type: 3}
       propertyPath: player
-      value:
+      value: 
       objectReference: {fileID: 768227027}
     - target: {fileID: 7831792565128205314, guid: 737a5a20b5c376e42b6748535adb77e7, type: 3}
       propertyPath: zoomSpeed
@@ -3831,15 +3785,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7831792565128205314, guid: 737a5a20b5c376e42b6748535adb77e7, type: 3}
       propertyPath: cinemachineCamera
-      value:
+      value: 
       objectReference: {fileID: 389531856}
     - target: {fileID: 7831792565128205314, guid: 737a5a20b5c376e42b6748535adb77e7, type: 3}
       propertyPath: originalConfinder
-      value:
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7831792565128205314, guid: 737a5a20b5c376e42b6748535adb77e7, type: 3}
       propertyPath: cinemachineConfinder
-      value:
+      value: 
       objectReference: {fileID: 389531859}
     - target: {fileID: 8559646665588368191, guid: 737a5a20b5c376e42b6748535adb77e7, type: 3}
       propertyPath: m_Size.x
@@ -3883,8 +3837,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1df0e563c6c59cc47ac3f1a70c8fa702, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   layerTrigger: {fileID: 1551667824}
   CameraBoundOn: {fileID: 1223467822}
   CameraBoundsOff:
@@ -3963,8 +3917,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f3832946d74747e4a9f9058425965e87, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1763988215
 Transform:
   m_ObjectHideFlags: 0
@@ -3980,57 +3934,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1769882591 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7534277488618772366, guid: cf901c8deffb76a4599558f915138329, type: 3}
-  m_PrefabInstance: {fileID: 564899353}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1769882592 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5353452884932975885, guid: cf901c8deffb76a4599558f915138329, type: 3}
-  m_PrefabInstance: {fileID: 564899353}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1769882593
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1833741220}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.39, y: 2.03, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1833741223
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1833741220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1df0e563c6c59cc47ac3f1a70c8fa702, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
-  layerTrigger: {fileID: 1769882594}
-  CameraBoundOn: {fileID: 915297430}
-  CameraBoundsOff:
-  - {fileID: 1223467822}
-  cinemachine: {fileID: 389531859}
-  bridgePart: {fileID: 1348497003}
-  currentLayer: {fileID: 1763988214}
-  layer: 2
---- !u!61 &1769882594 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 7578801668283547962, guid: cf901c8deffb76a4599558f915138329, type: 3}
-  m_PrefabInstance: {fileID: 564899353}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1842563593
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4279,7 +4182,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7831792565128205314, guid: 737a5a20b5c376e42b6748535adb77e7, type: 3}
       propertyPath: player
-      value:
+      value: 
       objectReference: {fileID: 768227027}
     - target: {fileID: 7831792565128205314, guid: 737a5a20b5c376e42b6748535adb77e7, type: 3}
       propertyPath: zoomSpeed
@@ -4291,11 +4194,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7831792565128205314, guid: 737a5a20b5c376e42b6748535adb77e7, type: 3}
       propertyPath: cinemachineCamera
-      value:
+      value: 
       objectReference: {fileID: 389531856}
     - target: {fileID: 7831792565128205314, guid: 737a5a20b5c376e42b6748535adb77e7, type: 3}
       propertyPath: cinemachineConfinder
-      value:
+      value: 
       objectReference: {fileID: 389531859}
     - target: {fileID: 8559646665588368191, guid: 737a5a20b5c376e42b6748535adb77e7, type: 3}
       propertyPath: m_Size.x
@@ -4417,7 +4320,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7831792565128205314, guid: 737a5a20b5c376e42b6748535adb77e7, type: 3}
       propertyPath: player
-      value:
+      value: 
       objectReference: {fileID: 768227027}
     - target: {fileID: 7831792565128205314, guid: 737a5a20b5c376e42b6748535adb77e7, type: 3}
       propertyPath: zoomSpeed
@@ -4425,15 +4328,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7831792565128205314, guid: 737a5a20b5c376e42b6748535adb77e7, type: 3}
       propertyPath: cinemachineCamera
-      value:
+      value: 
       objectReference: {fileID: 389531856}
     - target: {fileID: 7831792565128205314, guid: 737a5a20b5c376e42b6748535adb77e7, type: 3}
       propertyPath: originalConfinder
-      value:
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7831792565128205314, guid: 737a5a20b5c376e42b6748535adb77e7, type: 3}
       propertyPath: cinemachineConfinder
-      value:
+      value: 
       objectReference: {fileID: 389531859}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4523,8 +4426,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1df0e563c6c59cc47ac3f1a70c8fa702, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   layerTrigger: {fileID: 2143390845474454548}
   CameraBoundOn: {fileID: 1223467822}
   CameraBoundsOff:
@@ -4632,7 +4535,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7831792565128205314, guid: 737a5a20b5c376e42b6748535adb77e7, type: 3}
       propertyPath: player
-      value:
+      value: 
       objectReference: {fileID: 768227027}
     - target: {fileID: 7831792565128205314, guid: 737a5a20b5c376e42b6748535adb77e7, type: 3}
       propertyPath: zoomSpeed
@@ -4640,15 +4543,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7831792565128205314, guid: 737a5a20b5c376e42b6748535adb77e7, type: 3}
       propertyPath: cinemachineCamera
-      value:
+      value: 
       objectReference: {fileID: 389531856}
     - target: {fileID: 7831792565128205314, guid: 737a5a20b5c376e42b6748535adb77e7, type: 3}
       propertyPath: originalConfinder
-      value:
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7831792565128205314, guid: 737a5a20b5c376e42b6748535adb77e7, type: 3}
       propertyPath: cinemachineConfinder
-      value:
+      value: 
       objectReference: {fileID: 389531859}
     - target: {fileID: 8559646665588368191, guid: 737a5a20b5c376e42b6748535adb77e7, type: 3}
       propertyPath: m_Size.y
@@ -4746,8 +4649,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1df0e563c6c59cc47ac3f1a70c8fa702, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   layerTrigger: {fileID: 7584334082950122499}
   CameraBoundOn: {fileID: 915297430}
   CameraBoundsOff:
