@@ -1,7 +1,7 @@
 using Scripts.Models;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "ItemDatabaseSO", menuName = "Menu/ItemDatabaseSO")]
 public class ItemDatabaseSO : ScriptableObject
 {
     public ItemSO[] items;
