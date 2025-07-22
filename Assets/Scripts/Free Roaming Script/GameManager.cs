@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 
     public Vector3 playerReturnPosition;
     public List<string> defeatedEnemyIds = new();
+
+    // Indicates if returning from a battle scene, used for restoring player's location in PlayerController
     public bool isReturningFromBattle = false;
 
     public bool useCustomSpawnPosition = false;

@@ -4,8 +4,8 @@ using UnityEngine;
 
 //
 // Summary:
-//     EnemyAICombat handles the combat actions of enemies.
-//     It manages the attack animations, damage calculations taken from CombatSystem, and logging of battle events.
+//     EnemyAICombat handles the combat actions of enemies. It manages the attack animations,
+//     damage calculations taken from CombatSystem, and logging of battle events.
 
 public class EnemyAICombat : MonoBehaviour
 {
