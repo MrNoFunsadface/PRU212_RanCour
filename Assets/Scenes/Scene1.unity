@@ -11560,8 +11560,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caaa69892869d2741adc129eb3efb64f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerReturnPosition: {x: -5.63, y: -1.17, z: 0}
+  playerReturnPosition: {x: -6, y: -0.75}
+  enemyReturnPosition: {x: 0, y: 0}
+  lastBattleSpawnerId: 
   isReturningFromBattle: 1
+  isEnemyReturningFromBattle: 0
   useCustomSpawnPosition: 1
   targetSpawnPointId: Scene0
 --- !u!1 &1228158673

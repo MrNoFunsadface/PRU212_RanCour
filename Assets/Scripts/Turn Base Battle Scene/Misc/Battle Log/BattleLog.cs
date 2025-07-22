@@ -19,7 +19,6 @@ public class BattleLog : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else Destroy(gameObject);
 

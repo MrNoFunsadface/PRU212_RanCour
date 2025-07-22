@@ -13,7 +13,7 @@ public class TurnManager : MonoBehaviour
 
     [Header("Scene References (assign in Inspector)")]
     [SerializeField] private GameObject player;
-    [SerializeField] private CardSpawner cardSpawner;
+    [SerializeField] private static CardSpawner cardSpawner;
     [SerializeField] private ResourceBar playerCost;
     [SerializeField] private GameOverController gameOverUI;
 
