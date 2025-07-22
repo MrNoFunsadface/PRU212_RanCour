@@ -140,9 +140,9 @@ namespace Scripts.Controllers
 
         public void Update()
         {
-            if (Keyboard.current.iKey.wasPressedThisFrame)
+            if (Keyboard.current.iKey.wasPressedThisFrame || Keyboard.current.escapeKey.wasPressedThisFrame)
             {
-                Debug.Log("I key pressed, toggling inventory UI.");
+                Debug.Log("I or esc key pressed, toggling inventory UI.");
                 if (inventoryUI.gameObject.activeSelf)
                 {
                     HideInventoryUI();

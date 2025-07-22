@@ -91,7 +91,6 @@ public class PlayerController : MonoBehaviour
         {
             // IMPORTANT: Store the initial offset AFTER finding the component
             initialCameraOffset = cinemachineFollow.FollowOffset;
-            Debug.Log($"Initial camera offset: {initialCameraOffset}");
         }
     }
 
@@ -136,17 +135,11 @@ public class PlayerController : MonoBehaviour
         // Adjust player sprite facing direction
         mySpriteRenderer.flipX = mousePos.x < playerScreenPoint.x;
 
-        AdjustCameraFollowOffset(mousePos, playerScreenPoint, cameraPanning);
+        if (cinemachineFollow != null) AdjustCameraFollowOffset(mousePos, playerScreenPoint, cameraPanning);
     }
 
     private void AdjustCameraFollowOffset(Vector2 mousePos, Vector2 playerScreenPoint, bool cameraPanning)
     {
-        if (cinemachineFollow == null) 
-        {
-            Debug.LogWarning("CinemachineFollow component is not assigned or found. Camera panning will not work.");
-            return;
-        }
-
         // Apply different behavior based on whether camera panning is enabled
         if (cameraPanning)
         {
