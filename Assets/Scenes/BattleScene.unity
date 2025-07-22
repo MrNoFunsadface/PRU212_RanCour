@@ -316,6 +316,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 183177767}
+  - component: {fileID: 183177768}
   m_Layer: 0
   m_Name: Finish Battle
   m_TagString: Untagged
@@ -338,6 +339,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &183177768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 183177766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb78f60ade0675c4baff90c56528a65c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &331088843
 GameObject:
   m_ObjectHideFlags: 0
@@ -2388,9 +2401,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1857732833}
-        m_TargetAssemblyTypeName: TurnManager, Assembly-CSharp
-        m_MethodName: EndPlayerTurn
+      - m_Target: {fileID: 183177768}
+        m_TargetAssemblyTypeName: FinishBattle, Assembly-CSharp
+        m_MethodName: OnFinishBattleClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

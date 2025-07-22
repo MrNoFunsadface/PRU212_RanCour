@@ -16,7 +16,7 @@ public class CollectibleController : MonoBehaviour
 
     private EButton eButton;
 
-    private EnviromentController enviromentController;
+    private EnvironmentController enviromentController;
 
     private bool playerInRange = false;
 
@@ -40,7 +40,7 @@ public class CollectibleController : MonoBehaviour
 
     void Start()
     {
-        enviromentController = FindFirstObjectByType<EnviromentController>();
+        enviromentController = FindFirstObjectByType<EnvironmentController>();
         if (enviromentController == null)
         {
             Debug.Log("EnviromentController not found in the scene.");
