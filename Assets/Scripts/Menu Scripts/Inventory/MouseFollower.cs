@@ -38,7 +38,6 @@ namespace Scripts.Menu
 
         public void Toggle(bool value)
         {
-            Debug.Log("Toggle MouseFollower: " + value);
             gameObject.SetActive(value);
         }
     }
