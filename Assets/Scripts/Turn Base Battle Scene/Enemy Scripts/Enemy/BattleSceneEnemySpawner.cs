@@ -5,7 +5,7 @@ using UnityEngine;
 //     EnemySpawnerScript is responsible for spawning enemies in the battle scene.
 //     It manages the enemy and its related components.
 
-public class EnemySpawnerScript : MonoBehaviour
+public class BattleSceneEnemySpawner : MonoBehaviour
 {
     [Header("Spawner and Objects attached with the enemy")]
     [SerializeField] private Transform spawner;
@@ -15,13 +15,15 @@ public class EnemySpawnerScript : MonoBehaviour
 
     [Header("Enemy spawning configure")]
     [SerializeField] private EnemyWithStats[] enemyTable;
-    [SerializeField] private List<EnemyWithStats> enemyToSpawn;
+    [SerializeField] private List<EnemyWithStats> fallBackEnemyToSpawnList; // Fallback enemies to spawn if wave data is not found
     [SerializeField] private CharacterStatsSO representativeEnemy; // The representative enemy (first one), take from free roam scene
     [SerializeField] private int minEnemyCount; // Minimum number of enemies to spawn
     [SerializeField] private int maxEnemyCount; // Maximum number of enemies to spawn
 
     [SerializeField] private int dungeonBaseLevel;
     [SerializeField] private int waveValue;
+
+    private readonly List<EnemyWithStats> enemyToSpawn = new();
 
     private void Start()
     {
@@ -30,56 +32,28 @@ public class EnemySpawnerScript : MonoBehaviour
 
     public void SpawnEnemy()
     {
-        // REMOVE COMMENT TO USE THE RANDOMIZED ENEMY SPAWNING LOGIC
-
-        /*
-        // Defensive copy of waveValue to avoid modifying the serialized field
-        int remainingWaveValue = waveValue;
-
-        // Find representative enemy cost
-        int repCost = 0;
-        for (int i = 0; i < enemyTable.Length; i++)
+        string waveId = BattleTransitionData.SelectedWaveId;
+        MobWaveDataManager.GetWave(waveId, out MobWaveData waveData);
+        if (waveData == null)
         {
-            if (enemyTable[i].enemy == representativeEnemy)
+            Debug.LogWarning($"[EnemySpawnerScript] Wave data for ID {waveId} not found. Cannot spawn enemies.");
+            // Fallback to a predefined list of enemies if wave data is not found
+            if (fallBackEnemyToSpawnList.Count == 0)
             {
-                repCost = enemyTable[i].cost;
-                break;
+                Debug.LogError("[EnemySpawnerScript] No fallback enemies defined. Cannot proceed with spawning.");
+                return;
+            }
+            else
+            {
+                Debug.LogWarning($"[EnemySpawnerScript] Using fallback enemies for wave ID {waveId}.");
+                enemyToSpawn.AddRange(fallBackEnemyToSpawnList);
             }
         }
-
-        // Always spawn the representative enemy first
-        var generatedEnemies = new List<EnemyWithStats>
+        else
         {
-            new(representativeEnemy, repCost)
-        };
-        remainingWaveValue -= repCost;
-
-        // Determine how many enemies to spawn (including representative)
-        int enemyCount = Random.Range(minEnemyCount, maxEnemyCount + 1); // +1 to make max inclusive
-
-        // Randomly add enemies (any type, including representative) until we reach enemyCount or run out of points
-        while (generatedEnemies.Count < enemyCount && remainingWaveValue > 0)
-        {
-            // Filter affordable enemies
-            var affordable = new List<EnemyWithStats>();
-            foreach (var entry in enemyTable)
-            {
-                if (entry.cost <= remainingWaveValue)
-                    affordable.Add(entry);
-            }
-            if (affordable.Count == 0)
-                break;
-
-            int randomIndex = Random.Range(0, affordable.Count);
-            var chosen = affordable[randomIndex];
-            generatedEnemies.Add(chosen);
-            remainingWaveValue -= chosen.cost;
+            Debug.Log($"[EnemySpawnerScript] Wave data for ID {waveId} found. Proceeding to spawn enemies.");
+            enemyToSpawn.AddRange(waveData.enemies);
         }
-
-        // Update enemyToSpawn list
-        enemyToSpawn.Clear();
-        enemyToSpawn.AddRange(generatedEnemies);
-        */
 
         // Spawn enemies and drop zones
         for (int i = 0; i < enemyToSpawn.Count; i++)
@@ -108,19 +82,4 @@ public class EnemySpawnerScript : MonoBehaviour
     }
 }
 
-[System.Serializable]
-public class EnemyWithStats
-{
-    public CharacterStatsSO enemy;
-    public int cost;
-    public int baseHealth;
 
-    // Parameterless constructor for Unity serialization
-    public EnemyWithStats() { }
-
-    public EnemyWithStats(CharacterStatsSO enemy, int cost)
-    {
-        this.enemy = enemy;
-        this.cost = cost;
-    }
-}

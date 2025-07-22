@@ -105,11 +105,11 @@ namespace Assets.Scripts.Interactable
         {
             gateCollider.enabled = false;
             mainGateAnimator.SetBool("OpenGate", true);
-            playerController.setSpeed(0f);
+            playerController.SetSpeed(0f);
             Debug.Log("Opening gate...");
             yield return new WaitForSeconds(2f);
             Debug.Log("Gate opened successfully.");
-            playerController.setSpeed(6f);
+            playerController.SetSpeed(6f);
         }
 
         private void Start()

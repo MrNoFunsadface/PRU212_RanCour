@@ -19,3 +19,4 @@ MonoBehaviour:
   attackSpeed: 1
   primaryDamageType: 3
   charPrefab: {fileID: 2256444359035510481, guid: 18dde670353ab554ba1c063d417b6c71, type: 3}
+  freeRoamingPrefab: {fileID: 1062253175323801145, guid: 33fa189d1fe50714187410a6c49f6303, type: 3}

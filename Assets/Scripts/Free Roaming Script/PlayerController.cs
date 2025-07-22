@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
         playerControls.Dispose();
     }
 
-    public bool setSpeed(float speed)
+    public bool SetSpeed(float speed)
     {
         moveSpeed = speed;
         if (moveSpeed < 0)
@@ -62,6 +62,12 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Start()
+    {
+        InitializePlayerPosition();
+        InitializeCameraFollow();
+    }
+
+    private void InitializePlayerPosition()
     {
         if (GameManager.Instance != null)
         {
@@ -79,8 +85,10 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = defaultSpawnPoint;
         }
+    }
 
-        // Find CinemachineFollow first
+    private void InitializeCameraFollow()
+    {
         cinemachineFollow = FindFirstObjectByType<CinemachineFollow>();
         if (cinemachineFollow == null)
         {
@@ -94,7 +102,6 @@ public class PlayerController : MonoBehaviour
             Debug.Log($"Initial camera offset: {initialCameraOffset}");
         }
     }
-
 
     private void Update()
     {
