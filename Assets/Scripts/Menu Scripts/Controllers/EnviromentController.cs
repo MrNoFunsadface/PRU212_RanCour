@@ -1,6 +1,7 @@
 using Mono.Cecil;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class EnviromentController : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class EnviromentController : MonoBehaviour
 
     public void UpdateEnvironment()
     {
+        string sceneName = SceneManager.GetActiveScene().name;
+
         if (PlayerPrefs.GetInt("AlchemyBookVolume1_Collected", 0) == 1)
         {
             if (fogBarrel != null) fogBarrel.Hide();
