@@ -7,9 +7,14 @@ using UnityEngine;
 public class RoamingEnemyController : MonoBehaviour
 {
     public string waveId;
-    private float iFrameDuration = 1f;
+    public string spawnerId;
+
+    // private fields
+    private readonly float iFrameDuration = 1f;
     private float iFrameTimer = 0f;
     private bool canCollide = false;
+
+    public Vector2 enemyReturnPosition; // Position to return to after the battle
 
     private void Start()
     {
@@ -35,7 +40,13 @@ public class RoamingEnemyController : MonoBehaviour
         if (player.collider.CompareTag("Player") && canCollide)
         {
             GameManager.Instance.isReturningFromBattle = true; // Indicate returning from battle to spawn at the correct position
+            GameManager.Instance.isEnemyReturningFromBattle = true;
+
             GameManager.Instance.playerReturnPosition = player.transform.position; // Save player's position
+            GameManager.Instance.enemyReturnPosition = transform.position; // Save enemy's position
+
+            GameManager.Instance.lastBattleSpawnerId = spawnerId; // Save the last battle spawner ID
+
             // Save waveId to a static or persistent object for the battle scene
             BattleTransitionData.SelectedWaveId = waveId;
             // Load battle scene (implement your own scene loading)

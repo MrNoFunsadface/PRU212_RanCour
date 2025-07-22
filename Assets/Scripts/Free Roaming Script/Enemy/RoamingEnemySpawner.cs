@@ -17,8 +17,17 @@ public class RoamingEnemySpawner : MonoBehaviour
     [SerializeField] private int dungeonBaseLevel = 1; // Base level for the dungeon (maybe used for later)
     [SerializeField] private int waveValue = 10; // Total value of the wave
 
+    private Vector2 enemyReturnPosition;
+
     private void Start()
     {
+        if (GameManager.Instance.isEnemyReturningFromBattle &&
+            GameManager.Instance.lastBattleSpawnerId == spawnerId)
+        {
+            // Get position from GameManager
+            enemyReturnPosition = GameManager.Instance.enemyReturnPosition;
+            Debug.Log($"[RoamingEnemySpawner] Spawner {spawnerId} returning from battle, position: {enemyReturnPosition}");
+        }
         MobWaveDataManager.GetWaveBySpawner(spawnerId, out MobWaveData existingWaveData);
         if (existingWaveData != null) InstantiateRepEnemy(existingWaveData);
         else SpawnEnemyWave();
@@ -60,12 +69,25 @@ public class RoamingEnemySpawner : MonoBehaviour
 
     private void InstantiateRepEnemy(MobWaveData waveData)
     {
-        // Use the first enemy as the representative
-        var repEnemyObject = Instantiate(waveData.enemies[0].enemy.freeRoamingPrefab, transform.position, Quaternion.identity);
+        GameObject repEnemyObject;
 
-        // Attach roaming enemy controller
+        // Use the stored position if this is the spawner from the last battle
+        if (GameManager.Instance.isEnemyReturningFromBattle &&
+            GameManager.Instance.lastBattleSpawnerId == spawnerId)
+        {
+            repEnemyObject = Instantiate(waveData.enemies[0].enemy.freeRoamingPrefab, enemyReturnPosition, Quaternion.identity);
+            // Reset the flag
+            GameManager.Instance.isEnemyReturningFromBattle = false;
+        }
+        else
+        {
+            repEnemyObject = Instantiate(waveData.enemies[0].enemy.freeRoamingPrefab, transform.position, Quaternion.identity);
+        }
+
+        // Attach controller and set properties
         var controller = repEnemyObject.AddComponent<RoamingEnemyController>();
         controller.waveId = waveData.waveId;
+        controller.spawnerId = spawnerId;
     }
 }
 
