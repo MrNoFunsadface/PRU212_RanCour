@@ -79,7 +79,7 @@ public class CollectibleController : MonoBehaviour
             PlayerPrefs.SetInt(itemName + "_Collected", 1);
             PlayerPrefs.Save();
 
-            enviromentController.UpdateEnvironment();
+            if (enviromentController != null) enviromentController.UpdateEnvironment();
         }
     }
 }
