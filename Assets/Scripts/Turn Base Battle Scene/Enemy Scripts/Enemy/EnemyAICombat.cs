@@ -49,10 +49,11 @@ public class EnemyAICombat : MonoBehaviour
 
         // grab hero’s remaining HP
         var playerStats = playerGO.GetComponent<CharacterStats>();
+        Debug.Log($"[EnemyAICombat] playerStats: {playerStats}, player current health: {playerStats.CurrentHealth}");
         int remainingHP = playerStats != null
             ? playerStats.CurrentHealth
             : 0;
-        Debug.Log($"{enemyName} attacked Hero for {dmg} damage. Hero has {remainingHP} HP left.");
+        Debug.Log($"[EnemyAICombat] {enemyName} attacked Hero for {dmg} damage. Hero has {remainingHP} HP left.");
 
 
         // 5) small cooldown before next enemy

@@ -21,16 +21,35 @@ public class CharacterStats : MonoBehaviour
     private void InitializeHealthBars()
     {
         resourceBars = GetComponentsInChildren<ResourceBar>();
-        if(debugMode) Debug.Log($"[CharacterStats] Found {resourceBars.Length} resource bars in {gameObject.name}");
-        healthBar = resourceBars[1];
-        activeHealthBar = resourceBars[0];
+        if (debugMode) Debug.Log($"[CharacterStats] Found {resourceBars.Length} resource bars in {gameObject.name}");
+        switch (resourceBars.Length)
+        {
+            case 0:
+                if (debugMode) Debug.LogWarning($"[CharacterStats] No resource bars found on {gameObject.name}");
+                break;
+            case 1:
+                if (debugMode) Debug.Log($"[CharacterStats] Only one resource bar found on {gameObject.name}, using it for both health and active health.");
+                healthBar = activeHealthBar = resourceBars[0];
+                break;
+            case 2:
+                if (debugMode) Debug.Log("[CharacterStats] Two resource bars found, using them for health and active health.");
+                healthBar = resourceBars[1];
+                activeHealthBar = resourceBars[0];
+                break;
+            default:
+                if (debugMode) Debug.LogError($"[CharacterStats] More than two resource bars found on {gameObject.name}, this is not supposed to happen!");
+                return;
+        }
+
         if (stats == null)
         {
             if (debugMode) Debug.LogError($"[CharacterStats] No SO assigned on {gameObject.name}", this);
             enabled = false;
             return;
         }
+
         currentHealth = stats.maxHealth;
+        if (debugMode) Debug.Log($"[CharacterStats] {name} initialized with {currentHealth}/{stats.maxHealth} HP");
         if (healthBar != null)
         {
             if (debugMode) Debug.Log("[CharacterStats] Health bar found, initializing");
