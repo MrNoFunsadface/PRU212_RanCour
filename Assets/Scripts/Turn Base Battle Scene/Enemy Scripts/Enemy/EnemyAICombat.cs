@@ -14,10 +14,9 @@ public class EnemyAICombat : MonoBehaviour
     private void Awake()
     {
         // Singleton
-        if (Instance == null) 
-        { 
+        if (Instance == null)
+        {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else Destroy(gameObject);
     }
@@ -48,26 +47,14 @@ public class EnemyAICombat : MonoBehaviour
             false
         );
 
-        // 4) LOG IT to your BattleLog UI
-        var battleLog = BattleLog.Instance;
-        if (battleLog != null)
-        {
-            // grab hero’s remaining HP
-            var playerStats = playerGO.GetComponent<CharacterStats>();
-            int remainingHP = playerStats != null
-                ? playerStats.CurrentHealth
-                : 0;
+        // grab hero’s remaining HP
+        var playerStats = playerGO.GetComponent<CharacterStats>();
+        Debug.Log($"[EnemyAICombat] playerStats: {playerStats}, player current health: {playerStats.CurrentHealth}");
+        int remainingHP = playerStats != null
+            ? playerStats.CurrentHealth
+            : 0;
+        Debug.Log($"[EnemyAICombat] {enemyName} attacked Hero for {dmg} damage. Hero has {remainingHP} HP left.");
 
-            battleLog.LogBattleEvent(
-                $"{enemyName} attacked Hero for {dmg} damage. Hero has {remainingHP} HP left."
-            );
-            battleLog.UpdateDisplayer();
-            Debug.Log($"{enemyName} attacked Hero for {dmg} damage. Hero has {remainingHP} HP left.");
-        }
-        else
-        {
-            Debug.LogWarning("[EnemyAICombat] BattleLogScript.Instance is null—cannot write attack log.");
-        }
 
         // 5) small cooldown before next enemy
         yield return new WaitForSeconds(0.5f);

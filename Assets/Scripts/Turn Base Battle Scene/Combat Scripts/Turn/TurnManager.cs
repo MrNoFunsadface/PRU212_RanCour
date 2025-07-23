@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public enum BattleState { PlayerTurn, EnemyTurn, Win, Lose }
@@ -13,9 +14,11 @@ public class TurnManager : MonoBehaviour
 
     [Header("Scene References (assign in Inspector)")]
     [SerializeField] private GameObject player;
-    [SerializeField] private static CardSpawner cardSpawner;
+    [SerializeField] private CardSpawner cardSpawner;
     [SerializeField] private ResourceBar playerCost;
     [SerializeField] private GameOverController gameOverUI;
+
+    [SerializeField] private bool debugMode = false;
 
     private BattleState state;
 
@@ -25,7 +28,6 @@ public class TurnManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -40,13 +42,13 @@ public class TurnManager : MonoBehaviour
 
     private void BeginPlayerTurn()
     {
-        Debug.Log("[TurnManager] Begin Player Turn");
+        if (debugMode) Debug.Log("[TurnManager] BeginPlayerTurn() called");
         state = BattleState.PlayerTurn;
 
         playerCost.ResetToMax();
         if(cardSpawner.SpawnAndFanCards())
         {
-            Debug.Log("[TurnManager] SpawnAndFanCards() triggered successfully");
+            if (debugMode) Debug.Log("[TurnManager] SpawnAndFanCards() triggered successfully");
         }
 
         // TODO: enable your hand-UI interactivity here
@@ -54,7 +56,7 @@ public class TurnManager : MonoBehaviour
 
     public void EndPlayerTurn()
     {
-        Debug.Log("[TurnManager] End Player Turn");
+        if (debugMode) Debug.Log("[TurnManager] End Player Turn");
         if (state != BattleState.PlayerTurn) return;
         state = BattleState.EnemyTurn;
         StartCoroutine(EnemyPhase());
@@ -63,10 +65,10 @@ public class TurnManager : MonoBehaviour
     private IEnumerator EnemyPhase()
     {
         var enemies = FindObjectsByType<EnemyStatus>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
-        Debug.Log($"[TurnManager] EnemyPhase: found {enemies.Length} enemies");
+        if (debugMode) Debug.Log($"[TurnManager] EnemyPhase: found {enemies.Length} enemies");
         foreach (var e in enemies)
         {
-            Debug.Log($"[TurnManager] EnemyPhase: calling PerformAction on {e.name}");
+            if (debugMode) Debug.Log($"[TurnManager] EnemyPhase: calling PerformAction on {e.name}");
             yield return StartCoroutine(EnemyAICombat.Instance.PerformAction(e));
         }
 

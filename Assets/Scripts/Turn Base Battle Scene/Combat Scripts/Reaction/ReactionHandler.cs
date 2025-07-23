@@ -5,8 +5,10 @@ using System.Collections.Generic;
 public class ReactionHandler : MonoBehaviour
 {
     public static ReactionHandler Instance { get; private set; }
-    public ReactionSO[] reactions;
 
+    [SerializeField] private bool debugMode = false;
+
+    public ReactionSO[] reactions;
     private void Awake()
     {
         // Singleton
@@ -19,7 +21,7 @@ public class ReactionHandler : MonoBehaviour
 
     public void OnCardDropped(CardSO card, EnemyStatus enemy)
     {
-        Debug.Log($"[ReactionHandler] Card dropped: {card.cardName} ({card.elementType}) on {enemy.name}");
+        if (debugMode) Debug.Log($"[ReactionHandler] Card dropped: {card.cardName} ({card.elementType}) on {enemy.name}");
 
         // 1) apply the status/duration/count
         enemy.ApplyElement(card);
@@ -35,14 +37,14 @@ public class ReactionHandler : MonoBehaviour
         // ensure the just?dropped card is included
         have.Add(card.elementType);
 
-        Debug.Log($"[ReactionHandler] Chemicals now: {string.Join(", ", have)}");
+        if (debugMode) Debug.Log($"[ReactionHandler] Chemicals now: {string.Join(", ", have)}");
 
         // 4) check each reaction for an exact multiset match
         foreach (var react in reactions)
         {
             if (Matches(have, react.inputElements))
             {
-                Debug.Log($"[ReactionHandler] Reaction {react.reactionName}: {string.Join(" + ", react.inputElements)} ? damage {react.damage}");
+                if (debugMode) Debug.Log($"[ReactionHandler] Reaction {react.reactionName}: {string.Join(" + ", react.inputElements)} ? damage {react.damage}");
 
                 // apply combat effects
                 CombatSystem.Instance.DealDamage(enemy.gameObject,

@@ -7,6 +7,9 @@ using UnityEngine;
 
 public class BattleSceneEnemySpawner : MonoBehaviour
 {
+    public bool characterStatsDebugMode = false; // Debug mode for character stats
+    private CharacterStats[] characterStats; // Array to hold character stats
+
     [Header("Spawner and Objects attached with the enemy")]
     [SerializeField] private Transform spawner;
     [SerializeField] private GameObject dropZonePrefab;
@@ -28,6 +31,11 @@ public class BattleSceneEnemySpawner : MonoBehaviour
     private void Start()
     {
         SpawnEnemy();
+        characterStats = GetComponentsInChildren<CharacterStats>();
+        foreach(var stat in characterStats)
+        {
+            stat.debugMode = characterStatsDebugMode; // Set debug mode for each character stats
+        }
     }
 
     public void SpawnEnemy()
@@ -77,8 +85,6 @@ public class BattleSceneEnemySpawner : MonoBehaviour
 
         dropZoneScript.activeHealthBar = activeHealthBarObject;
         dropZoneScript.healthBar = healthBarObject;
-
-        Debug.Log($"Drop zone for {dropZoneScript.enemyName} created with order {dropZoneScript.enemyOrder}");
     }
 }
 
