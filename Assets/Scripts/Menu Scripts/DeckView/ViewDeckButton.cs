@@ -15,6 +15,7 @@ public class ViewDeckButton : MonoBehaviour
     public void OnViewDeckButtonClicked()
     {
         cardView.Show();
+        SoundManager.PlaySound(SoundEffectType.BUTTONCLICK);
     }
 
     public void Hide() => gameObject.SetActive(false);
