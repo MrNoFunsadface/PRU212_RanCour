@@ -158,10 +158,31 @@ MonoBehaviour:
     sounds:
     - {fileID: 8300000, guid: 11c583f9e3d3f694f8f07be0939cc40f, type: 3}
     - {fileID: 8300000, guid: 3c0d9ee4755a19043bf6677c19abedc3, type: 3}
+  - SoundName: CARDSELECTION
+    sounds:
+    - {fileID: 8300000, guid: 16d2001efee26204080c450ae878f1cc, type: 3}
+    - {fileID: 8300000, guid: e6a9b7caa7b39db48bd71d46effd8c2b, type: 3}
+  - SoundName: CARDAPPLICATION
+    sounds:
+    - {fileID: 8300000, guid: aeb03a02f0767c243b022c9a71b6bb7a, type: 3}
+  - SoundName: DAMAGETAKING
+    sounds:
+    - {fileID: 8300000, guid: 9fa27b83bc0724c4a86a068836f3271d, type: 3}
+    - {fileID: 8300000, guid: de7d2af170ef1f840a585de20ef2ad3e, type: 3}
+    - {fileID: 8300000, guid: 82168ad5722192440b62d7a0dbbd3668, type: 3}
+  - SoundName: BUTTONCLICK
+    sounds:
+    - {fileID: 8300000, guid: dd6d675dcfbd7df478b5957a2352ef2f, type: 3}
+    - {fileID: 8300000, guid: 2b73f68664da1e6478ac4069d41098a1, type: 3}
+  - SoundName: MENUOPEN
+    sounds:
+    - {fileID: 8300000, guid: ab73d6921b0516e4fabc76a951ae4450, type: 3}
   soundTracks:
   - SoundTrackName: SCENE0
-    soundTracks: {fileID: 0}
+    soundTracks: {fileID: 8300000, guid: 68d7e2b701e977e4f9d3a5037295d417, type: 3}
   - SoundTrackName: SCENE1
-    soundTracks: {fileID: 0}
+    soundTracks: {fileID: 8300000, guid: fd12c2a3ab9fa97498992a36ce873323, type: 3}
   - SoundTrackName: BATTLENORMAL
-    soundTracks: {fileID: 0}
+    soundTracks: {fileID: 8300000, guid: 5c292601f799df84f8e8918afab2b684, type: 3}
+  - SoundTrackName: KNIGHTBOSSBATTLE
+    soundTracks: {fileID: 8300000, guid: a323f36e0d3b1984c82a7e2bb9a6f5f6, type: 3}

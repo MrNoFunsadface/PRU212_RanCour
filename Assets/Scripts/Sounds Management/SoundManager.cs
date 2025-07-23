@@ -9,14 +9,20 @@ public enum SoundEffectType
     BATATTACK,
     SLIMEATTACK,
     DOORINTERACTION,
-    ITEMPICKUP
+    ITEMPICKUP,
+    CARDSELECTION,
+    CARDAPPLICATION,
+    DAMAGETAKING,
+    BUTTONCLICK,
+    MENUOPEN,
 }
 
 public enum SoundTrackList
 {
     SCENE0,
     SCENE1,
-    BATTLENORMAL
+    BATTLENORMAL,
+    KNIGHTBOSSBATTLE
 }
 
 [RequireComponent(typeof(AudioSource)), ExecuteInEditMode]
@@ -44,7 +50,7 @@ public class SoundManager : MonoBehaviour
         instance.audioSource.PlayOneShot(randomClip, volume);
     }
 
-    public static void PlaySoundTrack(SoundTrackList soundTrack)
+    public static void PlaySoundTrack(SoundTrackList soundTrack, float volume = 1)
     {
         AudioClip track = instance.soundTracks[(int)soundTrack].Sounds;
         if (track != null)
