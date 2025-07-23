@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//
+// Summary: MobWaveDataManager is responsible for managing MobWaveData in the game.
+
 public static class MobWaveDataManager
 {
     public static Dictionary<string, MobWaveData> mobWaves = new();

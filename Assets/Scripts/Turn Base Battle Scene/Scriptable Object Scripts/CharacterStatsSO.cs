@@ -15,6 +15,7 @@ public class CharacterStatsSO : ScriptableObject
     public int defense;
     public float attackSpeed;
     public DamageType primaryDamageType;
+    public bool isPlayer = false;
 
     [Header("Character Prefabs")]
     public GameObject charPrefab;
