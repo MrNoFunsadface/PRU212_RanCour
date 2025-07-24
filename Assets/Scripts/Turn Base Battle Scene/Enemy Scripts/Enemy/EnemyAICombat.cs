@@ -54,6 +54,7 @@ public class EnemyAICombat : MonoBehaviour
         int dmg = statsMono.stats.attack;
 
         // 4. Deal damage
+        SoundManager.PlaySound(SoundEffectType.DAMAGETAKING);
         var playerGO = GameObject.FindWithTag("Player");
         CombatSystem.Instance.DealDamage(
             playerGO,
