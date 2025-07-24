@@ -426,6 +426,61 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &1454768585
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1454768587}
+  - component: {fileID: 1454768586}
+  m_Layer: 0
+  m_Name: Timeline
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!320 &1454768586
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1454768585}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 2061fb0366c9e40479641e372db0cd49, type: 2}
+  m_InitialState: 1
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: -4526731654654391243, guid: 2061fb0366c9e40479641e372db0cd49, type: 2}
+    value: {fileID: 66881078}
+  - key: {fileID: 1873461757336879990, guid: 2061fb0366c9e40479641e372db0cd49, type: 2}
+    value: {fileID: 130328224}
+  - key: {fileID: 8236745416607774718, guid: 2061fb0366c9e40479641e372db0cd49, type: 2}
+    value: {fileID: 66881078}
+  m_ExposedReferences:
+    m_References: []
+--- !u!4 &1454768587
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1454768585}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 74.92384, y: 40.751194, z: -9.890163}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1574500152
 GameObject:
   m_ObjectHideFlags: 0
@@ -571,3 +626,4 @@ SceneRoots:
   - {fileID: 106233629}
   - {fileID: 66881077}
   - {fileID: 130328223}
+  - {fileID: 1454768587}
