@@ -106,11 +106,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1291098364a20f14cb6114ba049a78bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultSpawnPoint: {x: -6.790948, y: 3.437685}
-  moveSpeed: 6
-  horizontalFollowOffset: 2
-  verticalFollowOffset: 2
-  offsetSmoothSpeed: 5
+  defaultSpawnPoint: {x: -6, y: 0}
+  moveSpeed: 5
+  horizontalFollowOffset: 1.5
+  verticalFollowOffset: 0.5
+  offsetSmoothSpeed: 1
   cameraPanning: 1
 --- !u!50 &5291479534030376112
 Rigidbody2D:

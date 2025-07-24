@@ -27,6 +27,8 @@ public enum SoundTrackList
 [RequireComponent(typeof(AudioSource)), ExecuteInEditMode]
 public class SoundManager : MonoBehaviour
 {
+    private static SoundManager Instance;
+
     [SerializeField] private SoundList[] soundList;
     [SerializeField] private SoundTrack[] soundTracks;
     private float masterVolume = 1f;
@@ -48,23 +50,23 @@ public class SoundManager : MonoBehaviour
             musicSource = GetComponent<AudioSource>();
             return;
         }
-        
+
         // Singleton pattern with DontDestroyOnLoad (only in play mode)
         if (instance != null && instance != this)
         {
             Destroy(gameObject);
             return;
         }
-        
+
         instance = this;
         DontDestroyOnLoad(gameObject);
-        
+
         musicSource = GetComponent<AudioSource>();
         if (musicSource == null)
         {
             Debug.LogError("AudioSource component is missing on SoundManager GameObject.");
         }
-        
+
         // Create a separate AudioSource for sound effects if it doesn't exist
         if (sfxSource == null)
         {
@@ -106,7 +108,7 @@ public class SoundManager : MonoBehaviour
             {
                 return;
             }
-            
+
             instance.masterVolume = Mathf.Clamp01(value);
             UpdateVolumeSettings();
         }
@@ -115,8 +117,8 @@ public class SoundManager : MonoBehaviour
     public static float SFXVolume
     {
         get => instance.sfxVolume;
-        set 
-        { 
+        set
+        {
             instance.sfxVolume = Mathf.Clamp01(value);
             UpdateVolumeSettings();
         }
