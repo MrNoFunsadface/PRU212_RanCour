@@ -18,5 +18,10 @@ MonoBehaviour:
   defense: 3
   attackSpeed: 1
   primaryDamageType: 2
+  isPlayer: 0
   charPrefab: {fileID: 2256444359035510481, guid: 1a79a3a1eb63ea146bc4fbd383e7ced1, type: 3}
   freeRoamingPrefab: {fileID: 6109871422827168502, guid: bbebb938b906b4244a6f80cffe8b7a35, type: 3}
+  animatorController: {fileID: 9100000, guid: 34eaf76c12c1daf49b41edf54330a226, type: 2}
+  idleAnimationName: idle
+  attackAnimationName: attack
+  hurtAnimation: hurt

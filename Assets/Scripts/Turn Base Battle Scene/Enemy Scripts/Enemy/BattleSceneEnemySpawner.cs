@@ -74,6 +74,13 @@ public class BattleSceneEnemySpawner : MonoBehaviour
     public void CreateEnemyObject(CharacterStatsSO enemy, GameObject dropZonePrefab, GameObject healthBar, GameObject activeHealthBar, Transform spawner, int order)
     {
         GameObject enemyObject = Instantiate(enemy.charPrefab, spawner);
+
+        Animator enemyAnimator = enemyObject.GetComponent<Animator>();
+        if (enemyAnimator != null && enemy.animatorController != null)
+        {
+            enemyAnimator.runtimeAnimatorController = enemy.animatorController;
+        }
+
         GameObject dropZoneObject = Instantiate(dropZonePrefab, enemyObject.transform);
         GameObject activeHealthBarObject = Instantiate(activeHealthBar, enemyObject.transform);
         GameObject healthBarObject = Instantiate(healthBar, enemyObject.transform);
@@ -85,7 +92,6 @@ public class BattleSceneEnemySpawner : MonoBehaviour
 
         dropZoneScript.activeHealthBar = activeHealthBarObject;
         dropZoneScript.healthBar = healthBarObject;
+        dropZoneScript.enemyAnimator = enemyAnimator;
     }
 }
-
-
