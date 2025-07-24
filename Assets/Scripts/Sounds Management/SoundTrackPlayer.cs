@@ -7,6 +7,6 @@ public class SoundTrackPlayer : MonoBehaviour
 
     public void Start()
     {
-        SoundManager.PlaySoundTrack(soundTrackList, 1);
+        SoundManager.PlaySoundTrack(soundTrackList);
     }
 }

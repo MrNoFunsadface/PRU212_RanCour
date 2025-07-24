@@ -66,7 +66,7 @@ public class CollectibleController : MonoBehaviour
                 return;
             }
             inventoryData.AddItem(item, 1);
-            SoundManager.PlaySound(SoundEffectType.ITEMPICKUP, 1);
+            SoundManager.PlaySound(SoundEffectType.ITEMPICKUP);
             gameObject.SetActive(false);
             PlayerPrefs.SetInt(itemName + "_Collected", 1);
             PlayerPrefs.Save();
