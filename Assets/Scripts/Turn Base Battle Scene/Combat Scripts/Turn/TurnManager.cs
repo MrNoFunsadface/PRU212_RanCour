@@ -56,6 +56,7 @@ public class TurnManager : MonoBehaviour
 
     public void EndPlayerTurn()
     {
+        SoundManager.PlaySound(SoundEffectType.ENDTURN);
         if (debugMode) Debug.Log("[TurnManager] End Player Turn");
         if (state != BattleState.PlayerTurn) return;
         state = BattleState.EnemyTurn;
