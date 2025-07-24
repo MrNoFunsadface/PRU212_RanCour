@@ -4718,10 +4718,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7967860549614015393, guid: 5b5fc5c451147214bb1766c1cb731ddf, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1534862507}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b5fc5c451147214bb1766c1cb731ddf, type: 3}
 --- !u!4 &1534862506 stripped
 Transform:
@@ -5816,6 +5813,7 @@ GameObject:
   - component: {fileID: 1962145397}
   - component: {fileID: 1962145396}
   - component: {fileID: 1962145395}
+  - component: {fileID: 1962145400}
   m_Layer: 0
   m_Name: Prison Door
   m_TagString: Untagged
@@ -5991,6 +5989,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1962145400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962145393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8655d595867504c9d1c118e3ea24f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1969684165
 GameObject:
   m_ObjectHideFlags: 0
@@ -6170,6 +6180,7 @@ GameObject:
   - component: {fileID: 2007660157}
   - component: {fileID: 2007660160}
   - component: {fileID: 2007660156}
+  - component: {fileID: 2007660161}
   m_Layer: 0
   m_Name: Lea's Prison Door
   m_TagString: Untagged
@@ -6345,6 +6356,18 @@ MonoBehaviour:
   monologueData: {fileID: 11400000, guid: 93f30cfa891f0bd4c8ac6f94d054a1aa, type: 2}
   interactPrompt: {fileID: 1225469938}
   eButton: {fileID: 1225469941}
+--- !u!114 &2007660161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007660154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8655d595867504c9d1c118e3ea24f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2020724078
 GameObject:
   m_ObjectHideFlags: 0
@@ -7001,9 +7024,7 @@ SceneRoots:
   - {fileID: 908886255}
   - {fileID: 1567841602}
   - {fileID: 519420032}
-  - {fileID: 908886255}
   - {fileID: 1763380305}
-  - {fileID: 1534862505}
   - {fileID: 159819482306984257}
   - {fileID: 1831491848}
   - {fileID: 912956706}
@@ -7011,3 +7032,5 @@ SceneRoots:
   - {fileID: 7383581656114385725}
   - {fileID: 871340027}
   - {fileID: 245390629}
+  - {fileID: 2396219242661816827}
+  - {fileID: 1638077232}
