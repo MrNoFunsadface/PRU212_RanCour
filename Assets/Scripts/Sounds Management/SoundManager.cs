@@ -15,6 +15,7 @@ public enum SoundEffectType
     BUTTONCLICK,
     MENUOPEN,
     ENDTURN,
+    KNIGHTATTACK,
 }
 
 public enum SoundTrackList

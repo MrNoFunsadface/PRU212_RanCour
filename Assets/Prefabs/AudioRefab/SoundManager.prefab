@@ -186,6 +186,13 @@ MonoBehaviour:
   - SoundName: ENDTURN
     sounds:
     - {fileID: 8300000, guid: f639ee216eba6d346ba3ba9a7a55fed4, type: 3}
+  - SoundName: KNIGHTATTACK
+    sounds:
+    - {fileID: 8300000, guid: 15229c05a951c2b4fad874897f3ee7b4, type: 3}
+    - {fileID: 8300000, guid: 2687bceffadf34643be5196b2f10d85e, type: 3}
+    - {fileID: 8300000, guid: 5f840a07b5722d0408055ce8c84a5bb1, type: 3}
+    - {fileID: 8300000, guid: 947c5ea7fb1575c41b05fa58e9aa1ee8, type: 3}
+    - {fileID: 8300000, guid: d55e639a3d0be5f408ffd341b1c9af20, type: 3}
   soundTracks:
   - SoundTrackName: SCENE0
     soundTracks: {fileID: 8300000, guid: 68d7e2b701e977e4f9d3a5037295d417, type: 3}
