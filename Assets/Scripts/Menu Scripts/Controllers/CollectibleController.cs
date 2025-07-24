@@ -16,8 +16,6 @@ public class CollectibleController : MonoBehaviour
 
     private EButton eButton;
 
-    private EnviromentController enviromentController;
-
     private bool playerInRange = false;
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -26,7 +24,6 @@ public class CollectibleController : MonoBehaviour
         {
             playerInRange = true;
             eButton.Show();
-            Debug.Log("player steps in " + itemName + "'s hitbox");
         }
     }
 
@@ -36,34 +33,25 @@ public class CollectibleController : MonoBehaviour
         {
             playerInRange = false;
             eButton.Hide();
-            Debug.Log("player steps out " + itemName + "'s hitbox");
         }
     }
 
     void Start()
     {
-        enviromentController = FindFirstObjectByType<EnviromentController>();
-        if (enviromentController == null)
-        {
-            Debug.Log("EnviromentController not found in the scene.");
-        }
-
         eButton = FindFirstObjectByType<EButton>();
         if (eButton == null)
         {
-            Debug.Log("EButton not found in the scene. Please ensure it is present for interaction.");
+            Debug.Log("[CollectibleController] EButton not found in the scene. Please ensure it is present for interaction.");
         }
 
         int collected = PlayerPrefs.GetInt(itemName + "_Collected");
         if (collected == 1)
         {
             gameObject.SetActive(false);
-            Debug.Log($"{itemName} has already been collected.");
         }
         else
         {
             gameObject.SetActive(true);
-            Debug.Log($"{itemName} is available for collection.");
         }
     }
 
@@ -74,16 +62,16 @@ public class CollectibleController : MonoBehaviour
             var item = itemDatabase.GetItemByName(itemName);
             if (item == null)
             {
-                Debug.LogWarning($"Item with name {itemName} not found in database.");
+                Debug.LogWarning($"[CollectibleController] Item with name {itemName} not found in database.");
                 return;
             }
             inventoryData.AddItem(item, 1);
+            SoundManager.PlaySound(SoundEffectType.ITEMPICKUP);
             gameObject.SetActive(false);
             PlayerPrefs.SetInt(itemName + "_Collected", 1);
             PlayerPrefs.Save();
-            Debug.Log($"Added {itemName} to inventory.");
 
-            enviromentController.UpdateEnvironment();
+            if (EnvironmentController.Instance != null) EnvironmentController.Instance.UpdateEnvironment();
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class CharacterUI : MonoBehaviour
@@ -6,6 +7,8 @@ public class CharacterUI : MonoBehaviour
     {
         Hide();
     }
+
+    public Boolean getState() => gameObject.activeSelf;
 
     public void Show() => gameObject.SetActive(true);
 

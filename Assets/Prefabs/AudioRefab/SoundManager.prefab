@@ -1,0 +1,189 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2492339692069149913
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8794797114906676435}
+  - component: {fileID: 552240953512158592}
+  - component: {fileID: 4158154637012335213}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8794797114906676435
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2492339692069149913}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &552240953512158592
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2492339692069149913}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &4158154637012335213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2492339692069149913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13369683d22ba6e49b703cc6aa06e3eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundList:
+  - SoundName: PLAYERMOVEMENT
+    sounds:
+    - {fileID: 8300000, guid: be0d912cd8853b74387fecd492625a6d, type: 3}
+    - {fileID: 8300000, guid: 2c7980402fee9df48bc1e8b133302f08, type: 3}
+  - SoundName: BATATTACK
+    sounds: []
+  - SoundName: SLIMEATTACK
+    sounds: []
+  - SoundName: DOORINTERACTION
+    sounds:
+    - {fileID: 8300000, guid: 84ad9a5bff2e88f4c903f8016cbb9749, type: 3}
+  - SoundName: ITEMPICKUP
+    sounds:
+    - {fileID: 8300000, guid: 11c583f9e3d3f694f8f07be0939cc40f, type: 3}
+    - {fileID: 8300000, guid: 3c0d9ee4755a19043bf6677c19abedc3, type: 3}
+  - SoundName: CARDSELECTION
+    sounds:
+    - {fileID: 8300000, guid: 16d2001efee26204080c450ae878f1cc, type: 3}
+    - {fileID: 8300000, guid: e6a9b7caa7b39db48bd71d46effd8c2b, type: 3}
+  - SoundName: CARDAPPLICATION
+    sounds:
+    - {fileID: 8300000, guid: aeb03a02f0767c243b022c9a71b6bb7a, type: 3}
+  - SoundName: DAMAGETAKING
+    sounds:
+    - {fileID: 8300000, guid: 9fa27b83bc0724c4a86a068836f3271d, type: 3}
+    - {fileID: 8300000, guid: de7d2af170ef1f840a585de20ef2ad3e, type: 3}
+    - {fileID: 8300000, guid: 82168ad5722192440b62d7a0dbbd3668, type: 3}
+  - SoundName: BUTTONCLICK
+    sounds:
+    - {fileID: 8300000, guid: dd6d675dcfbd7df478b5957a2352ef2f, type: 3}
+    - {fileID: 8300000, guid: 2b73f68664da1e6478ac4069d41098a1, type: 3}
+  - SoundName: MENUOPEN
+    sounds:
+    - {fileID: 8300000, guid: ab73d6921b0516e4fabc76a951ae4450, type: 3}
+  soundTracks:
+  - SoundTrackName: SCENE0
+    soundTracks: {fileID: 8300000, guid: 68d7e2b701e977e4f9d3a5037295d417, type: 3}
+  - SoundTrackName: SCENE1
+    soundTracks: {fileID: 8300000, guid: fd12c2a3ab9fa97498992a36ce873323, type: 3}
+  - SoundTrackName: BATTLENORMAL
+    soundTracks: {fileID: 8300000, guid: 5c292601f799df84f8e8918afab2b684, type: 3}
+  - SoundTrackName: KNIGHTBOSSBATTLE
+    soundTracks: {fileID: 8300000, guid: a323f36e0d3b1984c82a7e2bb9a6f5f6, type: 3}
+  sfxSource: {fileID: 0}
