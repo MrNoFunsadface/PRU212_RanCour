@@ -24,4 +24,5 @@ MonoBehaviour:
   animatorController: {fileID: 9100000, guid: 5cda610dba80b0146bb8cc577b6ea124, type: 2}
   idleAnimationName: idle
   attackAnimationName: attack
-  hurtAnimation: hurt
+  hurtAnimationName: hurt
+  attackSoundType: 2
