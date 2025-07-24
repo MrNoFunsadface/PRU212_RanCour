@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class EnvironmentController : MonoBehaviour
 {
+    public static EnvironmentController Instance { get; private set; }
+
     private FogBarrel fogBarrel;
     private EnemyAI[] enemies;
 
@@ -10,6 +12,15 @@ public class EnvironmentController : MonoBehaviour
     // Delay initialization to ensure all objects are properly loaded
     private void Start()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         // Initialize fogBarrel
         fogBarrel = FindFirstObjectByType<FogBarrel>();
 
@@ -40,7 +51,7 @@ public class EnvironmentController : MonoBehaviour
         // Handle case where no enemies are found
         if (enemies == null || enemies.Length == 0)
         {
-            Debug.LogWarning("[EnvironmentController] No enemies found with EnemyAI component!");
+            if (debugMode) Debug.LogWarning("[EnvironmentController] No enemies found with EnemyAI component!");
             return;
         }
 
@@ -50,7 +61,7 @@ public class EnvironmentController : MonoBehaviour
             if (enemy != null)
             {
                 enemy.SetToDespawned();
-                Debug.Log($"[EnvironmentController] Enemy {enemy.name} set to despawned");
+                if (debugMode) Debug.Log($"[EnvironmentController] Enemy {enemy.name} set to despawned");
             }
         }
 
@@ -71,7 +82,7 @@ public class EnvironmentController : MonoBehaviour
                     if (enemy != null)
                     {
                         enemy.SetToRoaming();
-                        Debug.Log($"[EnvironmentController] Enemy {enemy.name} set to roaming");
+                        if (debugMode) Debug.Log($"[EnvironmentController] Enemy {enemy.name} set to roaming");
                     }
                 }
             }

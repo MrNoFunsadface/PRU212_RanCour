@@ -16,8 +16,6 @@ public class CollectibleController : MonoBehaviour
 
     private EButton eButton;
 
-    private EnvironmentController enviromentController;
-
     private bool playerInRange = false;
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -40,16 +38,10 @@ public class CollectibleController : MonoBehaviour
 
     void Start()
     {
-        enviromentController = FindFirstObjectByType<EnvironmentController>();
-        if (enviromentController == null)
-        {
-            Debug.Log("EnviromentController not found in the scene.");
-        }
-
         eButton = FindFirstObjectByType<EButton>();
         if (eButton == null)
         {
-            Debug.Log("EButton not found in the scene. Please ensure it is present for interaction.");
+            Debug.Log("[CollectibleController] EButton not found in the scene. Please ensure it is present for interaction.");
         }
 
         int collected = PlayerPrefs.GetInt(itemName + "_Collected");
@@ -70,16 +62,16 @@ public class CollectibleController : MonoBehaviour
             var item = itemDatabase.GetItemByName(itemName);
             if (item == null)
             {
-                Debug.LogWarning($"Item with name {itemName} not found in database.");
+                Debug.LogWarning($"[CollectibleController] Item with name {itemName} not found in database.");
                 return;
             }
             inventoryData.AddItem(item, 1);
-            SoundManager.PlaySound(SoundEffectType.ITEMPICKUP, 1);
+            SoundManager.PlaySound(SoundEffectType.ITEMPICKUP);
             gameObject.SetActive(false);
             PlayerPrefs.SetInt(itemName + "_Collected", 1);
             PlayerPrefs.Save();
 
-            if (enviromentController != null) enviromentController.UpdateEnvironment();
+            if (EnvironmentController.Instance != null) EnvironmentController.Instance.UpdateEnvironment();
         }
     }
 }

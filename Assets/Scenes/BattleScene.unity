@@ -455,6 +455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43adb0690c8176242aa07fcf24efceb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debugMode: 0
   reactions:
   - {fileID: 11400000, guid: 9fe2f82dd9db79b46a37dde1355bfca8, type: 2}
   - {fileID: 11400000, guid: 2a50b4b60909f4d4da0f1ec5d2090e98, type: 2}
@@ -1512,8 +1513,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
+  m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2090,6 +2091,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: d256bea6a5068574f8d1b4c884cd116b, type: 2}
+  debugMode: 1
 --- !u!1 &1747241564
 GameObject:
   m_ObjectHideFlags: 0
@@ -2517,6 +2519,7 @@ MonoBehaviour:
   cardSpawner: {fileID: 1151265863}
   playerCost: {fileID: 7498077023587797580}
   gameOverUI: {fileID: 0}
+  debugMode: 0
 --- !u!114 &1857732834
 MonoBehaviour:
   m_ObjectHideFlags: 0

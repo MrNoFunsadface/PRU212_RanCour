@@ -9,15 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91e72fc18cca696409750fb8d384ce05, type: 3}
-  m_Name: Mage
+  m_Script: {fileID: 11500000, guid: bfda56da833e2384a9677cd3c976a436, type: 3}
+  m_Name: Exit Transition
   m_EditorClassIdentifier: 
-  characterName: Mage
-  maxHealth: 180
-  attack: 20
-  defense: 4
-  attackSpeed: 1
-  primaryDamageType: 2
-  isPlayer: 1
-  charPrefab: {fileID: 0}
-  freeRoamingPrefab: {fileID: 0}
+  m_Version: 0
+  m_Tracks: []
+  m_FixedDuration: 0
+  m_EditorSettings:
+    m_Framerate: 60
+    m_ScenePreview: 1
+  m_DurationMode: 0
+  m_MarkerTrack: {fileID: 0}
