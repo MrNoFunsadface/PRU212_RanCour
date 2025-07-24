@@ -25,7 +25,8 @@ public enum SoundTrackList
     SCENE2,
     SCENE3,
     BATTLENORMAL,
-    KNIGHTBOSSBATTLE
+    KNIGHTBOSSBATTLE,
+    MAINMENU,
 }
 
 [RequireComponent(typeof(AudioSource)), ExecuteInEditMode]

@@ -206,4 +206,6 @@ MonoBehaviour:
     soundTracks: {fileID: 8300000, guid: 5c292601f799df84f8e8918afab2b684, type: 3}
   - SoundTrackName: KNIGHTBOSSBATTLE
     soundTracks: {fileID: 8300000, guid: a323f36e0d3b1984c82a7e2bb9a6f5f6, type: 3}
+  - SoundTrackName: MAINMENU
+    soundTracks: {fileID: 8300000, guid: 70cf385bb911caa4492417f269fd8a36, type: 3}
   sfxSource: {fileID: 0}

@@ -39,12 +39,12 @@ public class VolumeSliderController : MonoBehaviour
 
     private void LoadVolumeSettings()
     {
-        masterVolumeSlider.value = PlayerPrefs.GetFloat(MASTER_VOLUME_KEY, DEFAULT_VOLUME);
-        sfxVolumeSlider.value = PlayerPrefs.GetFloat(SFX_VOLUME_KEY, DEFAULT_VOLUME);
-        musicVolumeSlider.value = PlayerPrefs.GetFloat(MUSIC_VOLUME_KEY, DEFAULT_VOLUME);
-        SetMasterVolume();
-        SetSFXVolume();
-        SetMusicVolume();
+        SoundManager.MasterVolume = PlayerPrefs.GetFloat(MASTER_VOLUME_KEY, DEFAULT_VOLUME);
+        SoundManager.SFXVolume = PlayerPrefs.GetFloat(SFX_VOLUME_KEY, DEFAULT_VOLUME);
+        SoundManager.MusicVolume = PlayerPrefs.GetFloat(MUSIC_VOLUME_KEY, DEFAULT_VOLUME);
+        masterVolumeSlider.value = SoundManager.MasterVolume;
+        sfxVolumeSlider.value = SoundManager.SFXVolume;
+        musicVolumeSlider.value = SoundManager.MusicVolume;
     }
     
     private void SaveVolumeSettings()
@@ -59,7 +59,7 @@ public class VolumeSliderController : MonoBehaviour
         float masterValue = SoundManager.MasterVolume;
         float sfxValue = SoundManager.SFXVolume;
         float musicValue = SoundManager.MusicVolume;
-        
+
         PlayerPrefs.SetFloat(MASTER_VOLUME_KEY, masterValue);
         PlayerPrefs.SetFloat(SFX_VOLUME_KEY, sfxValue);
         PlayerPrefs.SetFloat(MUSIC_VOLUME_KEY, musicValue);
