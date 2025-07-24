@@ -12,10 +12,10 @@ namespace Assets.Scripts.Interactable
         private Collider2D gateCollider;
         private Animator mainGateAnimator;
         private string doorName;
+        private PlayerController playerController;
 
         [SerializeField] private EButton eButton;
         [SerializeField] private InventorySO inventoryData;
-        [SerializeField] private PlayerController playerController;
         [SerializeField] private int interactionPriority = 5; // Higher priority than NPCs
 
         private void OnCollisionEnter2D(Collision2D collision)
@@ -91,13 +91,8 @@ namespace Assets.Scripts.Interactable
 
             if (inventoryData.CheckItemByName("MasterKey"))
             {
-                Debug.Log("You have the key. Opening the gate...");
                 StartCoroutine(OpenGate());
                 PlayerPrefs.SetInt(doorName, 1);
-            }
-            else
-            {
-                Debug.Log($"You need a key to open the {doorName}.");
             }
         }
 
@@ -105,26 +100,18 @@ namespace Assets.Scripts.Interactable
         {
             gateCollider.enabled = false;
             mainGateAnimator.SetBool("OpenGate", true);
-            playerController.setSpeed(0f);
+            playerController.SetSpeed(0f);
             Debug.Log("Opening gate...");
             yield return new WaitForSeconds(2f);
             Debug.Log("Gate opened successfully.");
-            playerController.setSpeed(6f);
+            playerController.SetSpeed(6f);
         }
 
         private void Start()
         {
             gateCollider = GetComponent<Collider2D>();
-            if (gateCollider == null)
-            {
-                Debug.LogError($"{doorName} script requires a Collider2D component on the GameObject.");
-            }
 
             mainGateAnimator = GetComponent<Animator>();
-            if (mainGateAnimator == null)
-            {
-                Debug.LogError($"{doorName} script requires an Animator component on the GameObject.");
-            }
 
             doorName = gameObject.name;
             int gateOpened = PlayerPrefs.GetInt(doorName, 0);
@@ -133,15 +120,15 @@ namespace Assets.Scripts.Interactable
             {
                 gateCollider.enabled = false;
                 mainGateAnimator.Play("GateStayOpenedAnim", 0, 0f);
-                Debug.Log($"{doorName} has already been opened.");
                 return;
             }
             else
             {
                 gateCollider.enabled = true;
                 eButton.Hide();
-                Debug.Log($"{doorName} is available to open.");
             }
+
+            playerController = FindFirstObjectByType<PlayerController>();
         }
 
         private void Update()

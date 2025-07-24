@@ -16,7 +16,7 @@ public class CollectibleController : MonoBehaviour
 
     private EButton eButton;
 
-    private EnviromentController enviromentController;
+    private EnvironmentController enviromentController;
 
     private bool playerInRange = false;
 
@@ -26,7 +26,6 @@ public class CollectibleController : MonoBehaviour
         {
             playerInRange = true;
             eButton.Show();
-            Debug.Log("player steps in " + itemName + "'s hitbox");
         }
     }
 
@@ -36,13 +35,12 @@ public class CollectibleController : MonoBehaviour
         {
             playerInRange = false;
             eButton.Hide();
-            Debug.Log("player steps out " + itemName + "'s hitbox");
         }
     }
 
     void Start()
     {
-        enviromentController = FindFirstObjectByType<EnviromentController>();
+        enviromentController = FindFirstObjectByType<EnvironmentController>();
         if (enviromentController == null)
         {
             Debug.Log("EnviromentController not found in the scene.");
@@ -58,12 +56,10 @@ public class CollectibleController : MonoBehaviour
         if (collected == 1)
         {
             gameObject.SetActive(false);
-            Debug.Log($"{itemName} has already been collected.");
         }
         else
         {
             gameObject.SetActive(true);
-            Debug.Log($"{itemName} is available for collection.");
         }
     }
 
@@ -78,12 +74,12 @@ public class CollectibleController : MonoBehaviour
                 return;
             }
             inventoryData.AddItem(item, 1);
+            SoundManager.PlaySound(SoundEffectType.ITEMPICKUP, 1);
             gameObject.SetActive(false);
             PlayerPrefs.SetInt(itemName + "_Collected", 1);
             PlayerPrefs.Save();
-            Debug.Log($"Added {itemName} to inventory.");
 
-            enviromentController.UpdateEnvironment();
+            if (enviromentController != null) enviromentController.UpdateEnvironment();
         }
     }
 }

@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
         playerControls.Dispose();
     }
 
-    public bool setSpeed(float speed)
+    public bool SetSpeed(float speed)
     {
         moveSpeed = speed;
         if (moveSpeed < 0)
@@ -62,6 +62,12 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Start()
+    {
+        InitializePlayerPosition();
+        InitializeCameraFollow();
+    }
+
+    private void InitializePlayerPosition()
     {
         if (GameManager.Instance != null)
         {
@@ -79,8 +85,10 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = defaultSpawnPoint;
         }
+    }
 
-        // Find CinemachineFollow first
+    private void InitializeCameraFollow()
+    {
         cinemachineFollow = FindFirstObjectByType<CinemachineFollow>();
         if (cinemachineFollow == null)
         {
@@ -91,10 +99,8 @@ public class PlayerController : MonoBehaviour
         {
             // IMPORTANT: Store the initial offset AFTER finding the component
             initialCameraOffset = cinemachineFollow.FollowOffset;
-            Debug.Log($"Initial camera offset: {initialCameraOffset}");
         }
     }
-
 
     private void Update()
     {
@@ -136,17 +142,11 @@ public class PlayerController : MonoBehaviour
         // Adjust player sprite facing direction
         mySpriteRenderer.flipX = mousePos.x < playerScreenPoint.x;
 
-        AdjustCameraFollowOffset(mousePos, playerScreenPoint, cameraPanning);
+        if (cinemachineFollow != null) AdjustCameraFollowOffset(mousePos, playerScreenPoint, cameraPanning);
     }
 
     private void AdjustCameraFollowOffset(Vector2 mousePos, Vector2 playerScreenPoint, bool cameraPanning)
     {
-        if (cinemachineFollow == null) 
-        {
-            Debug.LogWarning("CinemachineFollow component is not assigned or found. Camera panning will not work.");
-            return;
-        }
-
         // Apply different behavior based on whether camera panning is enabled
         if (cameraPanning)
         {

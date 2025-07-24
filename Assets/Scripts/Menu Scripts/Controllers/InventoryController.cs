@@ -3,7 +3,6 @@ using Scripts.Menu;
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using NUnit.Framework;
 using System.Collections.Generic;
 using Assets.Scripts.Inventory;
 
@@ -11,56 +10,48 @@ namespace Scripts.Controllers
 {
     public class InventoryController : MonoBehaviour
     {
-        [SerializeField]
-        private MenuPage inventoryUI;
+        [SerializeField] private MenuPage inventoryUI;
+        [SerializeField] private InventorySO inventoryData;
+        [SerializeField] private OptionBar optionBar;
+        [SerializeField] private ItemDatabaseSO itemDatabase;
+        [SerializeField] private CharacterUI characterUI;
+        [SerializeField] private ExitButton exitButton;
+        [SerializeField] private ViewDeckButton viewDeckButton;
+        [SerializeField] private SettingsUI settingsUI;
 
-        [SerializeField]
-        private InventorySO inventoryData;
-
-        [SerializeField]
-        private OptionBar optionBar;
-
-        [SerializeField]
-        private ItemDatabaseSO itemDatabase;
-
-        [SerializeField]
-        private CharacterUI characterUI;
-
-        [SerializeField]
-        private ExitButton exitButton;
-
-        [SerializeField]
-        private ViewDeckButton viewDeckButton;
-
-        [SerializeField]
-        private SettingsUI settingsUI;
-
-        public List<InventoryItem> initialItems = new List<InventoryItem>();
+        public List<InventoryItem> initialItems = new();
 
         private void Start()
         {
             PrepareUI();
             PrepareInventoryData();
             PrepareOptionBar();
-            //InitializeMockData();
         }
 
         private void PrepareOptionBar()
         {
             optionBar.OnInventorySelected += HandleInventoryToggle;
+            optionBar.OnProfileSelected += HandleProfileSelected;
+            optionBar.OnSettingsSelected += HandleSettingsSelected;
+        }
+
+        private void HandleSettingsSelected(int obj)
+        {
+            ShowSettingsUI();
+            SoundManager.PlaySound(SoundEffectType.BUTTONCLICK);
+        }
+
+        private void HandleProfileSelected(int obj)
+        {
+            ShowCharacterUI();
+            SoundManager.PlaySound(SoundEffectType.BUTTONCLICK);
         }
 
         private void HandleInventoryToggle(int obj)
         {
             ShowInventoryUI();
             UpdateAllInventoryUIItems();
-        }
-
-        private void InitializeMockData()
-        {
-            inventoryData.AddItem(itemDatabase.items[0], 1);
-            inventoryData.AddItem(itemDatabase.items[1], 1);
-            inventoryData.AddItem(itemDatabase.items[2], 1);
+            SoundManager.PlaySound(SoundEffectType.BUTTONCLICK);
         }
 
         private void PrepareInventoryData()
@@ -69,8 +60,8 @@ namespace Scripts.Controllers
             inventoryData.OnInventoryChanged += UpdateInventoryUI;
             foreach (InventoryItem item in initialItems)
             {
-                if (item.isEmpty) continue;
-                inventoryData.AddItem(item);
+                if (!item.isEmpty)
+                    inventoryData.AddItem(item);
             }
         }
 
@@ -79,9 +70,7 @@ namespace Scripts.Controllers
             inventoryUI.ResetAllItems();
             foreach (var item in inventoryState)
             {
-                inventoryUI.UpdateData(item.Key,
-                    item.Value.itemData.ItemSprite,
-                    item.Value.quantity);
+                inventoryUI.UpdateData(item.Key, item.Value.itemData.ItemSprite, item.Value.quantity);
             }
         }
 
@@ -104,10 +93,7 @@ namespace Scripts.Controllers
             inventoryUI.ResetSelection();
             InventoryItem inventoryItem = inventoryData.GetItemAt(itemIndex);
             if (inventoryItem.isEmpty) return;
-
-            inventoryUI.CreateDraggedItem(
-                inventoryItem.itemData.ItemSprite,
-                inventoryItem.quantity);
+            inventoryUI.CreateDraggedItem(inventoryItem.itemData.ItemSprite, inventoryItem.quantity);
         }
 
         private void HandleSwapItems(int itemIndex1, int itemIndex2)
@@ -138,43 +124,105 @@ namespace Scripts.Controllers
             return inventoryData.CheckItemByName(itemName);
         }
 
-        public void Update()
+        private void Update()
         {
-            if (Keyboard.current.iKey.wasPressedThisFrame)
+            bool inventoryActive = inventoryUI.gameObject.activeSelf;
+            bool characterActive = characterUI.gameObject.activeSelf;
+            bool settingsActive = settingsUI.gameObject.activeSelf;
+
+            // ESC: open inventory if all closed, close any open menu if any open
+            if (Keyboard.current.escapeKey.wasPressedThisFrame)
             {
-                Debug.Log("I key pressed, toggling inventory UI.");
-                if (inventoryUI.gameObject.activeSelf)
-                {
-                    HideInventoryUI();
-                }
-                else
+                if (!inventoryActive && !characterActive && !settingsActive)
                 {
                     ShowInventoryUI();
                     UpdateAllInventoryUIItems();
                 }
-            }
-        }
-
-        private void UpdateAllInventoryUIItems()
-        {
-            foreach (var item in inventoryData.GetCurrentInventoryState())
-            {
-                if (item.Value.itemData == null || item.Value.itemData.ItemSprite == null)
+                else
                 {
-                    Debug.LogWarning($"Item at key {item.Key} is not properly initialized.");
-                    continue; // Skip this item
+                    HideAllMenus();
                 }
+                return;
+            }
 
-                inventoryUI.UpdateData(item.Key, item.Value.itemData.ItemSprite, item.Value.quantity);
+            // I: toggle inventory, switch from other menus, close inventory
+            if (Keyboard.current.iKey.wasPressedThisFrame)
+            {
+                if (!inventoryActive)
+                {
+                    HideAllMenus();
+                    ShowInventoryUI();
+                    UpdateAllInventoryUIItems();
+                }
+                else
+                {
+                    HideAllMenus();
+                }
+                return;
+            }
+
+            // C: toggle character, switch from other menus, close character
+            if (Keyboard.current.cKey.wasPressedThisFrame)
+            {
+                if (!characterActive)
+                {
+                    HideAllMenus();
+                    ShowCharacterUI();
+                }
+                else
+                {
+                    HideAllMenus();
+                }
+                return;
+            }
+
+            // P: toggle settings, switch from other menus, close settings
+            if (Keyboard.current.pKey.wasPressedThisFrame)
+            {
+                if (!settingsActive)
+                {
+                    HideAllMenus();
+                    ShowSettingsUI();
+                }
+                else
+                {
+                    HideAllMenus();
+                }
+                return;
             }
         }
 
-        private void HideInventoryUI()
+        private void ShowSettingsUI()
+        {
+            settingsUI.Show();
+            optionBar.Show();
+            exitButton.Show();
+            inventoryUI.Hide();
+            characterUI.Hide();
+            viewDeckButton.Hide();
+            SoundManager.PlaySound(SoundEffectType.MENUOPEN);
+        }
+
+        private void ShowCharacterUI()
+        {
+            characterUI.Show();
+            optionBar.Show();
+            exitButton.Show();
+            inventoryUI.Hide();
+            settingsUI.Hide();
+            viewDeckButton.Hide();
+            SoundManager.PlaySound(SoundEffectType.MENUOPEN);
+        }
+
+        private void HideAllMenus()
         {
             inventoryUI.Hide();
             optionBar.Hide();
             exitButton.Hide();
             viewDeckButton.Hide();
+            characterUI.Hide();
+            settingsUI.Hide();
+            SoundManager.PlaySound(SoundEffectType.MENUOPEN);
         }
 
         private void ShowInventoryUI()
@@ -184,6 +232,21 @@ namespace Scripts.Controllers
             characterUI.Hide();
             exitButton.Show();
             settingsUI.Hide();
+            viewDeckButton.Hide();
+            SoundManager.PlaySound(SoundEffectType.MENUOPEN);
+        }
+
+        private void UpdateAllInventoryUIItems()
+        {
+            foreach (var item in inventoryData.GetCurrentInventoryState())
+            {
+                if (item.Value.itemData == null || item.Value.itemData.ItemSprite == null)
+                {
+                    Debug.LogWarning($"Item at key {item.Key} is not properly initialized.");
+                    continue;
+                }
+                inventoryUI.UpdateData(item.Key, item.Value.itemData.ItemSprite, item.Value.quantity);
+            }
         }
     }
 }

@@ -8,15 +8,13 @@ public class MainGate : MonoBehaviour
     private bool playerInRange = false;
     private Collider2D gateCollider;
     private Animator mainGateAnimator;
+    private PlayerController playerController;
 
     [SerializeField]
     private EButton eButton;
 
     [SerializeField]
     private InventorySO inventoryData;
-
-    [SerializeField]
-    private PlayerController playerController;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -40,11 +38,11 @@ public class MainGate : MonoBehaviour
     {
         gateCollider.enabled = false;
         mainGateAnimator.SetBool("OpenGate", true);
-        playerController.setSpeed(0f);
+        playerController.SetSpeed(0f);
         Debug.Log("Opening gate...");
         yield return new WaitForSeconds(2f);
         Debug.Log("Gate opened successfully.");
-        playerController.setSpeed(6f);
+        playerController.SetSpeed(6f);
     }
 
     private void Start()
@@ -66,15 +64,15 @@ public class MainGate : MonoBehaviour
         {
             gateCollider.enabled = false;
             mainGateAnimator.Play("GateStayOpenedAnim", 0, 0f);
-            Debug.Log("Main gate has already been opened.");
             return;
         }
         else
         {
             gateCollider.enabled = true;
             eButton.Hide();
-            Debug.Log("Main gate is available to open.");
         }
+
+        playerController = FindFirstObjectByType<PlayerController>();
     }
 
     private void Update()

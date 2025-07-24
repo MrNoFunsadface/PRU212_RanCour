@@ -15,6 +15,7 @@ public class StartButton : MonoBehaviour
     private IEnumerator ChangeScene()
     {
         PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene("Cutscene0");
     }

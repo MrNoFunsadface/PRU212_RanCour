@@ -109,7 +109,6 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 {
                     HandleReaction(info);
                     DiscardCard();
-                    LogCardDropEvent(info);
                 }
             }
             else
