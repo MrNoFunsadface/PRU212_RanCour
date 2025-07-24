@@ -248,5 +248,21 @@ namespace Scripts.Controllers
                 inventoryUI.UpdateData(item.Key, item.Value.itemData.ItemSprite, item.Value.quantity);
             }
         }
+
+        public void OpenMenu()
+        {
+            SoundManager.PlaySound(SoundEffectType.BUTTONCLICK);
+            if (!inventoryUI.gameObject.activeSelf)
+            {
+                HideAllMenus();
+                ShowInventoryUI();  
+                UpdateAllInventoryUIItems();
+            }
+            else
+            {
+                HideAllMenus();
+            }
+            return;
+        }
     }
 }

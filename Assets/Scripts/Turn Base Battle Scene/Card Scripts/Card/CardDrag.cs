@@ -61,6 +61,7 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     #region Drag Events Handlers
     public void OnBeginDrag(PointerEventData eventData)
     {
+        SoundManager.PlaySound(SoundEffectType.CARDSELECTION);
         canvasGroup.blocksRaycasts = false;
         cardSpawner.OnCardBeginDrag(rectTransform);
         lastCardPosition = rectTransform.anchoredPosition;
@@ -100,6 +101,7 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         else
         {
             // If the card is dropped in a drop zone
+            SoundManager.PlaySound(SoundEffectType.CARDAPPLICATION);
             if (eventData.pointerEnter.TryGetComponent<DropZoneScript>(out var info))
             {
                 Debug.Log($"[CardDrag] Dropped {card.cardName} on {info.enemyName} at order {info.enemyOrder}");
@@ -108,7 +110,8 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 if (UpdateCost(-cost))
                 {
                     HandleReaction(info);
-                    DiscardCard();
+                    // Start the animation and wait for it to complete before discarding
+                    StartCoroutine(PlayAnimationAndDiscard(info));
                 }
             }
             else
@@ -158,6 +161,13 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         }
     }
 
+    private void HideCard()
+    {
+        // Hide the card by setting its alpha to 0
+        canvasGroup.alpha = 0f;
+        canvasGroup.blocksRaycasts = false;
+    }
+
     private void DiscardCard()
     {
         foreach (var dropZone in Object.FindObjectsByType<DropZoneScript>(FindObjectsInactive.Exclude, FindObjectsSortMode.None))
@@ -169,6 +179,42 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         Deck.Instance.DiscardCard(card);
         Destroy(rectTransform.gameObject);
         return;
+    }
+
+    private IEnumerator PlayAnimation(DropZoneScript info)
+    {
+        var targetEnemy = info.GetComponentInParent<EnemyStatus>();
+        var playerGO = GameObject.FindWithTag("Player");
+        var playerStatsSO = playerGO.GetComponent<CharacterStats>().stats;
+        var playerAnimator = playerGO.GetComponent<Animator>();
+
+        var enemyStats = targetEnemy.GetComponent<CharacterStats>().stats;
+
+        // Play the attack animation on the player
+        playerAnimator.Play(playerStatsSO.attackAnimationName);
+        yield return new WaitForSeconds(0.25f);
+
+        // Play the hurt animation on the enemy
+        SoundManager.PlaySound(SoundEffectType.DAMAGETAKING);
+        info.enemyAnimator.Play(enemyStats.hurtAnimationName);
+        yield return new WaitForSeconds(0.5f);
+
+        // Play idle animation on the player
+        playerAnimator.Play(playerStatsSO.idleAnimationName);
+        info.enemyAnimator.Play(enemyStats.idleAnimationName, 0, 0f);
+    }
+
+    // New method that plays the animation and then discards the card
+    private IEnumerator PlayAnimationAndDiscard(DropZoneScript info)
+    {
+        // Temporarily hide the card to prevent visual glitches during the animation
+        HideCard();
+
+        // Wait for the animation to complete
+        yield return StartCoroutine(PlayAnimation(info));
+
+        // Now discard the card after the animation is done
+        DiscardCard();
     }
 
     private void HandleReaction(DropZoneScript info)

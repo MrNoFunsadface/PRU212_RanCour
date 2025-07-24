@@ -14,12 +14,16 @@ public enum SoundEffectType
     DAMAGETAKING,
     BUTTONCLICK,
     MENUOPEN,
+    ENDTURN,
+    KNIGHTATTACK,
 }
 
 public enum SoundTrackList
 {
     SCENE0,
     SCENE1,
+    SCENE2,
+    SCENE3,
     BATTLENORMAL,
     KNIGHTBOSSBATTLE
 }
@@ -59,7 +63,6 @@ public class SoundManager : MonoBehaviour
         }
 
         instance = this;
-        DontDestroyOnLoad(gameObject);
 
         musicSource = GetComponent<AudioSource>();
         if (musicSource == null)

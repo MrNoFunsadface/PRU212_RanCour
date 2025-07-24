@@ -11,4 +11,6 @@ public class DropZoneScript : MonoBehaviour
     public int enemyOrder;
     public GameObject healthBar;
     public GameObject activeHealthBar;
+    public Animator enemyAnimator;
+    public SoundEffectType attackSoundType;
 }

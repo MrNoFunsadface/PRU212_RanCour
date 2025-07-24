@@ -148,9 +148,15 @@ MonoBehaviour:
     - {fileID: 8300000, guid: be0d912cd8853b74387fecd492625a6d, type: 3}
     - {fileID: 8300000, guid: 2c7980402fee9df48bc1e8b133302f08, type: 3}
   - SoundName: BATATTACK
-    sounds: []
+    sounds:
+    - {fileID: 8300000, guid: 56440b35afd4a5448bd08260bc046125, type: 3}
+    - {fileID: 8300000, guid: 9f69fab72422b01429bb27ae975b44f2, type: 3}
+    - {fileID: 8300000, guid: 18741c404a3767e488de848f9f9c44e8, type: 3}
   - SoundName: SLIMEATTACK
-    sounds: []
+    sounds:
+    - {fileID: 8300000, guid: de66353ab2181df4f941f5961414101e, type: 3}
+    - {fileID: 8300000, guid: 7f375d9214c3ec648bba669fd41bc292, type: 3}
+    - {fileID: 8300000, guid: 1d80b5e24b7883e43bb68286f84d9d89, type: 3}
   - SoundName: DOORINTERACTION
     sounds:
     - {fileID: 8300000, guid: 84ad9a5bff2e88f4c903f8016cbb9749, type: 3}
@@ -177,11 +183,25 @@ MonoBehaviour:
   - SoundName: MENUOPEN
     sounds:
     - {fileID: 8300000, guid: ab73d6921b0516e4fabc76a951ae4450, type: 3}
+  - SoundName: ENDTURN
+    sounds:
+    - {fileID: 8300000, guid: f639ee216eba6d346ba3ba9a7a55fed4, type: 3}
+  - SoundName: KNIGHTATTACK
+    sounds:
+    - {fileID: 8300000, guid: 15229c05a951c2b4fad874897f3ee7b4, type: 3}
+    - {fileID: 8300000, guid: 2687bceffadf34643be5196b2f10d85e, type: 3}
+    - {fileID: 8300000, guid: 5f840a07b5722d0408055ce8c84a5bb1, type: 3}
+    - {fileID: 8300000, guid: 947c5ea7fb1575c41b05fa58e9aa1ee8, type: 3}
+    - {fileID: 8300000, guid: d55e639a3d0be5f408ffd341b1c9af20, type: 3}
   soundTracks:
   - SoundTrackName: SCENE0
     soundTracks: {fileID: 8300000, guid: 68d7e2b701e977e4f9d3a5037295d417, type: 3}
   - SoundTrackName: SCENE1
     soundTracks: {fileID: 8300000, guid: fd12c2a3ab9fa97498992a36ce873323, type: 3}
+  - SoundTrackName: SCENE2
+    soundTracks: {fileID: 8300000, guid: 5a0a45a7d5c1c184f8a65071a07eefaf, type: 3}
+  - SoundTrackName: SCENE3
+    soundTracks: {fileID: 8300000, guid: c9605818a1a353248b88fa1e50563935, type: 3}
   - SoundTrackName: BATTLENORMAL
     soundTracks: {fileID: 8300000, guid: 5c292601f799df84f8e8918afab2b684, type: 3}
   - SoundTrackName: KNIGHTBOSSBATTLE
