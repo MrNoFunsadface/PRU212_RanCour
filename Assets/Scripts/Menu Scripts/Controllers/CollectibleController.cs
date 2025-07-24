@@ -38,11 +38,6 @@ public class CollectibleController : MonoBehaviour
 
     void Start()
     {
-        if (EnvironmentController.Instance == null)
-        {
-            Debug.Log("[CollectibleController] EnviromentController not found in the scene.");
-        }
-
         eButton = FindFirstObjectByType<EButton>();
         if (eButton == null)
         {
