@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Playables;
 
 //
 // Summary:
@@ -14,12 +16,15 @@ public class RoamingEnemyController : MonoBehaviour
     private float iFrameTimer = 0f;
     private bool canCollide = false;
 
+    private PlayableDirector TransitionDirector;
+
     public Vector2 enemyReturnPosition; // Position to return to after the battle
 
     private void Start()
     {
         iFrameTimer = 0f;
         canCollide = false;
+        TransitionDirector = FindFirstObjectByType<PlayableDirector>();
     }
 
     private void Update()
@@ -49,9 +54,27 @@ public class RoamingEnemyController : MonoBehaviour
 
             // Save waveId to a static or persistent object for the battle scene
             BattleTransitionData.SelectedWaveId = waveId;
-            // Load battle scene (implement your own scene loading)
-            UnityEngine.SceneManagement.SceneManager.LoadScene("BattleScene");
+
+            // Play transition effect and load the battle scene
+            StartCoroutine(TransitionToScene("BattleScene")); // Replace "BattleScene" with your actual battle scene name
         }
+    }
+
+    IEnumerator TransitionToScene(string sceneName)
+    {
+        // Play transition effect if available
+        if (TransitionDirector != null)
+        {
+            TransitionDirector.Play();
+        }
+        else
+        {
+            Debug.LogWarning("[RoamingEnemyController] TransitionDirector is not assigned. Using default scene load.");
+        }
+        // Wait for the transition to complete
+        yield return new WaitForSeconds(0.7f);
+        // Load the battle scene
+        UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
     }
 
     // Call this when the wave is defeated

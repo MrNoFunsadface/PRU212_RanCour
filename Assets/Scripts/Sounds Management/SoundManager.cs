@@ -28,14 +28,23 @@ public enum SoundTrackList
 [RequireComponent(typeof(AudioSource)), ExecuteInEditMode]
 public class SoundManager : MonoBehaviour
 {
+    private static SoundManager Instance;
+
     [SerializeField] private SoundList[] soundList;
     [SerializeField] private SoundTrack[] soundTracks;
-    private static SoundManager instance;
+    
     private AudioSource audioSource;
 
     private void Awake()
     {
-        instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
         {
@@ -45,19 +54,19 @@ public class SoundManager : MonoBehaviour
 
     public static void PlaySound(SoundEffectType sound, float volume = 1)
     {
-        AudioClip[] clips = instance.soundList[(int)sound].Sounds;
+        AudioClip[] clips = Instance.soundList[(int)sound].Sounds;
         AudioClip randomClip = clips[UnityEngine.Random.Range(0, clips.Length)];
-        instance.audioSource.PlayOneShot(randomClip, volume);
+        Instance.audioSource.PlayOneShot(randomClip, volume);
     }
 
     public static void PlaySoundTrack(SoundTrackList soundTrack, float volume = 1)
     {
-        AudioClip track = instance.soundTracks[(int)soundTrack].Sounds;
+        AudioClip track = Instance.soundTracks[(int)soundTrack].Sounds;
         if (track != null)
         {
-            instance.audioSource.clip = track;
-            instance.audioSource.loop = true;
-            instance.audioSource.Play();
+            Instance.audioSource.clip = track;
+            Instance.audioSource.loop = true;
+            Instance.audioSource.Play();
         }
         else
         {
