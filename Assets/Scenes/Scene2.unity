@@ -234,11 +234,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5768993657653957229, guid: e26745721a3da5640b8b9d11fa4f0b72, type: 3}
       propertyPath: targetSceneName
-      value: Scene3
+      value: Cutscene1
       objectReference: {fileID: 0}
     - target: {fileID: 5768993657653957229, guid: e26745721a3da5640b8b9d11fa4f0b72, type: 3}
       propertyPath: targetSpawnPointId
-      value: Scene3
+      value: Cutscene1
       objectReference: {fileID: 0}
     - target: {fileID: 8628346907415702026, guid: e26745721a3da5640b8b9d11fa4f0b72, type: 3}
       propertyPath: m_SortingOrder

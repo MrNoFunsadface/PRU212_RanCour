@@ -1,0 +1,393 @@
+fileFormatVersion: 2
+guid: 69220ceda1c81a54bbae5c9566793b9d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4312705583518574545
+    second: Warrior-SwitchWeapon_0
+  - first:
+      213: 2329873988220352202
+    second: Warrior-SwitchWeapon_1
+  - first:
+      213: -3978262305457348584
+    second: Warrior-SwitchWeapon_2
+  - first:
+      213: 4074289388546638820
+    second: Warrior-SwitchWeapon_3
+  - first:
+      213: -7488215678090288349
+    second: Warrior-SwitchWeapon_4
+  - first:
+      213: -2733167556751685198
+    second: Warrior-SwitchWeapon_5
+  - first:
+      213: 7772006346226169916
+    second: Warrior-SwitchWeapon_6
+  - first:
+      213: -2893905161346624690
+    second: Warrior-SwitchWeapon_7
+  - first:
+      213: -4296105869976513536
+    second: Warrior-SwitchWeapon_8
+  - first:
+      213: 1319167001163010556
+    second: Warrior-SwitchWeapon_9
+  - first:
+      213: 8028028296081469022
+    second: Warrior-SwitchWeapon_10
+  - first:
+      213: -7909506482579852073
+    second: Warrior-SwitchWeapon_11
+  - first:
+      213: 9176507462872964297
+    second: Warrior-SwitchWeapon_12
+  - first:
+      213: 7004236640410598121
+    second: Warrior-SwitchWeapon_13
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 24
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Warrior-SwitchWeapon_0
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 17
+        width: 59
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2818891f113624c0800000000000000
+      internalID: -4312705583518574545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior-SwitchWeapon_1
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 17
+        width: 57
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac6fb4f4c00655020800000000000000
+      internalID: 2329873988220352202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior-SwitchWeapon_4
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 17
+        width: 79
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 323eae9d383841890800000000000000
+      internalID: -7488215678090288349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior-SwitchWeapon_5
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 17
+        width: 56
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b9813c8696d11ad0800000000000000
+      internalID: -2733167556751685198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior-SwitchWeapon_7
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 17
+        width: 65
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e43d34c9698c6d7d0800000000000000
+      internalID: -2893905161346624690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior-SwitchWeapon_9
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 17
+        width: 74
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf11db7f56f9e4210800000000000000
+      internalID: 1319167001163010556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior-SwitchWeapon_10
+      rect:
+        serializedVersion: 2
+        x: 789
+        y: 17
+        width: 71
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5e68b27339496f60800000000000000
+      internalID: 8028028296081469022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior-SwitchWeapon_11
+      rect:
+        serializedVersion: 2
+        x: 919
+        y: 17
+        width: 69
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d4bd2da2c9cb3290800000000000000
+      internalID: -7909506482579852073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior-SwitchWeapon_12
+      rect:
+        serializedVersion: 2
+        x: 1053
+        y: 17
+        width: 61
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9cc93431be0895f70800000000000000
+      internalID: 9176507462872964297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior-SwitchWeapon_13
+      rect:
+        serializedVersion: 2
+        x: 1177
+        y: 17
+        width: 65
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9eaf27a4d1c043160800000000000000
+      internalID: 7004236640410598121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 6cff8a76c81e93a4abd3f745e3208175
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Warrior-SwitchWeapon_0: -4312705583518574545
+      Warrior-SwitchWeapon_1: 2329873988220352202
+      Warrior-SwitchWeapon_10: 8028028296081469022
+      Warrior-SwitchWeapon_11: -7909506482579852073
+      Warrior-SwitchWeapon_12: 9176507462872964297
+      Warrior-SwitchWeapon_13: 7004236640410598121
+      Warrior-SwitchWeapon_2: -3978262305457348584
+      Warrior-SwitchWeapon_3: 4074289388546638820
+      Warrior-SwitchWeapon_4: -7488215678090288349
+      Warrior-SwitchWeapon_5: -2733167556751685198
+      Warrior-SwitchWeapon_6: 7772006346226169916
+      Warrior-SwitchWeapon_7: -2893905161346624690
+      Warrior-SwitchWeapon_8: -4296105869976513536
+      Warrior-SwitchWeapon_9: 1319167001163010556
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
