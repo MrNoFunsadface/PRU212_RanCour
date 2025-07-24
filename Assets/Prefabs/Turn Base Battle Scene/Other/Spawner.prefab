@@ -54,8 +54,8 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 6
-  m_Spacing: 0
+  m_ChildAlignment: 7
+  m_Spacing: 125
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -75,6 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2c7115db5ce7964896f99a58ddc93a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterStatsDebugMode: 0
   spawner: {fileID: 5036788945508279888}
   dropZonePrefab: {fileID: 2538173634927005814, guid: 4cb14acfa4eaceb49974797e79e540d5, type: 3}
   healthBar: {fileID: 2137456175057537601, guid: 37e935db6ba5afb43972d740c977eff6, type: 3}
@@ -82,17 +83,9 @@ MonoBehaviour:
   enemyTable:
   - enemy: {fileID: 11400000, guid: c93941da899de9c4f9ce4af5ee1bba6d, type: 2}
     cost: 0
-    baseHealth: 0
   - enemy: {fileID: 11400000, guid: 0db526ca75469a64b8c0d3df073a510a, type: 2}
     cost: 0
-    baseHealth: 0
-  enemyToSpawn:
-  - enemy: {fileID: 11400000, guid: c93941da899de9c4f9ce4af5ee1bba6d, type: 2}
-    cost: 0
-    baseHealth: 0
-  - enemy: {fileID: 11400000, guid: 0db526ca75469a64b8c0d3df073a510a, type: 2}
-    cost: 0
-    baseHealth: 0
+  fallBackEnemyToSpawnList: []
   representativeEnemy: {fileID: 11400000, guid: 0db526ca75469a64b8c0d3df073a510a, type: 2}
   minEnemyCount: 0
   maxEnemyCount: 0
