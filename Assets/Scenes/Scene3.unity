@@ -338,10 +338,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1881230977651037318, guid: 07324572f4bfb9b418833c7d4d46849c, type: 3}
-      insertIndex: 2
-      addedObject: {fileID: 1837950872}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07324572f4bfb9b418833c7d4d46849c, type: 3}
 --- !u!1 &217696922
 GameObject:
@@ -1002,7 +999,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 3.125}
+    oldSize: {x: 0.875, y: 3}
     newSize: {x: 1, y: 3.125}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1024,6 +1021,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetSceneName: DemoEnd
   targetSpawnPointId: DemoEnd
+  requiresMasterKey: 0
+  startAnimationTime: 1
+  startTrigger: 
 --- !u!212 &1318414748
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1549,23 +1549,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!1 &1837950866 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1881230977651037318, guid: 07324572f4bfb9b418833c7d4d46849c, type: 3}
-  m_PrefabInstance: {fileID: 125016027}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1837950872
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1837950866}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e99767dfb7c787c4b88ab59aeba951b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1868232755
 GameObject:
   m_ObjectHideFlags: 0
@@ -1841,7 +1824,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 3.125}
+    oldSize: {x: 0.875, y: 3}
     newSize: {x: 1, y: 3.125}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1863,6 +1846,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetSceneName: Scene2
   targetSpawnPointId: Scene2.1
+  requiresMasterKey: 0
+  startAnimationTime: 1
+  startTrigger: 
 --- !u!212 &2119108698
 SpriteRenderer:
   m_ObjectHideFlags: 0
