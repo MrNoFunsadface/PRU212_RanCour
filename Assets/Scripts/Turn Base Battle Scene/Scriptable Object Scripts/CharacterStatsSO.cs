@@ -20,4 +20,12 @@ public class CharacterStatsSO : ScriptableObject
     [Header("Character Prefabs")]
     public GameObject charPrefab;
     public GameObject freeRoamingPrefab;
+
+    [Header("Animator")]
+    public RuntimeAnimatorController animatorController;
+
+    [Header("Animation Clip References")]
+    public string idleAnimationName = "idle";
+    public string attackAnimationName = "attack";
+    public string hurtAnimationName = "hurt";
 }
