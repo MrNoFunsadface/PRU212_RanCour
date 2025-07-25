@@ -63,7 +63,9 @@ public class SoundManager : MonoBehaviour
             return;
         }
 
+
         instance = this;
+        DontDestroyOnLoad(gameObject);
 
         musicSource = GetComponent<AudioSource>();
         if (musicSource == null)
