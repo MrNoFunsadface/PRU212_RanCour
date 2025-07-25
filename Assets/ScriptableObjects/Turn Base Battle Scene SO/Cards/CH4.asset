@@ -18,7 +18,7 @@ MonoBehaviour:
   cost: 2
   category: 1
   formula: CH4
-  elementType: 0
+  elementType: 22
   elementDuration: 3
   isStackable: 1
   damageOnApplyOnly: 1

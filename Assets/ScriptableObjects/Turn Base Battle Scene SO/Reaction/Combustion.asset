@@ -16,7 +16,7 @@ MonoBehaviour:
   equation: "C + O\u2082 \u2192 CO\u2082 + H\u2082O\r"
   inputElements: 0300000002000000
   damageType: 2
-  damage: 100
+  damage: 50
   statusEffect: 1
   statusAmount: 5
   ignoreArmor: 0

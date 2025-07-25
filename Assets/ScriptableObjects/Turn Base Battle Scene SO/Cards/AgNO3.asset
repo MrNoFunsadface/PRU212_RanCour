@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aba6cca522ac8141be735ec7cb016a1, type: 3}
   m_Name: AgNO3
   m_EditorClassIdentifier: 
-  cardName: AgNO<sub>3</sub>
+  cardName: AgNO3
   description: Silver nitrate, used in precipitation
   artwork: {fileID: 0}
   cost: 3
   category: 1
   formula: AgNO3
-  elementType: 0
+  elementType: 20
   elementDuration: 3
   isStackable: 1
   damageOnApplyOnly: 1

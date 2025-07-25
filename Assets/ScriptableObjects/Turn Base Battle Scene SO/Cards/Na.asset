@@ -17,7 +17,7 @@ MonoBehaviour:
   artwork: {fileID: 2800000, guid: 4f3375d80ed9af745b2e733717447891, type: 3}
   cost: 2
   category: 0
-  formula: 
+  formula: Na
   elementType: 4
   elementDuration: 3
   isStackable: 1

@@ -18,7 +18,7 @@ MonoBehaviour:
   cost: 2
   category: 1
   formula: HCl
-  elementType: 0
+  elementType: 9
   elementDuration: 0
   isStackable: 1
   damageOnApplyOnly: 1

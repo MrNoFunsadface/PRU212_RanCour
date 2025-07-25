@@ -16,9 +16,9 @@ MonoBehaviour:
   description: Copper(II) sulfate, blue crystal
   artwork: {fileID: 0}
   cost: 0
-  category: 0
+  category: 1
   formula: CuSO4
-  elementType: 0
+  elementType: 17
   elementDuration: 3
   isStackable: 1
   damageOnApplyOnly: 1
