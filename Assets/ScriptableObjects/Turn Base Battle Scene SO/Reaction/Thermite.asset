@@ -16,7 +16,7 @@ MonoBehaviour:
   equation: "Fe\u2082O\u2083 + 2 Al \u2192 2 Fe + Al\u2082O\u2083"
   inputElements: 1200000007000000
   damageType: 0
-  damage: 45
+  damage: 80
   statusEffect: 0
   statusAmount: 0
   ignoreArmor: 1

@@ -697,8 +697,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Rancour
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4e64c35acee306a4c950494b5d6cf451, type: 2}
-  m_sharedMaterial: {fileID: -1168380995207719496, guid: 4e64c35acee306a4c950494b5d6cf451, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6fe38d5781868764eb56d6defb6fd9d8, type: 2}
+  m_sharedMaterial: {fileID: -1168380995207719496, guid: 6fe38d5781868764eb56d6defb6fd9d8, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1268,6 +1268,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1785625984819485246, guid: 079176466af4cd84c912e4c8e21958bb, type: 3}
+      propertyPath: soundTrack
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1785625984819485246, guid: 079176466af4cd84c912e4c8e21958bb, type: 3}
       propertyPath: soundTrackList
       value: 6
       objectReference: {fileID: 0}
@@ -1277,15 +1281,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7134605435900478129, guid: 079176466af4cd84c912e4c8e21958bb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1254.7073
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7134605435900478129, guid: 079176466af4cd84c912e4c8e21958bb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 276.09125
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7134605435900478129, guid: 079176466af4cd84c912e4c8e21958bb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.94632494
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7134605435900478129, guid: 079176466af4cd84c912e4c8e21958bb, type: 3}
       propertyPath: m_LocalRotation.w

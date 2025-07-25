@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
 
     public string fromSceneName = ""; // Name of the scene we are returning from, used for custom spawn points
 
+    public SoundTrackList soundTrack; // Sound track for the roaming enemies
+
     private void Awake()
     {
         if (Instance == null)

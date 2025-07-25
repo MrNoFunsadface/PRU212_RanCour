@@ -19,6 +19,9 @@ public class RoamingEnemySpawner : MonoBehaviour
     [SerializeField] private int dungeonBaseLevel = 1; // Base level for the dungeon (maybe used for later)
     [SerializeField] private int waveValue = 10; // Total value of the wave
 
+    [Header("Sound Track")]
+    [SerializeField] private SoundTrackList soundTrack; // Sound track for the roaming enemies
+
     private Vector2 enemyReturnPosition;
 
     private void Start()
@@ -37,6 +40,7 @@ public class RoamingEnemySpawner : MonoBehaviour
             return;
         }
         GameManager.Instance.fromSceneName = fromSceneName; // Store the scene name for returning
+        GameManager.Instance.soundTrack = soundTrack; // Set the sound track for the roaming enemies
 
         Debug.Log($"GameManager.Instance: {GameManager.Instance}");
         Debug.Log($"GameManager.Instance.isEnemyReturningFromBattle: {GameManager.Instance.isEnemyReturningFromBattle}");

@@ -458,6 +458,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1785625984819485246, guid: 079176466af4cd84c912e4c8e21958bb, type: 3}
+      propertyPath: soundTrack
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1785625984819485246, guid: 079176466af4cd84c912e4c8e21958bb, type: 3}
       propertyPath: soundTrackList
       value: 5
       objectReference: {fileID: 0}
@@ -467,15 +471,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7134605435900478129, guid: 079176466af4cd84c912e4c8e21958bb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1254.7073
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7134605435900478129, guid: 079176466af4cd84c912e4c8e21958bb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 276.09125
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7134605435900478129, guid: 079176466af4cd84c912e4c8e21958bb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.94632494
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7134605435900478129, guid: 079176466af4cd84c912e4c8e21958bb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -679,7 +683,7 @@ Transform:
   m_GameObject: {fileID: 406303837}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.9408126, y: 0.82, z: 0}
+  m_LocalPosition: {x: 4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

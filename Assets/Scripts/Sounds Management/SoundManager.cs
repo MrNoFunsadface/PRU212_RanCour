@@ -27,6 +27,7 @@ public enum SoundTrackList
     BATTLENORMAL,
     KNIGHTBOSSBATTLE,
     MAINMENU,
+    SILENCE,
 }
 
 [RequireComponent(typeof(AudioSource)), ExecuteInEditMode]

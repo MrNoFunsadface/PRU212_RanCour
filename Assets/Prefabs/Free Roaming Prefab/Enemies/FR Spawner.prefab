@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnerId: 
+  fromSceneName: 
   enemyTable:
   - enemy: {fileID: 11400000, guid: 0db526ca75469a64b8c0d3df073a510a, type: 2}
     cost: 1
@@ -58,3 +59,4 @@ MonoBehaviour:
   maxEnemyCount: 2
   dungeonBaseLevel: 1
   waveValue: 10
+  soundTrack: 4
