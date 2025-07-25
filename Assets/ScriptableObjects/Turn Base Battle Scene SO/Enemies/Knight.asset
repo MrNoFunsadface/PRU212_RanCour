@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Knight
   m_EditorClassIdentifier: 
   characterName: Knight
-  maxHealth: 1000
-  attack: 40
+  maxHealth: 400
+  attack: 30
   defense: 7
   attackSpeed: 1
   primaryDamageType: 4
