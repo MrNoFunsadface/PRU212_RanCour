@@ -93,5 +93,6 @@ public class BattleSceneEnemySpawner : MonoBehaviour
         dropZoneScript.activeHealthBar = activeHealthBarObject;
         dropZoneScript.healthBar = healthBarObject;
         dropZoneScript.enemyAnimator = enemyAnimator;
+        dropZoneScript.attackSoundType = enemy.attackSoundType;
     }
 }

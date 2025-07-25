@@ -27,12 +27,17 @@ public class EnemyAICombat : MonoBehaviour
     public IEnumerator PerformAction(EnemyStatus enemy)
     {
         var statsMono = enemy.GetComponent<CharacterStats>();
+        var dropZone = enemy.GetComponentInChildren<DropZoneScript>();
+        var playerGO = GameObject.FindWithTag("Player");
+        var playerAnimator = playerGO.GetComponentInChildren<Animator>();
+        var playerStats = playerGO.GetComponent<CharacterStats>();
 
         // 1. Play Animation
-        var dropZone = enemy.GetComponentInChildren<DropZoneScript>();
+
         if (dropZone != null && dropZone.enemyAnimator != null)
         {
             dropZone.enemyAnimator.Play(statsMono.stats.attackAnimationName);
+            SoundManager.PlaySound(dropZone.attackSoundType);
         }
         else
         {
@@ -43,7 +48,6 @@ public class EnemyAICombat : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
 
         // 3. Take attacker's stats
-        
         if (statsMono == null || statsMono.stats == null)
         {
             Debug.LogError($"[EnemyAICombat] {enemy.name} missing CharacterStats!");
@@ -53,8 +57,8 @@ public class EnemyAICombat : MonoBehaviour
         string enemyName = statsMono.stats.characterName;
         int dmg = statsMono.stats.attack;
 
-        // 4. Deal damage
-        var playerGO = GameObject.FindWithTag("Player");
+        // 4. Deal damage and play sound and animation
+        SoundManager.PlaySound(SoundEffectType.DAMAGETAKING);
         CombatSystem.Instance.DealDamage(
             playerGO,
             statsMono.stats.primaryDamageType,
@@ -62,24 +66,15 @@ public class EnemyAICombat : MonoBehaviour
             false
         );
 
-        if (playerGO.TryGetComponent<Animator>(out var playerAnimator))
-        {
-            playerAnimator.Play(statsMono.stats.hurtAnimationName);
-            yield return new WaitForSeconds(0.6f);
-            playerAnimator.Play(statsMono.stats.idleAnimationName, 0, 0f);
-            dropZone.enemyAnimator.Play(statsMono.stats.idleAnimationName, 0, 0f);
-        }
-        else
-        {
-            Debug.LogWarning($"[EnemyAICombat] Player Animator not found for {enemyName} attack animation.");
-        }
+        if (playerAnimator != null) playerAnimator.Play(statsMono.stats.hurtAnimationName);
+        yield return new WaitForSeconds(0.6f);
+        if (playerAnimator != null) playerAnimator.Play(statsMono.stats.idleAnimationName, 0, 0f);
+        dropZone.enemyAnimator.Play(statsMono.stats.idleAnimationName, 0, 0f);
 
         // 5. Take hero’s remaining HP
-        var playerStats = playerGO.GetComponent<CharacterStats>();
         if (debugMode) Debug.Log($"[EnemyAICombat] playerStats: {playerStats}, player current health: {playerStats.CurrentHealth}");
         int remainingHP = playerStats != null ? playerStats.CurrentHealth : 0;
         if (debugMode) Debug.Log($"[EnemyAICombat] {enemyName} attacked Hero for {dmg} damage. Hero has {remainingHP} HP left.");
-
 
         // 6. Small cooldown before next enemy
         yield return new WaitForSeconds(0.5f);

@@ -55,6 +55,7 @@ public class CharacterStats : MonoBehaviour
             if (debugMode) Debug.Log("[CharacterStats] Health bar found, initializing");
             healthBar.Initialize(currentHealth, stats.maxHealth);
         }
+
         if (activeHealthBar != null)
         {
             if (debugMode) Debug.Log("[CharacterStats] Active health bar found, initializing");
