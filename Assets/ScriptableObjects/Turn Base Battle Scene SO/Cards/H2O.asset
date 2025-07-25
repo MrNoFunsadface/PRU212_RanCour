@@ -17,8 +17,8 @@ MonoBehaviour:
   artwork: {fileID: 0}
   cost: 1
   category: 0
-  formula: 
-  elementType: 0
+  formula: H2O
+  elementType: 12
   elementDuration: 3
   isStackable: 1
   damageOnApplyOnly: 1

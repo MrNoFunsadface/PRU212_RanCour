@@ -17,8 +17,8 @@ MonoBehaviour:
   artwork: {fileID: 0}
   cost: 0
   category: 0
-  formula: 
-  elementType: 0
+  formula: CO2
+  elementType: 13
   elementDuration: 3
   isStackable: 1
   damageOnApplyOnly: 1

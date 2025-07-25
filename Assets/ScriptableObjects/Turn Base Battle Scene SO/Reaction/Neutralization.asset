@@ -17,6 +17,6 @@ MonoBehaviour:
   inputElements: 090000000a000000
   damageType: 1
   damage: 50
-  statusEffect: 4
+  statusEffect: 0
   statusAmount: 20
   ignoreArmor: 0
