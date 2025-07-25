@@ -37,6 +37,7 @@ public class EnemyAICombat : MonoBehaviour
         if (dropZone != null && dropZone.enemyAnimator != null)
         {
             dropZone.enemyAnimator.Play(statsMono.stats.attackAnimationName);
+            SoundManager.PlaySound(dropZone.attackSoundType);
         }
         else
         {

@@ -5816,6 +5816,7 @@ GameObject:
   - component: {fileID: 1962145397}
   - component: {fileID: 1962145396}
   - component: {fileID: 1962145395}
+  - component: {fileID: 1962145400}
   m_Layer: 0
   m_Name: Prison Door
   m_TagString: Untagged
@@ -5991,6 +5992,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1962145400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962145393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8655d595867504c9d1c118e3ea24f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1969684165
 GameObject:
   m_ObjectHideFlags: 0
@@ -6170,6 +6183,7 @@ GameObject:
   - component: {fileID: 2007660157}
   - component: {fileID: 2007660160}
   - component: {fileID: 2007660156}
+  - component: {fileID: 2007660161}
   m_Layer: 0
   m_Name: Lea's Prison Door
   m_TagString: Untagged
@@ -6345,6 +6359,18 @@ MonoBehaviour:
   monologueData: {fileID: 11400000, guid: 93f30cfa891f0bd4c8ac6f94d054a1aa, type: 2}
   interactPrompt: {fileID: 1225469938}
   eButton: {fileID: 1225469941}
+--- !u!114 &2007660161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007660154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8655d595867504c9d1c118e3ea24f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2020724078
 GameObject:
   m_ObjectHideFlags: 0

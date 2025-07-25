@@ -28,4 +28,7 @@ public class CharacterStatsSO : ScriptableObject
     public string idleAnimationName = "idle";
     public string attackAnimationName = "attack";
     public string hurtAnimationName = "hurt";
+
+    [Header("Sound Types")]
+    public SoundEffectType attackSoundType;
 }

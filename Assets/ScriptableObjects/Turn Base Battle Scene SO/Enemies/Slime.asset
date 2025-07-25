@@ -25,3 +25,4 @@ MonoBehaviour:
   idleAnimationName: idle
   attackAnimationName: attack
   hurtAnimationName: hurt
+  attackSoundType: 2

@@ -14,14 +14,19 @@ public enum SoundEffectType
     DAMAGETAKING,
     BUTTONCLICK,
     MENUOPEN,
+    ENDTURN,
+    KNIGHTATTACK,
 }
 
 public enum SoundTrackList
 {
     SCENE0,
     SCENE1,
+    SCENE2,
+    SCENE3,
     BATTLENORMAL,
-    KNIGHTBOSSBATTLE
+    KNIGHTBOSSBATTLE,
+    MAINMENU,
 }
 
 [RequireComponent(typeof(AudioSource)), ExecuteInEditMode]
