@@ -6,7 +6,7 @@ public class ReturnToMenuButton : MonoBehaviour
 {
     public void OnButtonClick()
     {
-        SoundManager.PlaySound(SoundEffectType.BUTTONCLICK);
+        SoundManager.Instance.PlaySound(SoundEffectType.BUTTONCLICK);
         // Load the main menu scene
         SceneManager.LoadScene("Main Menu");
     }

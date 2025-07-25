@@ -38,20 +38,20 @@ namespace Scripts.Controllers
         private void HandleSettingsSelected(int obj)
         {
             ShowSettingsUI();
-            SoundManager.PlaySound(SoundEffectType.BUTTONCLICK);
+            SoundManager.Instance.PlaySound(SoundEffectType.BUTTONCLICK);
         }
 
         private void HandleProfileSelected(int obj)
         {
             ShowCharacterUI();
-            SoundManager.PlaySound(SoundEffectType.BUTTONCLICK);
+            SoundManager.Instance.PlaySound(SoundEffectType.BUTTONCLICK);
         }
 
         private void HandleInventoryToggle(int obj)
         {
             ShowInventoryUI();
             UpdateAllInventoryUIItems();
-            SoundManager.PlaySound(SoundEffectType.BUTTONCLICK);
+            SoundManager.Instance.PlaySound(SoundEffectType.BUTTONCLICK);
         }
 
         private void PrepareInventoryData()
@@ -200,7 +200,7 @@ namespace Scripts.Controllers
             inventoryUI.Hide();
             characterUI.Hide();
             viewDeckButton.Hide();
-            SoundManager.PlaySound(SoundEffectType.MENUOPEN);
+            SoundManager.Instance.PlaySound(SoundEffectType.MENUOPEN);
         }
 
         private void ShowCharacterUI()
@@ -211,7 +211,7 @@ namespace Scripts.Controllers
             inventoryUI.Hide();
             settingsUI.Hide();
             viewDeckButton.Hide();
-            SoundManager.PlaySound(SoundEffectType.MENUOPEN);
+            SoundManager.Instance.PlaySound(SoundEffectType.MENUOPEN);
         }
 
         private void HideAllMenus()
@@ -222,7 +222,7 @@ namespace Scripts.Controllers
             viewDeckButton.Hide();
             characterUI.Hide();
             settingsUI.Hide();
-            SoundManager.PlaySound(SoundEffectType.MENUOPEN);
+            SoundManager.Instance.PlaySound(SoundEffectType.MENUOPEN);
         }
 
         private void ShowInventoryUI()
@@ -233,7 +233,7 @@ namespace Scripts.Controllers
             exitButton.Show();
             settingsUI.Hide();
             viewDeckButton.Hide();
-            SoundManager.PlaySound(SoundEffectType.MENUOPEN);
+            SoundManager.Instance.PlaySound(SoundEffectType.MENUOPEN);
         }
 
         private void UpdateAllInventoryUIItems()
@@ -251,7 +251,7 @@ namespace Scripts.Controllers
 
         public void OpenMenu()
         {
-            SoundManager.PlaySound(SoundEffectType.BUTTONCLICK);
+            SoundManager.Instance.PlaySound(SoundEffectType.BUTTONCLICK);
             if (!inventoryUI.gameObject.activeSelf)
             {
                 HideAllMenus();

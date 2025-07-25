@@ -14,8 +14,8 @@ public class StartButton : MonoBehaviour
 
     private IEnumerator ChangeScene()
     {
-        SoundManager.PlaySound(SoundEffectType.BUTTONCLICK);
-        SoundManager.PlaySound(SoundEffectType.ENDTURN);
+        SoundManager.Instance.PlaySound(SoundEffectType.BUTTONCLICK);
+        SoundManager.Instance.PlaySound(SoundEffectType.ENDTURN);
         PlayerPrefs.DeleteAll();
         PlayerPrefs.Save();
         yield return new WaitForSeconds(2f);

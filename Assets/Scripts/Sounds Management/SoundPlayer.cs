@@ -4,11 +4,11 @@ public class SoundPlayer : MonoBehaviour
 {
     public void playFootStep()
     {
-        SoundManager.PlaySound(SoundEffectType.PLAYERMOVEMENT);
+        SoundManager.Instance.PlaySound(SoundEffectType.PLAYERMOVEMENT);
     }
 
     public void playDoorInteraction()
     {
-        SoundManager.PlaySound(SoundEffectType.DOORINTERACTION);
+        SoundManager.Instance.PlaySound(SoundEffectType.DOORINTERACTION);
     }
 }

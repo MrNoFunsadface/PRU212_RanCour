@@ -3,10 +3,17 @@ using UnityEngine;
 
 public class SoundTrackPlayer : MonoBehaviour
 {
-    [SerializeField] SoundTrackList soundTrackList;
+    [SerializeField] SoundTrackList soundTrack;
 
     public void Start()
     {
-        SoundManager.PlaySoundTrack(soundTrackList);
+        SoundManager.Instance.PlaySoundTrack(soundTrack);
+    }
+
+    public void SetSoundTrack(SoundTrackList newSoundTrack)
+    {
+        soundTrack = newSoundTrack;
+        SoundManager.Instance.StopSoundTrack();
+        SoundManager.Instance.PlaySoundTrack(soundTrack);
     }
 }

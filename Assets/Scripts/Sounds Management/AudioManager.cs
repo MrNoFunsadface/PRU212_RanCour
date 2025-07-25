@@ -47,9 +47,9 @@ public class AudioManager : MonoBehaviour
         // Apply them to SoundManager if it's initialized
         if (SoundManager.IsInitialized)
         {
-            SoundManager.MasterVolume = masterValue;
-            SoundManager.SFXVolume = sfxValue;
-            SoundManager.MusicVolume = musicValue;
+            SoundManager.Instance.MasterVolume = masterValue;
+            SoundManager.Instance.SFXVolume = sfxValue;
+            SoundManager.Instance.MusicVolume = musicValue;
         }
         else
         {

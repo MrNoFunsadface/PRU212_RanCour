@@ -21,30 +21,30 @@ public class VolumeSliderController : MonoBehaviour
 
     public void SetMasterVolume()
     {
-        SoundManager.MasterVolume = masterVolumeSlider.value;
+        SoundManager.Instance.MasterVolume = masterVolumeSlider.value;
         SaveVolumeSettings();
     }
 
     public void SetSFXVolume()
     {
-        SoundManager.SFXVolume = sfxVolumeSlider.value;
+        SoundManager.Instance.SFXVolume = sfxVolumeSlider.value;
         SaveVolumeSettings();
     }
 
     public void SetMusicVolume()
     {
-        SoundManager.MusicVolume = musicVolumeSlider.value;
+        SoundManager.Instance.MusicVolume = musicVolumeSlider.value;
         SaveVolumeSettings();
     }
 
     private void LoadVolumeSettings()
     {
-        SoundManager.MasterVolume = PlayerPrefs.GetFloat(MASTER_VOLUME_KEY, DEFAULT_VOLUME);
-        SoundManager.SFXVolume = PlayerPrefs.GetFloat(SFX_VOLUME_KEY, DEFAULT_VOLUME);
-        SoundManager.MusicVolume = PlayerPrefs.GetFloat(MUSIC_VOLUME_KEY, DEFAULT_VOLUME);
-        masterVolumeSlider.value = SoundManager.MasterVolume;
-        sfxVolumeSlider.value = SoundManager.SFXVolume;
-        musicVolumeSlider.value = SoundManager.MusicVolume;
+        SoundManager.Instance.MasterVolume = PlayerPrefs.GetFloat(MASTER_VOLUME_KEY, DEFAULT_VOLUME);
+        SoundManager.Instance.SFXVolume = PlayerPrefs.GetFloat(SFX_VOLUME_KEY, DEFAULT_VOLUME);
+        SoundManager.Instance.MusicVolume = PlayerPrefs.GetFloat(MUSIC_VOLUME_KEY, DEFAULT_VOLUME);
+        masterVolumeSlider.value = SoundManager.Instance.MasterVolume;
+        sfxVolumeSlider.value = SoundManager.Instance.SFXVolume;
+        musicVolumeSlider.value = SoundManager.Instance.MusicVolume;
     }
     
     private void SaveVolumeSettings()
@@ -56,9 +56,9 @@ public class VolumeSliderController : MonoBehaviour
             return;
         }
         
-        float masterValue = SoundManager.MasterVolume;
-        float sfxValue = SoundManager.SFXVolume;
-        float musicValue = SoundManager.MusicVolume;
+        float masterValue = SoundManager.Instance.MasterVolume;
+        float sfxValue = SoundManager.Instance.SFXVolume;
+        float musicValue = SoundManager.Instance.MusicVolume;
 
         PlayerPrefs.SetFloat(MASTER_VOLUME_KEY, masterValue);
         PlayerPrefs.SetFloat(SFX_VOLUME_KEY, sfxValue);

@@ -37,7 +37,7 @@ public class EnemyAICombat : MonoBehaviour
         if (dropZone != null && dropZone.enemyAnimator != null)
         {
             dropZone.enemyAnimator.Play(statsMono.stats.attackAnimationName);
-            SoundManager.PlaySound(dropZone.attackSoundType);
+            SoundManager.Instance.PlaySound(dropZone.attackSoundType);
         }
         else
         {
@@ -58,7 +58,7 @@ public class EnemyAICombat : MonoBehaviour
         int dmg = statsMono.stats.attack;
 
         // 4. Deal damage and play sound and animation
-        SoundManager.PlaySound(SoundEffectType.DAMAGETAKING);
+        SoundManager.Instance.PlaySound(SoundEffectType.DAMAGETAKING);
         CombatSystem.Instance.DealDamage(
             playerGO,
             statsMono.stats.primaryDamageType,

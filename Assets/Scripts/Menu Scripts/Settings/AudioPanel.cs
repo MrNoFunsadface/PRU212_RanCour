@@ -21,6 +21,6 @@ public class AudioPanel : MonoBehaviour
         {
             Show();
         }
-        SoundManager.PlaySound(SoundEffectType.BUTTONCLICK);
+        SoundManager.Instance.PlaySound(SoundEffectType.BUTTONCLICK);
     }
 }

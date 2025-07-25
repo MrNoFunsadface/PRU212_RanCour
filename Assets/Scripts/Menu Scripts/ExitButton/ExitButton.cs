@@ -36,7 +36,7 @@ public class ExitButton : MonoBehaviour
         viewDeckButton.Hide();
         cardView.Hide();
         Hide();
-        SoundManager.PlaySound(SoundEffectType.BUTTONCLICK);
+        SoundManager.Instance.PlaySound(SoundEffectType.BUTTONCLICK);
     }
 
     public void Hide() => gameObject.SetActive(false);

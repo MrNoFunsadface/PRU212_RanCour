@@ -61,7 +61,7 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     #region Drag Events Handlers
     public void OnBeginDrag(PointerEventData eventData)
     {
-        SoundManager.PlaySound(SoundEffectType.CARDSELECTION);
+        SoundManager.Instance.PlaySound(SoundEffectType.CARDSELECTION);
         canvasGroup.blocksRaycasts = false;
         cardSpawner.OnCardBeginDrag(rectTransform);
         lastCardPosition = rectTransform.anchoredPosition;
@@ -101,7 +101,7 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         else
         {
             // If the card is dropped in a drop zone
-            SoundManager.PlaySound(SoundEffectType.CARDAPPLICATION);
+            SoundManager.Instance.PlaySound(SoundEffectType.CARDAPPLICATION);
             if (eventData.pointerEnter.TryGetComponent<DropZoneScript>(out var info))
             {
                 Debug.Log($"[CardDrag] Dropped {card.cardName} on {info.enemyName} at order {info.enemyOrder}");
@@ -195,7 +195,7 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         yield return new WaitForSeconds(0.25f);
 
         // Play the hurt animation on the enemy
-        SoundManager.PlaySound(SoundEffectType.DAMAGETAKING);
+        SoundManager.Instance.PlaySound(SoundEffectType.DAMAGETAKING);
         if (info.enemyAnimator != null) info.enemyAnimator.Play(enemyStats.hurtAnimationName);
         yield return new WaitForSeconds(0.5f);
 

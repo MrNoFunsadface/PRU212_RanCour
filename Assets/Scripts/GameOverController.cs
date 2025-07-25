@@ -74,7 +74,7 @@ public class GameOverController : MonoBehaviour
             MobWaveDataManager.RemoveWave(currentWaveId);
 
             // Play transition sound
-            SoundManager.PlaySound(SoundEffectType.MENUOPEN);
+            SoundManager.Instance.PlaySound(SoundEffectType.MENUOPEN);
 
             // Load the victory scene
             SceneManager.LoadScene(victoryScene);
@@ -83,7 +83,7 @@ public class GameOverController : MonoBehaviour
         }
 
         // Play transition sound
-        SoundManager.PlaySound(SoundEffectType.MENUOPEN);
+        SoundManager.Instance.PlaySound(SoundEffectType.MENUOPEN);
 
         // Load the defeat scene
         SceneManager.LoadScene(defeatScene);

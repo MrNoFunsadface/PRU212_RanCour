@@ -4,7 +4,7 @@ public class QuitButton : MonoBehaviour
 {
     public void OnQuitButtonClick()
     {
-        SoundManager.PlaySound(SoundEffectType.BUTTONCLICK);
+        SoundManager.Instance.PlaySound(SoundEffectType.BUTTONCLICK);
         Application.Quit();
     }
 }

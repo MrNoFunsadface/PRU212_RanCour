@@ -109,7 +109,7 @@ public class TurnManager : MonoBehaviour
         if (!playerInputEnabled || state != BattleState.PlayerTurn)
             return;
 
-        SoundManager.PlaySound(SoundEffectType.ENDTURN);
+        SoundManager.Instance.PlaySound(SoundEffectType.ENDTURN);
         if (debugMode) Debug.Log("[TurnManager] End Player Turn");
         state = BattleState.EnemyTurn;
         StartCoroutine(EnemyPhase());

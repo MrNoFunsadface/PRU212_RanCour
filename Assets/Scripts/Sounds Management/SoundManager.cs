@@ -32,19 +32,18 @@ public enum SoundTrackList
 [RequireComponent(typeof(AudioSource)), ExecuteInEditMode]
 public class SoundManager : MonoBehaviour
 {
-    private static SoundManager Instance;
+    public static SoundManager Instance;
 
     [SerializeField] private SoundList[] soundList;
     [SerializeField] private SoundTrack[] soundTracks;
     private float masterVolume = 1f;
     private float sfxVolume = 1f;
     private float musicVolume = 1f;
-    private static SoundManager instance;
     private AudioSource musicSource;  // Renamed to clarify purpose
     [SerializeField] private AudioSource sfxSource;  // New dedicated source for sound effects
 
     // Add this static property to check if the instance is ready
-    public static bool IsInitialized => instance != null && instance.musicSource != null;
+    public static bool IsInitialized => Instance != null && Instance.musicSource != null;
 
     private void Awake()
     {
@@ -56,16 +55,17 @@ public class SoundManager : MonoBehaviour
             return;
         }
 
-        // Singleton pattern with DontDestroyOnLoad (only in play mode)
-        if (instance != null && instance != this)
+        // Singleton
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);  // Keep the SoundManager across scenes
+        }
+        else
         {
             Destroy(gameObject);
-            return;
         }
 
-
-        instance = this;
-        DontDestroyOnLoad(gameObject);
 
         musicSource = GetComponent<AudioSource>();
         if (musicSource == null)
@@ -80,24 +80,24 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public static void PlaySound(SoundEffectType sound)
+    public void PlaySound(SoundEffectType sound)
     {
-        float volume = instance.masterVolume * instance.sfxVolume;
-        AudioClip[] clips = instance.soundList[(int)sound].Sounds;
+        float volume = Instance.masterVolume * Instance.sfxVolume;
+        AudioClip[] clips = Instance.soundList[(int)sound].Sounds;
         AudioClip randomClip = clips[UnityEngine.Random.Range(0, clips.Length)];
-        instance.sfxSource.PlayOneShot(randomClip, volume);  // Use sfxSource instead
+        Instance.sfxSource.PlayOneShot(randomClip, volume);  // Use sfxSource instead
     }
 
-    public static void PlaySoundTrack(SoundTrackList soundTrack)
+    public void PlaySoundTrack(SoundTrackList soundTrack)
     {
-        float volume = instance.masterVolume * instance.musicVolume;
-        AudioClip track = instance.soundTracks[(int)soundTrack].Sounds;
+        float volume = Instance.masterVolume * Instance.musicVolume;
+        AudioClip track = Instance.soundTracks[(int)soundTrack].Sounds;
         if (track != null)
         {
-            instance.musicSource.clip = track;
-            instance.musicSource.loop = true;
-            instance.musicSource.volume = volume;
-            instance.musicSource.Play();
+            Instance.musicSource.clip = track;
+            Instance.musicSource.loop = true;
+            Instance.musicSource.volume = volume;
+            Instance.musicSource.Play();
         }
         else
         {
@@ -105,51 +105,59 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public static float MasterVolume
+    public void StopSoundTrack()
     {
-        get => instance != null ? instance.masterVolume : 1f;
+        if (Instance.musicSource.isPlaying)
+        {
+            Instance.musicSource.Stop();
+        }
+    }
+
+    public float MasterVolume
+    {
+        get => Instance != null ? Instance.masterVolume : 1f;
         set
         {
-            if (instance == null)
+            if (Instance == null)
             {
                 return;
             }
 
-            instance.masterVolume = Mathf.Clamp01(value);
+            Instance.masterVolume = Mathf.Clamp01(value);
             UpdateVolumeSettings();
         }
     }
 
-    public static float SFXVolume
+    public float SFXVolume
     {
-        get => instance.sfxVolume;
+        get => Instance.sfxVolume;
         set
         {
-            instance.sfxVolume = Mathf.Clamp01(value);
+            Instance.sfxVolume = Mathf.Clamp01(value);
             UpdateVolumeSettings();
         }
     }
 
-    public static float MusicVolume
+    public float MusicVolume
     {
-        get => instance.musicVolume;
+        get => Instance.musicVolume;
         set
         {
-            instance.musicVolume = Mathf.Clamp01(value);
+            Instance.musicVolume = Mathf.Clamp01(value);
             UpdateVolumeSettings();
         }
     }
 
-    private static void UpdateVolumeSettings()
+    private void UpdateVolumeSettings()
     {
-        if (instance == null)
+        if (Instance == null)
         {
             Debug.LogWarning("SoundManager instance is not initialized. Cannot update volume settings.");
             return;
         }
         // Update the AudioSource volumes based on the current settings
-        instance.musicSource.volume = instance.masterVolume * instance.musicVolume;
-        instance.sfxSource.volume = instance.masterVolume * instance.sfxVolume;
+        Instance.musicSource.volume = Instance.masterVolume * Instance.musicVolume;
+        Instance.sfxSource.volume = Instance.masterVolume * Instance.sfxVolume;
     }
 
 #if UNITY_EDITOR
