@@ -55,6 +55,47 @@ public static class MobWaveDataManager
         Debug.LogWarning($"[MobWaveDataManager] Wave with spawnerId {spawnerId} not found.");
         waveData = null;
     }
+
+    public static void MarkAsVictory(string waveId)
+    {
+        if (mobWaves.TryGetValue(waveId, out var waveData))
+        {
+            waveData.isVictory = true;
+            Debug.Log($"[MobWaveDataManager] Wave {waveId} marked as victorious.");
+
+            // Optional: Save to PlayerPrefs for persistence between game sessions
+            PlayerPrefs.SetInt($"Wave_{waveId}_Victorious", 1);
+            PlayerPrefs.Save();
+        }
+        else
+        {
+            Debug.LogWarning($"[MobWaveDataManager] Cannot mark victory: Wave with ID {waveId} not found.");
+        }
+    }
+
+    // Check if a wave is victorious
+    public static bool IsWaveVictorious(string waveId)
+    {
+        // First check in-memory data
+        if (mobWaves.TryGetValue(waveId, out var waveData))
+        {
+            return waveData.isVictory;
+        }
+
+        // If not found in memory, check PlayerPrefs (for persistence between sessions)
+        return PlayerPrefs.GetInt($"Wave_{waveId}_Victorious", 0) == 1;
+    }
+
+    public static void LoadVictoryData()
+    {
+        foreach (var waveData in mobWaves.Values)
+        {
+            if (PlayerPrefs.GetInt($"Wave_{waveData.waveId}_Victorious", 0) == 1)
+            {
+                waveData.isVictory = true;
+            }
+        }
+    }
 }
 
 [System.Serializable]
@@ -63,11 +104,13 @@ public class MobWaveData
     public string waveId;
     public string spawnerId;
     public List<EnemyWithStats> enemies;
+    public bool isVictory = false;
 
     public MobWaveData(string waveId, string spawnerId, List<EnemyWithStats> enemies)
     {
         this.waveId = waveId;
         this.spawnerId = spawnerId;
         this.enemies = enemies;
+        this.isVictory = false;
     }
 }

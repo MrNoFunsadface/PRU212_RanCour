@@ -196,12 +196,12 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
         // Play the hurt animation on the enemy
         SoundManager.PlaySound(SoundEffectType.DAMAGETAKING);
-        info.enemyAnimator.Play(enemyStats.hurtAnimationName);
+        if (info.enemyAnimator != null) info.enemyAnimator.Play(enemyStats.hurtAnimationName);
         yield return new WaitForSeconds(0.5f);
 
         // Play idle animation on the player
         playerAnimator.Play(playerStatsSO.idleAnimationName);
-        info.enemyAnimator.Play(enemyStats.idleAnimationName, 0, 0f);
+        if (info.enemyAnimator != null) info.enemyAnimator.Play(enemyStats.idleAnimationName, 0, 0f);
     }
 
     // New method that plays the animation and then discards the card

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bat
   m_EditorClassIdentifier: 
   characterName: Bat
-  maxHealth: 400
+  maxHealth: 100
   attack: 20
   defense: 3
   attackSpeed: 1
@@ -24,4 +24,4 @@ MonoBehaviour:
   animatorController: {fileID: 9100000, guid: 34eaf76c12c1daf49b41edf54330a226, type: 2}
   idleAnimationName: idle
   attackAnimationName: attack
-  hurtAnimation: hurt
+  hurtAnimationName: hurt

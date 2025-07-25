@@ -21,3 +21,7 @@ MonoBehaviour:
   isPlayer: 1
   charPrefab: {fileID: 0}
   freeRoamingPrefab: {fileID: 0}
+  animatorController: {fileID: 0}
+  idleAnimationName: idle
+  attackAnimationName: attack
+  hurtAnimationName: hurt

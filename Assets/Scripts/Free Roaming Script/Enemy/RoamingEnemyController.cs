@@ -55,6 +55,8 @@ public class RoamingEnemyController : MonoBehaviour
             // Save waveId to a static or persistent object for the battle scene
             BattleTransitionData.SelectedWaveId = waveId;
 
+            BattleTransitionData.fromSceneName = GameManager.Instance.fromSceneName; // Save the scene name we are returning from
+
             // Play transition effect and load the battle scene
             StartCoroutine(TransitionToScene("BattleScene")); // Replace "BattleScene" with your actual battle scene name
         }
@@ -76,16 +78,10 @@ public class RoamingEnemyController : MonoBehaviour
         // Load the battle scene
         UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
     }
-
-    // Call this when the wave is defeated
-    public void OnWaveDefeated()
-    {
-        MobWaveDataManager.RemoveWave(waveId);
-        Destroy(gameObject);
-    }
 }
 
 public static class BattleTransitionData
 {
     public static string SelectedWaveId { get; set; } = string.Empty; // Static property to hold the selected wave ID
+    public static string fromSceneName { get; set; } = string.Empty; // Static property to hold the scene name we are returning from
 }

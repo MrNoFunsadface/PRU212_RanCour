@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Slime
   m_EditorClassIdentifier: 
   characterName: Slime
-  maxHealth: 600
+  maxHealth: 200
   attack: 15
   defense: 5
   attackSpeed: 1
@@ -24,4 +24,4 @@ MonoBehaviour:
   animatorController: {fileID: 9100000, guid: 5cda610dba80b0146bb8cc577b6ea124, type: 2}
   idleAnimationName: idle
   attackAnimationName: attack
-  hurtAnimation: hurt
+  hurtAnimationName: hurt

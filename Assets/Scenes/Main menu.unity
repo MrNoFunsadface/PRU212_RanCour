@@ -627,8 +627,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Rancour
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6fe38d5781868764eb56d6defb6fd9d8, type: 2}
-  m_sharedMaterial: {fileID: -1168380995207719496, guid: 6fe38d5781868764eb56d6defb6fd9d8, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c65ce731ba444084284ff60a38abd076, type: 2}
+  m_sharedMaterial: {fileID: 8172507159436179921, guid: c65ce731ba444084284ff60a38abd076, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

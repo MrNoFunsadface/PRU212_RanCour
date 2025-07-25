@@ -9,6 +9,8 @@ public class RoamingEnemySpawner : MonoBehaviour
 {
     [Header("Spawner info")]
     [SerializeField] private string spawnerId; // Unique identifier for the spawner
+    [SerializeField] private string fromSceneName; // Name of the scene this spawner is from
+    private bool isVictory; // Indicate spawner has been won
 
     [Header("Enemy wave configuration")]
     [SerializeField] private List<EnemyWithStats> enemyTable;
@@ -21,16 +23,60 @@ public class RoamingEnemySpawner : MonoBehaviour
 
     private void Start()
     {
-        if (GameManager.Instance.isEnemyReturningFromBattle &&
+        InitializeRoamingEnemySpawner();
+    }
+
+    private void InitializeRoamingEnemySpawner()
+    {
+        // Check for victory directly from PlayerPrefs first (for cross-session persistence)
+        MobWaveDataManager.GetWaveBySpawner(spawnerId, out MobWaveData existingWaveData);
+        if (existingWaveData != null && existingWaveData.isVictory)
+        {
+            isVictory = true;
+            Debug.Log($"[RoamingEnemySpawner] Spawner {spawnerId} has a victorious wave and won't spawn enemies.");
+            return;
+        }
+        GameManager.Instance.fromSceneName = fromSceneName; // Store the scene name for returning
+
+        Debug.Log($"GameManager.Instance: {GameManager.Instance}");
+        Debug.Log($"GameManager.Instance.isEnemyReturningFromBattle: {GameManager.Instance.isEnemyReturningFromBattle}");
+        Debug.Log($"GameManager.Instance.lastBattleSpawnerId == spawnerId: {GameManager.Instance.lastBattleSpawnerId == spawnerId}");
+        // Check if returning from battle and this was the spawner
+        if (GameManager.Instance != null &&
+            GameManager.Instance.isEnemyReturningFromBattle &&
             GameManager.Instance.lastBattleSpawnerId == spawnerId)
         {
-            // Get position from GameManager
-            enemyReturnPosition = GameManager.Instance.enemyReturnPosition;
-            Debug.Log($"[RoamingEnemySpawner] Spawner {spawnerId} returning from battle, position: {enemyReturnPosition}");
+            
+            Debug.Log($"[RoamingEnemySpawner] Spawner {spawnerId} is returning from battle scene: {GameManager.Instance.fromSceneName}");
+
+            // Check if the player won the battle
+            if (GameManager.Instance.lastBattleResult)
+            {
+                isVictory = true;
+                // No need to spawn anything if the player won
+                Debug.Log($"[RoamingEnemySpawner] Spawner {spawnerId} marked as victorious!");
+                return;
+            }
+            else
+            {
+                // Player lost, set enemy return position
+                enemyReturnPosition = GameManager.Instance.enemyReturnPosition;
+                Debug.Log($"[RoamingEnemySpawner] Spawner {spawnerId} returning from lost battle, position: {enemyReturnPosition}");
+            }
         }
-        MobWaveDataManager.GetWaveBySpawner(spawnerId, out MobWaveData existingWaveData);
-        if (existingWaveData != null) InstantiateRepEnemy(existingWaveData);
-        else SpawnEnemyWave();
+
+        // If the spawner is already marked as victorious, don't spawn anything
+        if (isVictory)
+        {
+            Debug.Log($"[RoamingEnemySpawner] Spawner {spawnerId} is already marked as victorious. No enemies will spawn.");
+            return;
+        }
+
+        // Check for existing wave data
+        if (existingWaveData != null)
+            InstantiateRepEnemy(existingWaveData);
+        else
+            SpawnEnemyWave();
     }
 
     public void SpawnEnemyWave()
@@ -75,13 +121,13 @@ public class RoamingEnemySpawner : MonoBehaviour
         if (GameManager.Instance.isEnemyReturningFromBattle &&
             GameManager.Instance.lastBattleSpawnerId == spawnerId)
         {
-            repEnemyObject = Instantiate(waveData.enemies[0].enemy.freeRoamingPrefab, enemyReturnPosition, Quaternion.identity);
+            repEnemyObject = Instantiate(waveData.enemies[0].enemy.freeRoamingPrefab, enemyReturnPosition, Quaternion.identity, transform);
             // Reset the flag
             GameManager.Instance.isEnemyReturningFromBattle = false;
         }
         else
         {
-            repEnemyObject = Instantiate(waveData.enemies[0].enemy.freeRoamingPrefab, transform.position, Quaternion.identity);
+            repEnemyObject = Instantiate(waveData.enemies[0].enemy.freeRoamingPrefab, transform);
         }
 
         // Attach controller and set properties

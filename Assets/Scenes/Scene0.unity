@@ -4895,10 +4895,13 @@ MonoBehaviour:
   playerReturnPosition: {x: 0, y: 0}
   enemyReturnPosition: {x: 0, y: 0}
   lastBattleSpawnerId: 
+  lastBattleWaveId: 
+  lastBattleResult: 0
   isReturningFromBattle: 0
   isEnemyReturningFromBattle: 0
   useCustomSpawnPosition: 0
   targetSpawnPointId: Scene1
+  fromSceneName: 
 --- !u!1 &1571594223 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2491069936641316775, guid: dfbc878f1b6e88d459b8440cff39083d, type: 3}
@@ -6998,13 +7001,13 @@ SceneRoots:
   - {fileID: 908886255}
   - {fileID: 1567841602}
   - {fileID: 519420032}
-  - {fileID: 908886255}
   - {fileID: 1763380305}
-  - {fileID: 1534862505}
   - {fileID: 159819482306984257}
   - {fileID: 1831491848}
   - {fileID: 912956706}
   - {fileID: 503468208}
-  - {fileID: 7383581656114385725}
   - {fileID: 871340027}
+  - {fileID: 7383581656114385725}
   - {fileID: 245390629}
+  - {fileID: 2396219242661816827}
+  - {fileID: 1638077232}
