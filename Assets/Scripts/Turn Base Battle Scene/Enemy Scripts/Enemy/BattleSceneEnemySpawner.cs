@@ -17,6 +17,7 @@ public class BattleSceneEnemySpawner : MonoBehaviour
     [SerializeField] private GameObject activeHealthBar; // Health bar when hover the card over the enemy's drop zone
 
     [Header("Enemy spawning configure")]
+    [SerializeField] private EnemyWithStats[] enemyTable;
     [SerializeField] private List<EnemyWithStats> fallBackEnemyToSpawnList; // Fallback enemies to spawn if wave data is not found
     [SerializeField] private CharacterStatsSO representativeEnemy; // The representative enemy (first one), take from free roam scene
     [SerializeField] private int minEnemyCount; // Minimum number of enemies to spawn

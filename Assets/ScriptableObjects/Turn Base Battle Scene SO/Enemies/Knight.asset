@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: Knight
   m_EditorClassIdentifier: 
   characterName: Knight
-  maxHealth: 1000
+  maxHealth: 400
   attack: 30
   defense: 7
   attackSpeed: 1
   primaryDamageType: 4
   isPlayer: 0
-  charPrefab: {fileID: 2256444359035510481, guid: 94a5f06e13964aa4183eeb954a4bbbd0, type: 3}
-  freeRoamingPrefab: {fileID: 1062253175323801145, guid: b93a30c625919e84eac095fb2dd35d7d, type: 3}
-  animatorController: {fileID: 9100000, guid: 07dc5adec7280994a85a2ec7122d7eda, type: 2}
+  charPrefab: {fileID: 0}
+  freeRoamingPrefab: {fileID: 0}
+  animatorController: {fileID: 0}
   idleAnimationName: idle
   attackAnimationName: attack
   hurtAnimationName: hurt
