@@ -165,7 +165,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   winPanel: {fileID: 30285679}
   losePanel: {fileID: 467062046}
-  returnSceneName: Scene1
+  victoryScene: 
+  defeatScene: Main menu
   autoTransitionDelay: 3
 --- !u!1 &30285679
 GameObject:
